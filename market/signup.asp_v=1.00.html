@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+                Signup - Tutorialspoint
+            </title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="csrf-token" content="i75HX2lCI82Jz3brS72whsCeF3FK3OULYo8ykGcN">
+<!--Farmework CSS-->
+<link rel="stylesheet" href="/market/public/assets/css/toastr.css" integrity="" />
+<link rel="stylesheet" type="text/css" href="/market/public/assets/css/mui/mui.min.css" />
+<link rel="stylesheet" type="text/css" href="/market/public/assets/css/mui/custom.css?v=1656594142" />
+	
+<!--Farmework JS-->
+<script src="/market/public/assets/js/jquery-3.3.1.min.js?v=1.0"></script>
+<script src="/market/public/assets/js/mui/fontawesome.js?v=1656485099"></script>
+    <meta name="google-site-verification" content="a3lTjqnrYy0FULTFuVXuYcpoVYUK9PpZO9TlkgCqiO8" />
+</head>
+<body>
+	<div class="wrap_loader" style="height:5304px;">
+		<div class="imgLoader"><img src="/market/public/assets/images/loader.gif" alt="Tutorialspoint" width="70" height="70"></div>
+	</div>
+    <div class="">
+        <script src="https://hcaptcha.com/1/api.js" async defer></script>
+<div id="appbar-placeholder" class="mui--appbar-height"></div>
+<div class="mui-container">
+	<div class="mui-row">
+		
+		<div class="mui-container-fluid login-wrap">					
+			<div class="mui-col-lg-4 mui-col-md-2 mui-col-sm-2 mui-col-xs-0 np">&nbsp;</div>
+			<div class="mui-col-lg-4 mui-col-md-8 mui-col-sm-8 mui-col-xs-12 np">
+				<div class="mui-panel rounded">	
+					<a href="javascript:void(0);" class="tp-close-btn close_btn"><i class="fa fa-times"></i> </a>
+					<h2 class="mr-pd">
+                    <a href="../index.htm"><img src="/market/public/assets/images/tp-diamond.png" alt="Tutorialspoint - Simply Easy Learning" title="Tutorialspoint - Simply Easy Learning" style="height:95px;"></a>
+					</h2>
+					<div class="clear"></div>
+					
+					<div id="divSignup">
+						<h3 id="sign_up_title">Sign Up</h3>
+						<form class="mui-form" action="" method="POST" id="signupForm">
+							<div class="mui-textfield">
+								<input class="login-input txtClass" placeholder="Enter Full Name" type="text" id="textRegName" name="textRegName" required/>
+								<div class="tp-login-icon"><i class="fa fa-user"></i> </div>
+							</div>
+							<div class="mui-textfield">
+								<input class="input-pwd txtClass" type="email"  id="textSRegEmail" name="textSRegEmail" placeholder="Enter Email" required />
+								<div class="tp-login-icon"><i class="fa fa-envelope"></i> </div>
+								<div class="clear"></div>
+								<div class="error"></div>
+							</div>
+							<div class="signup-checkbox mui-textfield mui-textfield--float-label">
+								<input class="" type="checkbox" id="chkPromotionalEmail" name="chkPromotionalEmail" checked=true />
+								<span>I’m in for emails with exciting discounts and newsletter.</span>
+							</div>							
+							<div class="h-captcha" data-sitekey="add622b5-92f4-439f-8adb-884455cadeed"></div>
+							<div class="clear"></div>
+							<button class="btn-default btn-login btn-100 rounded" type="button" name="signUp" id="signUp" value="Sign Up"><i class="fa fa-sign-out"></i>&nbsp; Sign up</button>
+							<div class="mui-textfield mui-textfield--float-label">
+								<p class="terms-of-use">By signing up, you agree to our <a href="https://www.tutorialspoint.com/about/about_terms_of_use.htm" target="_blank">Terms of Use</a> and <a href="https://www.tutorialspoint.com/about/about_privacy.htm" target="_blank">Privacy Policy.</a></p>
+							</div>
+							<hr/>
+							<div class="mui-col-lg-6 mui-col-md-6 mui-col-sm-6 mui-col-xs-6 mui-form npr">
+								<button class="loginBtn loginBtn--google btn-100 rounded" type="button" id="btnGoogleLogin" title="Sign up with Google"><i class="fa fa-google fa-fw">
+								  </i> Sign up with Google</button>
+							</div>
+							<div class="mui-col-lg-6 mui-col-md-6 mui-col-sm-6 mui-col-xs-6 mui-form npl">
+								  <button class="loginBtn loginBtn--facebook btn-100 rounded" type="button" id="btnFacebookLogin" title="Sign up with Facebook"><i class="fa fa-facebook-f fa-fw">
+								  </i> Sign up with Facebook</button>							
+							</div>
+							<div class="clear"></div>
+							<div class="col-12 col-md-12 login-foot">
+								<div class="row">
+									<div class="col-12 col-sm-12 text-center npr">
+										<span> Already have an account ? &nbsp;</span> <a href="https://www.tutorialspoint.com/market/login.jsp" id="spanForgot" class=""><b><i class="fa fa-sign-in-alt"></i> &nbsp;Log In</b></a>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					
+					<!-- otp validate OTP -->
+					<div id="divSignup-2" style="display:none;" onsubmit="return false;" >
+						<h4>Enter OTP</h4>
+						<p class="email-sent" style="text-align:center;"><span id="email_sent"></span></p>
+						<form action="" method="POST" id="fromCheckOtp">
+							<div class="mui-textfield">								
+								<input class="uk-input txtClass" type="password" name="txtValidateOTP" id="txtValidateOTP" placeholder="Enter OTP" />
+								<div class="tp-login-icon"><i class="fa fa-key"></i></div>
+								<div class="clear error"></div>
+							</div>
+							<button type="button" class="btn btn-default btn-login btn-100 rounded" id="validateOtp"><i class="fa fa-user-edit"></i> &nbsp;Validate OTP</button>
+						</form>
+					</div>
+					<!-- End of otp validate OTP -->
+
+                <!-- Re-enter password -->
+                <div id="divSignup-3" style="display:none;" onsubmit="return false;">
+                    <h4>Enter New Password</h4> 
+                    <form action="" method="POST" id="formConfirmPassword">
+						<div class="mui-textfield">
+							<input class="uk-input txtClass" type="password" id="textSRegPwd" name="textSRegPwd" placeholder="Enter Password" />
+							<span class="login-wrap-hide-pwd togglePassword" > <i class="fa fa-fw fa-eye-slash"></i></span>
+							<div class="tp-login-icon"><i class="fa fa-key"></i></div>
+							<div class="clear error"></div>
+						</div>
+						<div class="mui-textfield">
+							<input class="uk-input txtClass" type="password" placeholder="Re-enter Password" id="textRegRePwd" name="textRegRePwd" />
+							<span class="login-wrap-hide-pwd togglePassword" > <i class="fa fa-fw fa-eye-slash"></i></span>
+							<div class="tp-login-icon"><i class="fa fa-user"></i></div>
+							<div class="clear error"></div>
+						</div>
+                        <div class="clear"></div> 
+                        <button type="button" class="btn btn-default btn-login btn-100 rounded" id="submitRegister"><i class="fa fa-user-edit"></i> &nbsp;Save</button>
+                        <div class="clear"></div> 
+                    </form>
+                </div>
+				</div>
+			</div>
+			<input type="hidden" id="user_type" value="U" />
+			<div class="mui-col-lg-4 mui-col-md-2 mui-col-sm-2 mui-col-xs-0 np">&nbsp;</div>
+		</div>
+	
+	</div>
+</div>
+<div class="login-bg"></div>
+<script>
+	$(document).ready(function(){
+		var url = window.location.href;
+		if(url.indexOf("userType") > -1){
+			$("#sign_up_title").html("Business Sign Up");
+			$("#user_type").val("BA");
+		}
+	});
+</script>
+<script src="https://apis.google.com/js/api.js"></script>
+    </div>
+    <script src="/market/public/assets/js/jquery-3.3.1.min.js"></script>
+<script src="/market/public/assets/js/mui/mui-combined.min.js"></script>
+
+<script>
+    var appURL = "https://www.tutorialspoint.com/market/";
+    var baseURL = "https://www.tutorialspoint.com/";
+</script>
+<script src="/market/public/assets/js/auth.js?v=1657192088"></script>
+<script src="/market/public/assets/js/toastr.js"></script>   
+<script src="https://apis.google.com/js/api.js"></script>
+
+</body>
+</html>

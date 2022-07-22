@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+                Login - Tutorialspoint
+            </title>
+    <meta name="description" content="Login to Video Courses, eBooks and Prime Pack">
+    <meta name="keywords" content="Login to Video Courses, eBooks and Prime Pack">
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="csrf-token" content="Dn8XOph0uyIp9IQLS84SzdocBHH8Nr3svZeg04sV">
+<!--Farmework CSS-->
+<link rel="stylesheet" href="/market/public/assets/css/toastr.css" integrity="" />
+<link rel="stylesheet" type="text/css" href="/market/public/assets/css/mui/mui.min.css" />
+<link rel="stylesheet" type="text/css" href="/market/public/assets/css/mui/custom.css?v=1657779837" />
+	
+<!--Farmework JS-->
+<script src="/market/public/assets/js/jquery-3.3.1.min.js?v=1.0"></script>
+<script src="/market/public/assets/js/mui/fontawesome.js?v=1656485099"></script>
+    <meta name="google-site-verification" content="a3lTjqnrYy0FULTFuVXuYcpoVYUK9PpZO9TlkgCqiO8" />
+</head>
+<body>
+	<div class="wrap_loader" style="height:5304px;">
+		<div class="imgLoader"><img src="/market/public/assets/images/loader.gif" alt="Tutorialspoint" width="70" height="70"></div>
+	</div>
+    <div class="">
+         
+<div id="appbar-placeholder" class="mui--appbar-height"></div>
+<div class="mui-container">
+	<div class="mui-row">
+		<div class="mui-container-fluid login-wrap">					
+			<div class="mui-col-lg-4 mui-col-md-2 mui-col-sm-2 mui-col-xs-0 np">&nbsp;</div>
+			<div class="mui-col-lg-4 mui-col-md-8 mui-col-sm-8 mui-col-xs-12 np">
+				<div class="mui-panel rounded">
+					<a href="javascript:void(0);" class="tp-close-btn close_btn"><i class="fa fa-times"></i> </a>
+					<h2 class="mr-pd">
+                    <a href="../index.htm"><img src="/market/public/assets/images/tp-diamond.png" alt="Tutorialspoint - Simply Easy Learning" title="Tutorialspoint - Simply Easy Learning" style="height:95px;"></a>
+					</h2>
+					<h3 id="login_title" >Log In</h3>
+					<div class="clear"></div>
+					<div id="divLogin">
+						<form class="mui-form" action="" method="POST" id="loginForm">
+							<div class="mui-textfield">
+								<input class="login-input txtClass mui--is-empty mui--is-untouched mui--is-pristine" type="email" name="user_email" id="user_email" placeholder="Enter User Email" required value=""/>
+								<div class="tp-login-icon"><i class="fa fa-envelope"></i></div>
+							</div>
+							<div class="mui-textfield">
+								<input class="input-pwd txtClass" type="password" name="user_password" id="user_password" placeholder="Enter Password" value=""/>
+								<div class="tp-login-icon"><i class="fa fa-key"></i> </div>
+								<span class="login-wrap-hide-pwd togglePassword" > <i class="fa fa-eye-slash"></i></span>
+								<div class="clear"></div>
+								<div class="error"></div>
+							</div>
+							<div class="mui-textfield mui-textfield--float-label login-remember">
+								<input type="checkbox" id="remember_me" name="chkLanguage" class="login-wrap-checkbox chk-remember"  />
+								<span for="remember-me"> Remember Me</span>								
+								<a href="forgotPassword.asp?v=1.01" id="spanForgot" class="login-wrap-forgot"><i class="fa fa-lock"></i> Forgot Password?</a>
+							</div>
+							<div class="clear"></div>
+							<div class="clear"></div><br/>
+							<button class="btn-default btn-login btn-100 rounded" type="submit" name="user_login" id="user_login" value="Login"><i class="fa fa-sign-in-alt"></i>&nbsp; Log In</button>
+							<hr/>
+							<div class="mui-col-lg-6 mui-col-md-6 mui-col-sm-6 mui-col-xs-6 mui-form npr">
+								<button class="loginBtn loginBtn--google btn-100 rounded" type="button" id="btnGoogleLogin" title="Login with Google"><i class="fa fa-google fa-fw">
+								  </i> Login with Google</button>
+							</div>
+							<div class="mui-col-lg-6 mui-col-md-6 mui-col-sm-6 mui-col-xs-6 mui-form npl">
+								  <button class="loginBtn loginBtn--facebook btn-100 rounded" type="button" id="btnFacebookLogin" title="Login with Facebook"><i class="fa fa-facebook-f fa-fw">
+								  </i> Login with Facebook</button>							
+							</div>
+							<div class="clear"></div>
+							<div class="col-12 col-md-12 login-foot">
+								<div class="row">
+									<div class="col-12 col-sm-12 text-center npr">
+										<span>Don't have an account? &nbsp;</span> <a href="signup.asp?v=1.00" id="spanForgot" class=""><b><i class="fa fa-sign-out"></i> Sign Up</b></a>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" id="user_type" value="U" />
+			<div class="mui-col-lg-4 mui-col-md-2 mui-col-sm-2 mui-col-xs-0 np">&nbsp;</div>
+		</div>
+	
+	</div>
+</div>
+<div class="login-bg"></div>
+<script>
+	$(document).ready(function(){
+		var url = window.location.href;
+		if(url.indexOf("userType") > -1){
+			$("#login_title").html("Business Log In");
+			$("#user_type").val("BA");
+		}
+	});
+</script>
+<script src="https://apis.google.com/js/api.js"></script>
+    </div>
+    <script src="/market/public/assets/js/jquery-3.3.1.min.js"></script>
+<script src="/market/public/assets/js/mui/mui-combined.min.js"></script>
+
+<script>
+    var appURL = "https://www.tutorialspoint.com/market/";
+    var baseURL = "https://www.tutorialspoint.com/";
+</script>
+<script src="/market/public/assets/js/auth.js?v=1657192088"></script>
+<script src="/market/public/assets/js/toastr.js"></script>   
+<script src="https://apis.google.com/js/api.js"></script>
+
+</body>
+</html>

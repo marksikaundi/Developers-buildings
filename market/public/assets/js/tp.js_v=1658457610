@@ -1,0 +1,940 @@
+var currencyList = {
+    'usd': {
+        'country': 'USA',
+        'currency': 'usd',
+        'symbol': '&#36;',
+        'format': 'en-US'
+    },
+    'inr': {
+        'country': 'INDIA',
+        'currency': 'inr',
+        'symbol': '&#8377;',
+        'format': 'en-IN'
+    },
+    'cad': {
+        'country': 'CANADA',
+        'currency': 'cad',
+        'symbol': '&#36;',
+        'format': 'en-CA'
+    },
+    'aud': {
+        'country': 'AUSTRALIA',
+        'currency': 'aud',
+        'symbol': '&#36;',
+        'format': 'en-AU'
+    },
+    'gbp': {
+        'country': 'BRITAN',
+        'currency': 'gbp',
+        'symbol': '&#163;',
+        'format': 'en-GB'
+    },
+    'eur': {
+        'country': 'EUROPE',
+        'currency': 'eur',
+        'symbol': '&#8364;',
+        'format': 'en-US'
+    }
+};
+
+
+var temp = localStorage.getItem("userType");
+var siteMainURL = 'https://www.tutorialspoint.com/';
+
+if (temp == "S") { 
+    $('#switch_to_student').hide();
+    $('#switch_to_instructor').show();
+} else {
+    $('#switch_to_student').show();
+    $('#switch_to_instructor').hide();
+}
+
+$(document).ready(function () {
+    if (!localStorage.view_type) {
+        localStorage.setItem("view_type", "grid");
+    }
+    if (localStorage.getItem('view_type') == "grid") {
+        $("#ebooks_grid").show();
+        $("#ebooks_list").hide();
+        $(".grid_view").addClass('active');
+    } else {
+        $("#ebooks_grid").hide();
+        $("#ebooks_list").show();
+        $(".list_view").addClass('active');
+    }
+    $("#pagination_div").show();
+
+    $(document).on("click", ".grid_view", function () {
+        $("#ebooks_grid").show();
+        $("#ebooks_list").hide();
+        $("#grid_view").addClass('active');
+        $(".grid_view").addClass('active');
+        $(".list_view").removeClass('active');
+        localStorage.setItem("view_type", "grid");
+    });
+    $(document).on("click", ".list_view", function () {
+        $("#ebooks_grid").hide();
+        $("#ebooks_list").show();
+        $(".list_view").addClass('active');
+        $(".grid_view").removeClass('active');
+        localStorage.setItem("view_type", "list");
+    });
+
+    jQuery.validator.addMethod("validate_password", function (value, element) {
+        return this.optional(element) || /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%&*])[a-zA-Z0-9!@#$%&*]+$/.test(value);
+    }, "Password must contain atleast one uppercase, one lowercase, one digit and one special character, use !@#$%&*");
+
+    // Setting the price of all the products in display
+    setPrice();
+    // Fetching user profile if loggedin
+    getUserProfileDetails();
+});
+$(document).on("click", ".logout", function () {
+    $.ajax({
+        type: 'GET',
+        dataType: 'JSON',
+        cache: false,
+        url: appURL + 'logout.jsp',
+        complete: function (xhr, statusText) {
+            if (xhr.status == 200) {
+                localStorage.removeItem("profile_name");
+                localStorage.removeItem("profile_image");
+                localStorage.removeItem("isVisited");
+                window.location.href = siteMainURL + 'index.htm';
+            } else {
+                console.log("something went wrong");
+            }
+        }
+    });
+});
+// User Profile
+function getUserProfileDetails() {
+    $.ajax({
+        type: 'GET',
+        dataType: 'JSON',
+        cache: false,
+        url: appURL + 'site_visiting.php',
+        data: { 'isMui': 0 },
+        complete: function (xhr, statusText) {
+            $(".menu-right-head").html(xhr.responseJSON.html);
+            cartItemsCount(xhr.responseJSON.loginStatus);
+            if (xhr.status == 200) {
+                var notification_flag = xhr.responseJSON.notification_flag;
+                var profile_name = xhr.responseJSON.profile_name;
+                var profile_image_rating = xhr.responseJSON.profile_image_rating;
+                if (notification_flag == 1) {
+                    $('#liQuesitons').find('strong').addClass('clsNotification');
+                }
+                $('body').find('#divRatingUserName').html(profile_name);
+                $('body').find('#divRatingUserImage').html(profile_image_rating);
+                // if (!localStorage.profile_name) {
+                //     localStorage.setItem("profile_name", profile_name);
+                //     localStorage.setItem("profile_image", profile_image_rating);
+                //     $('body').find('#divRatingUserName').html(localStorage.getItem('profile_name'));
+                //     $('body').find('#divRatingUserImage').html(localStorage.getItem('profile_image'));
+                // }
+            }
+        }
+    });
+}
+
+// Get Cart Count  
+function cartItemsCount(video_auth) {
+    if (video_auth > 0) {
+        $.ajax({
+            type: 'GET',
+            url: appURL + "cartItems.jsp",
+            dataType: 'JSON',
+            cache: false,
+            complete: function (xhr, statusText) {
+                if (xhr.status == 200) {
+                    if (xhr.responseJSON.count > 0) {
+                        $(".header_cart_count").html(xhr.responseJSON.count).show();
+                    } else {
+                        $(".header_cart_count").html("").hide();
+                    }
+                }
+            }
+
+        });
+    } else {
+        if (localStorage.cartData && localStorage.cartData != '') {
+            var x = JSON.parse(localStorage.cartData);
+            var count = x.length;
+            if (count > 0) {
+                $(".header_cart_count").html(count).show();
+            } else {
+                $(".header_cart_count").html("").hide();
+            }
+        }
+    }
+}
+
+$(document).on("click", ".wishlist", function () {
+    var post_url = appURL + "wishlist.jsp";
+    id = $(this).data('course_id');
+    var redirect = 0;
+    if ($(this).data('redirect')) {
+        redirect = $(this).data('redirect');
+    }
+    wishlist(post_url, id, redirect, $(this));
+});
+$(document).on('click', '.tp-close-btn', function () {
+    window.location.href = '../index.htm'
+})
+$(document).on("click", ".add_to_cart", function () {
+    var course_id = $(this).data('course_id');
+    var redirect = $(this).data('redirect');
+
+    var addingItem = addItemToCart(course_id);
+
+    if (addingItem.status) {
+        toastr.success(addingItem.message);
+    } else {
+        toastr.error(addingItem.message);
+    }
+    if (redirect == 1) {
+        window.location = siteMainURL + "cart.jsp";
+    }
+});
+$(document).on("click", ".enroll_course", function () {
+    var video_auth = +$('#video_auth').val();
+    if (video_auth > 0) {
+        var course_id = $(this).data('course_id');
+        var enrollItem = enrollCourse(course_id);
+        if (enrollItem.status) {
+            toastr.success(enrollItem.message);
+        } else {
+            toastr.error(enrollItem.message);
+        }
+    } else {
+        toastr.error("Please login to enroll free course");
+    }
+});
+$(document).on("click", "#button_search", function () {
+    searchByCourse($(".searchbox .search_by_course").val());
+});
+$(document).on("keypress", ".search_by_course", function (e) {
+    if (e.which == 13) {
+        searchByCourse($(this).val());
+    }
+});
+if (localStorage.search_data) {
+    values = localStorage.getItem("search_data");
+    values = values.split(",");
+    values = values.reverse();
+    search_url = baseURL + "search/";
+    var search_list = '<li class="list-title"> Recent Searches</li>';
+    $.each(values, function (k, v) {
+        search_list += '<li><div class="dropdown-searchli">';
+        search_list += '<a href="' + search_url + v + '">' + v + '</a><span class="dropdown-search-close" title="remove item" data-search="' + v + '"><i class="fa fa-times"></i></span>';
+        search_list += '</div></li>';
+    });
+    $(".dropdown-search-list").html(search_list);
+}
+
+$(document).on("click", ".dropdown-search-close", function () {
+    $(this).parent().parent().remove();
+
+    search = $(this).data("search");
+    values = localStorage.getItem("search_data");
+    values = values.split(",");
+    index = $.inArray(search, values);
+    values.splice(index, 1);
+    values = values.toString();
+    localStorage.setItem("search_data", values);
+});
+
+window.onload = function () {
+    var el = document.getElementsByClassName('toggle1');
+    var menu1 = document.getElementsByClassName('toggle-content1');
+    var plus1 = document.getElementsByClassName('icon-plus');
+    var minus1 = document.getElementsByClassName('icon-minus');
+    for (var i = 0; i < el.length; i++) {
+        el[i].addEventListener('click', handle1, false);
+        el[i].myParam = i;
+    }
+    function handle1(event) {
+        a = event.currentTarget.myParam;
+        if (menu1[a].style.display == "block") {
+            menu1[a].style.display = "block";
+            minus1[a].style.display = "none";
+            plus1[a].style.display = "inline-block";
+        } else {
+            menu1[a].style.display = "block";
+            plus1[a].style.display = "none";
+            minus1[a].style.display = "inline-block";
+        }
+    }
+}
+
+
+
+
+var time = Date.now || function() {
+    return +new Date;
+  };
+  
+
+
+function switch_to_instructor() {
+    localStorage.userType = 'T';
+    window.location.href = appURL + "tutor/dashboard.jsp?v="+time();
+}
+function switch_to_student() {
+    localStorage.userType = 'S';
+    window.location.href = appURL + "student/dashboard.jsp?v="+time();
+}
+function switch_to_admin() {
+    localStorage.userType = 'A';
+    window.location.href = appURL + "admin/dashboard.jsp?v="+time();
+}
+function switch_to_qa() {
+  localStorage.userType = "QA";
+  window.location.href = appURL + "qa/dashboard.jsp?v="+unix;
+}
+function switch_to_business() {
+  localStorage.userType = "BA";
+  window.location.href = appURL + "biz/dashboard.jsp";
+}
+function get_filter_dates(tab) {
+    var d = new Date();
+    var end_date = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+    if (tab == 'Y') {
+        d.setDate(+d.getDate() - +1);
+        start_date = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+        end_date = start_date;
+    } else if (tab == 'C') {
+        e = new Date(d.getFullYear(), d.getMonth(), 1);
+        start_date = e.getFullYear() + "/" + (e.getMonth() + 1) + "/" + e.getDate();
+    } else if (tab == 'P') {
+        l = new Date(d.getFullYear(), d.getMonth(), 0);
+        f = new Date(l.getFullYear(), l.getMonth(), 1);
+        start_date = f.getFullYear() + '/' + (f.getMonth() + 1) + '/' + f.getDate();
+        end_date = l.getFullYear() + '/' + (f.getMonth() + 1) + '/' + l.getDate();
+    } else if (tab == 'A') {
+        start_date = "2019/01/01";
+    } else if (tab == "") {
+        start_date = "";
+        end_date = "";
+    } else {
+        d.setDate(+d.getDate() - +tab + +1);
+        start_date = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+    }
+    if (start_date != "") {
+        start_date = formatDate(start_date);
+        end_date = formatDate(end_date);
+    }
+    if (start_date > end_date) {
+        swal("Error", "Start date should less than end date", "error");
+        return false;
+    }
+    dates = [];
+    dates["start_date"] = start_date;
+    dates["end_date"] = end_date;
+    return dates;
+}
+function formatDate(value) {
+    var date = value.split('/');
+    month = date[1];
+    day = date[2];
+    if (date[1].length < 2)
+        month = '0' + date[1];
+    if (date[2].length < 2)
+        day = '0' + date[2];
+    return date[0] + "-" + month + "-" + day;
+}
+
+function wishlist(post_url, id, redirect, e) {
+    $.ajax({
+        type: 'POST',
+        url: post_url,
+        dataType: 'JSON',
+        data: {
+            "id": id,
+            "_token": $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
+            $('.wrap_loader').show();
+        },
+        success: function (data) {
+            $('.wrap_loader').hide();
+            if (data.statusCode == 200) {
+                toastr.success(data.message);
+                if (redirect) {
+                    e.closest('.course-card-list').parent().remove();
+                    if ($('.card .course-card.course-card-list').length <= 0) {
+                        window.location.reload();
+                    }
+                    return false;
+                }
+                if (data.count > 0) {
+                    $('a.wishlist').css('color', '#32984e');
+                    $('a.wishlist').html('<i class="fa fa-heart-solid"></i>');
+                } else {
+                    $('a.wishlist').css('color', '#ccc');
+                    $('a.wishlist').html('<i class="fa fa-heart-solid"></i>');
+                }
+            } else {
+                toastr.error(data.message);
+            }
+        },
+        error: function (data) {
+            $('.wrap_loader').hide();
+            if (data.status === 422) {
+                var return_data = $.parseJSON(data.responseText);
+                var message = return_data['message'];
+                var errors = return_data['errors'];
+                $.each(errors, function (key, val) {
+                    toastr.error(val);
+                });
+            }
+        }
+    });
+}
+
+
+
+
+
+
+function addItemToCart(item) {
+    var post_url = appURL + "addToCart.jsp";
+    var currency = JSON.parse(localStorage.getItem('localization'));
+    var response = [];
+    currency = currency.currency;
+    var video_auth = +$('#video_auth').val();
+    if (video_auth > 0) {
+        $.ajax({
+            type: 'POST',
+            url: post_url,
+            dataType: 'JSON',
+            async: false,
+            // headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                "course_id": item,
+                "currency": currency
+            },
+            beforeSend: function () {
+                $('.wrap_loader').show();
+            },
+            complete: function (xhr, statusText) {
+                $('.wrap_loader').hide();
+                if (xhr.status == 200) {
+                    var count = $('.header_cart_count').html();
+                    $('.header_cart_count').html(+count + +1).show();
+                    response = {
+                        'status': true,
+                        'message': xhr.responseJSON.message
+                    };
+
+
+                } else {
+                    response = {
+                        'status': false,
+                        'message': xhr.responseJSON.message
+                    };
+
+                }
+            },
+            error: function (data) {
+                $('.wrap_loader').hide();
+                if (data.status === 422) {
+                    var return_data = $.parseJSON(data.responseText);
+                    var message = return_data['message'];
+                    var errors = return_data['errors'];
+                    $.each(errors, function (key, val) {
+                        toastr.error(val);
+                    });
+                }
+            }
+        });
+    } else {
+        if (localStorage.cartData && localStorage.cartData != '') {
+            var x = JSON.parse(localStorage.cartData);
+            if (x.indexOf(item) == -1) {
+                x.push(item);
+                localStorage.setItem("cartData", JSON.stringify(x));
+                var count = $('.header_cart_count').html();
+                $('.header_cart_count').html(+count + +1).show();
+                response = {
+                    'status': true,
+                    'message': "Item added to cart"
+                };
+
+
+            } else {
+                response = {
+                    'status': true,
+                    'message': "Item already added to cart"
+                };
+
+            }
+        } else {
+            var x = [];
+            x.push(item);
+            localStorage.setItem("cartData", JSON.stringify(x));
+            $('.header_cart_count').html(1).show();
+            response = {
+                'status': true,
+                'message': "Item added to cart"
+            };
+
+        }
+
+    }
+    return response;
+}
+
+
+function getCourseWishlist(id) {
+    var post_url = appURL + "getWishlist.jsp";
+    $.ajax({
+        type: 'GET',
+        url: post_url,
+        cache:false,
+        dataType: 'JSON',
+        data: {
+            "id": id,
+            "_token": $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
+
+        },
+        success: function (data) {
+            if (data.statusCode == 200) {
+                if (data.count > 0) {
+                    $('a.wishlist').css('color', '#32984e');
+                    $('a.wishlist').html('<i class="fa fa-heart-solid"></i>');
+                }
+            } else {
+                return 0;
+            }
+        },
+        error: function (data) {
+            if (data.status === 422) {
+                var return_data = $.parseJSON(data.responseText);
+                var message = return_data['message'];
+                var errors = return_data['errors'];
+                $.each(errors, function (key, val) {
+                    toastr.error(val);
+                });
+            }
+        }
+    });
+}
+function getLocation() {
+    var returnResponse;
+    $.ajax({
+        type: "GET",
+        url: appURL + "localization.php?v=1.5",
+        dataType: "JSON",
+        async: false,
+        cache: false,
+        success: function (response) {
+            returnResponse = response;
+        },
+        error: function (response) {
+            returnResponse = false;
+        }
+    });
+    return returnResponse;
+}
+// Set Price of Products 
+function setPrice() {
+    var localization = getLocalData('localization');
+
+    var locationCurrecny;
+    if (localization != null) {
+        // Set currency from location 
+        locationCurrecny = localization.currency;
+    } else {
+        // Fetch currecny  from back end
+        var currentLocation = getLocation();
+        if (currentLocation == false) {
+            currentLocation = currencyList['usd'];
+        }
+        // var ttl = 300000;
+        var ttl = 1800000;
+        setLocalData('localization', currentLocation, ttl);
+        locationCurrecny = currentLocation['currency'];
+    }
+    var localFormatSettings = {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+        style: 'currency',
+        currency: locationCurrecny
+    };
+    // Set various currecny values 
+    $(".price").each(function () {
+        $(this).html(
+            ($(this).data(locationCurrecny)).toLocaleString(undefined, localFormatSettings)
+        ).text();
+    });
+    $(".actual-price").each(function () {
+        $(this).html(
+            ($(this).data(locationCurrecny)).toLocaleString(undefined, localFormatSettings)
+        ).text();
+    });
+    $(".discount-amount").each(function () {
+        $(this).html(
+            ($(this).data(locationCurrecny)).toLocaleString(undefined, localFormatSettings)
+        ).text();
+    });
+    $(".ebook-off").each(function () {
+        $(this).html(
+            $(this).data(locationCurrecny) + ' % off'
+        ).text();
+        $(this).css("display", "block");
+    });
+    $("div .pricing-loader,.course-price").css('display', 'none');
+    $(".course-card-body .pricing-loader").css('display', 'none');
+    $("div .ebook-price").css('display', 'block');
+}
+
+
+
+
+function setLocalData(key, data, ttl) {
+    const now = new Date();
+    const item = {
+        value: data,
+        expiry: now.getTime() + ttl
+    };
+    localStorage.setItem(key, JSON.stringify(item));
+}
+function getLocalData(key) {
+    // Check localization expiry time
+    //    key = "localization";
+    const itemString = localStorage.getItem(key);
+    if (!itemString) {
+        return null;
+    }
+    const item = JSON.parse(itemString);
+    const now = new Date();
+
+    // compare the expiry time of the item with the current time
+    if (now.getTime() >= item.expiry) {
+        // If the item is expired, delete the item from storage
+        // and return null
+        localStorage.removeItem(key);
+        return null;
+    }
+
+    return item.value;
+}
+
+
+function readCookie(name) {
+    var cookieName = name + "=";
+    var cookieArray = document.cookie.split(';');
+
+    for (var i = 0; i < cookieArray.length; i++) {
+        var cookie = cookieArray[i];
+        while (cookie.charAt(0) == ' ') {
+            cookie = cookie.substring(1, cookie.length);
+        }
+        if (cookie.indexOf(cookieName) == 0) {
+            return cookie.substring(cookieName.length, cookie.length);
+        }
+        return null;
+    }
+}
+function getCookie(name) {
+    // Split cookie string and get all individual name=value pairs in an array
+    var cookieArr = document.cookie.split(";");
+
+    // Loop through the array elements
+    for (var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+
+        /* Removing whitespace at the beginning of the cookie name
+         and compare it with the given string */
+        if (name == cookiePair[0].trim()) {
+            // Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+
+    // Return null if not found
+    return null;
+}
+
+function getRelatedCourses(Course_id, type) {
+    $(".related_course").removeClass('related_course');
+    var url = appURL + "get_recent_courses.jsp";
+    $.ajax({
+        type: 'GET',
+        url: url,
+        data: {
+            "course_type": type,
+            "course_id": Course_id
+        },
+        beforeSend: function () {
+            //$('.wrap_loader').show();
+        },
+        success: function (data) {
+            $('.list-div').html(data);
+        },
+        complete: function (xhr, statusText) {
+            //$('.wrap_loader').hide();
+            setPrice();
+        }
+    });
+}
+
+
+function enrollCourse(item) {
+    var post_url = appURL + "enrollCourse.jsp?v=1.3";
+    $.ajax({
+        type: 'POST',
+        url: post_url,
+        dataType: 'JSON',
+        async: false,
+        cache: false,
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        data: {
+            "course_id": item,
+        },
+        beforeSend: function () {
+            $('.wrap_loader').show();
+        },
+        complete: function (xhr, statusText) {
+            $('.wrap_loader').hide();
+            if (xhr.status == 200) {
+                if (+xhr.responseJSON.deleted == 1) {
+                    var count = $('.header_cart_count').html();
+                    $('.header_cart_count').html(+count - +1).show();
+                }
+                response = {
+                    'status': true,
+                    'message': xhr.responseJSON.message
+                };
+            } else {
+                response = {
+                    'status': false,
+                    'message': xhr.responseJSON.message
+                };
+            }
+        },
+        error: function (data) {
+            $('.wrap_loader').hide();
+            if (data.status === 422) {
+                var return_data = $.parseJSON(data.responseText);
+                var message = return_data['message'];
+                var errors = return_data['errors'];
+                $.each(errors, function (key, val) {
+                    toastr.error(val);
+                });
+            }
+        }
+    });
+    return response;
+}
+
+
+function searchByCourse(value) {
+    if (value != "") {
+        if (!localStorage.search_data) {
+            localStorage.setItem("search_data", value);
+        } else {
+            values = localStorage.getItem("search_data");
+            values = values.split(",");
+            if (values.length == 6) {
+                values.splice(0, 1);
+            }
+            index = $.inArray(value, values);
+            if (index != -1) {
+                values.splice(index, 1);
+            }
+            values = values + "," + value;
+            localStorage.setItem("search_data", values);
+        }
+        window.location.href = baseURL + "search/" + value;
+    }
+}
+
+
+
+function CalculateTableSummary(table) {
+    try {
+        table.api().columns(".sum").every(function () {
+            var column = this;
+            var rowCount = this.rows().count();
+            var sum = 0;
+            if (rowCount > 0) {
+                sum = column
+                    .data()
+                    .reduce(function (a, b) {
+                        a = parseInt(a, 10);
+                        if (isNaN(a)) { a = 0; }
+
+                        b = parseInt(b, 10);
+                        if (isNaN(b)) { b = 0; }
+                        return a + b;
+                    });
+            }
+            $(column.footer()).html((+sum * +1).toFixed(2));
+        });
+    } catch (e) {
+        console.log(e + 'Error in CalculateTableSummary');
+    }
+}
+function setCurrentMonth(fdate, tdate) {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    var today = yyyy + '-' + mm + '-' + dd;
+    var today1 = yyyy + '-' + mm + '-' + '01';
+    fdate.val(today1).focus();
+    tdate.val(today).focus();
+}
+
+function closeWindow(url) {
+    window.close();
+    window.location.href = appURL + url;
+}
+
+var language = [];
+language["en"] = "English";
+language["aa"] = "Afar";
+language["ab"] = "Abkhazian";
+language["af"] = "Afrikaans";
+language["am"] = "Amharic";
+language["ar"] = "Arabic";
+language["as"] = "Assamese";
+language["ay"] = "Aymara";
+language["az"] = "Azerbaijani";
+language["ba"] = "Bashkir";
+language["be"] = "Byelorussian";
+language["bg"] = "Bulgarian";
+language["bh"] = "Bihari";
+language["bi"] = "Bislama";
+language["bn"] = "Bengali/Bangla";
+language["bo"] = "Tibetan";
+language["br"] = "Breton";
+language["ca"] = "Catalan";
+language["co"] = "Corsican";
+language["cs"] = "Czech";
+language["cy"] = "Welsh";
+language["da"] = "Danish";
+language["de"] = "German";
+language["dz"] = "Bhutani";
+language["el"] = "Greek";
+language["eo"] = "Esperanto";
+language["es"] = "Spanish";
+language["et"] = "Estonian";
+language["eu"] = "Basque";
+language["fa"] = "Persian";
+language["fi"] = "Finnish";
+language["fj"] = "Fiji";
+language["fo"] = "Faeroese";
+language["fr"] = "French";
+language["fy"] = "Frisian";
+language["ga"] = "Irish";
+language["gd"] = "Scots/Gaelic";
+language["gl"] = "Galician";
+language["gn"] = "Guarani";
+language["gu"] = "Gujarati";
+language["ha"] = "Hausa";
+language["hi"] = "Hindi";
+language["hr"] = "Croatian";
+language["hu"] = "Hungarian";
+language["hy"] = "Armenian";
+language["ia"] = "Interlingua";
+language["ie"] = "Interlingue";
+language["ik"] = "Inupiak";
+language["in"] = "Indonesian";
+language["is"] = "Icelandic";
+language["it"] = "Italian";
+language["iw"] = "Hebrew";
+language["ja"] = "Japanese";
+language["ji"] = "Yiddish";
+language["jw"] = "Javanese";
+language["ka"] = "Georgian";
+language["kk"] = "Kazakh";
+language["kl"] = "Greenlandic";
+language["km"] = "Cambodian";
+language["kn"] = "Kannada";
+language["ko"] = "Korean";
+language["ks"] = "Kashmiri";
+language["ku"] = "Kurdish";
+language["ky"] = "Kirghiz";
+language["la"] = "Latin";
+language["ln"] = "Lingala";
+language["lo"] = "Laothian";
+language["lt"] = "Lithuanian";
+language["lv"] = "Latvian/Lettish";
+language["mg"] = "Malagasy";
+language["mi"] = "Maori";
+language["mk"] = "Macedonian";
+language["ml"] = "Malayalam";
+language["mn"] = "Mongolian";
+language["mo"] = "Moldavian";
+language["mr"] = "Marathi";
+language["ms"] = "Malay";
+language["mt"] = "Maltese";
+language["my"] = "Burmese";
+language["na"] = "Nauru";
+language["ne"] = "Nepali";
+language["nl"] = "Dutch";
+language["no"] = "Norwegian";
+language["oc"] = "Occitan";
+language["om"] = "(Afan)/Oromoor/Oriya";
+language["pa"] = "Punjabi";
+language["pl"] = "Polish";
+language["ps"] = "Pashto/Pushto";
+language["pt"] = "Portuguese";
+language["qu"] = "Quechua";
+language["rm"] = "Rhaeto-Romance";
+language["rn"] = "Kirundi";
+language["ro"] = "Romanian";
+language["ru"] = "Russian";
+language["rw"] = "Kinyarwanda";
+language["sa"] = "Sanskrit";
+language["sd"] = "Sindhi";
+language["sg"] = "Sangro";
+language["sh"] = "Serbo-Croatian";
+language["si"] = "Singhalese";
+language["sk"] = "Slovak";
+language["sl"] = "Slovenian";
+language["sm"] = "Samoan";
+language["sn"] = "Shona";
+language["so"] = "Somali";
+language["sq"] = "Albanian";
+language["sr"] = "Serbian";
+language["ss"] = "Siswati";
+language["st"] = "Sesotho";
+language["su"] = "Sundanese";
+language["sv"] = "Swedish";
+language["sw"] = "Swahili";
+language["ta"] = "Tamil";
+language["te"] = "Tegulu";
+language["tg"] = "Tajik";
+language["th"] = "Thai";
+language["ti"] = "Tigrinya";
+language["tk"] = "Turkmen";
+language["tl"] = "Tagalog";
+language["tn"] = "Setswana";
+language["to"] = "Tonga";
+language["tr"] = "Turkish";
+language["ts"] = "Tsonga";
+language["tt"] = "Tatar";
+language["tw"] = "Twi";
+language["uk"] = "Ukrainian";
+language["ur"] = "Urdu";
+language["uz"] = "Uzbek";
+language["vi"] = "Vietnamese";
+language["vo"] = "Volapuk";
+language["wo"] = "Wolof";
+language["xh"] = "Xhosa";
+language["yo"] = "Yoruba";
+language["zh"] = "Chinese";
+language["zu"] = "Zulu";

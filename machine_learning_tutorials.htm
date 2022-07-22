@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie ie8"> <![endif]-->
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->	
+<html lang="en">
+<head>
+<!-- Basic -->
+<meta charset="utf-8">
+<title>Machine Learning Tutorials</title>
+<meta name="description" content="Machine Learning Tutorials - Tutorials for Python Technologies including Concurrency, Machine Learning, Deep Learning, Design Pattern, Artificial Intelligence etc." />
+<meta name="Keywords" content="Script, Programming, Tutorials, Languages, including, Concurrency, Machine Learning, Deep Learning, Design Pattern, Artificial Intelligence" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+<link id="style-switch" rel="stylesheet" href="/static/css/purge/style-min.css?v=5.11">
+<link rel="stylesheet" href="/static/css/custom.css?v=7.40213">
+<style>.navbar-expand-xl .navbar-brand .navbar-brand-item, .h-100px, ul.toc li.heading, .light-mode-item, .dark-mode-item, .back-top, a.demo, .home-intro-sub{background:#2A2A4D; color:#fff;}  ul.toc li.heading:hover{background:#2A2A4D;} .btn-grey-border{background:#2A2A4D; color:#fff; border:1px solid #2A2A4D;} .course-box{background:#2A2A4D;} 
+</style>
+<script id="adp1" data-cfasync="false">(function(w, d) { var s = d.createElement('script'); s.src = '//cdn.adpushup.com/40046/adpushup.js'; s.type = 'text/javascript'; s.async = true; (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s); })(window, document);</script>
+<script id="adp2" data-cfasync="false">(function(w, d) {var s = d.createElement('script'); s.src = '//delivery.adrecover.com/18107/adRecover.js'; s.type = 'text/javascript'; s.async = true; (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s); })(window, document);</script>
+</head>
+<body>
+<div class="navbar-top navbar-dark d-xl-block py-2 mx-2 mx-md-4 rounded-bottom-4">
+	<div class="container-fluid px-3 px-xl-0">
+		<div class="d-lg-flex justify-content-lg-between align-items-center top-nav-links">
+			<ul class="nav align-items-center justify-content-center">
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Home Page">
+					<a class="nav-link" href="https://www.tutorialspoint.com/index.htm"><i class="fal fa-home-alt me-1"></i> Home</a>
+				</li>
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Online Coding System">
+					<a class="nav-link" href="https://www.tutorialspoint.com/codingground.htm"><i class="fal fa-code me-1"></i> Coding Ground</a>
+				</li>
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Job Openings">
+					<span><a class="nav-link" href="https://www.tutorialspoint.com/about/about_careers.htm"><i class="fal fa-suitcase me-1"></i> Jobs</a></span>
+				</li>
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Digital Whiteboard">
+					<span><a class="nav-link" href="https://www.tutorialspoint.com/whiteboard.htm"><i class="fal fa-chalkboard me-1"></i> Whiteboard</a></span>
+				</li>
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Developer's Tools">
+					<span><a class="nav-link" href="https://www.tutorialspoint.com/online_dev_tools.htm"><i class="fal fa-tools me-1"></i> Tools</a></span>
+				</li>
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Corporate Trainings">
+					<span><a class="nav-link" href="https://www.tutorialspoint.com/business/index.asp"><i class="fal fa-analytics me-1"></i> Business</a></span>
+				</li>
+			</ul>
+			<!-- Navbar top Right-->
+			<div class="d-flex align-items-center justify-content-center">
+				<div class="navbar-nav ms-2">
+				  <div class="modeswitch-wrap" id="darkModeSwitch">
+					 <div class="modeswitch-item">
+						<div class="modeswitch-icon">
+							<i class="fal fa-sun toggle-sun"></i>
+							<i class="fal fa-moon toggle-moon"></i>
+						</div>
+					 </div>
+				  </div>
+				</div>
+				<div class="me-3c top-nav-social">
+				  <a class="nav-link" href="https://www.tutorialspoint.com/market/teach_with_us.jsp" target="_self"  data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Teach with us"><i class="fal fa-users-class me-2"></i> <span>Teach with us</span></a>
+				</div>
+				<ul class="list-unstyled d-flex mb-0 top-nav-social">
+					<li><a class="px-2 nav-link" rel="nofollow" href="https://www.facebook.com/tutorialspointindia" target="_blank"   data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Tutorialspoint Facebook"><i class="fab fa-facebook"></i></a> </li>
+					<li><a class="px-2 nav-link" rel="nofollow" href="https://www.instagram.com/tutorialspoint_/" target="_blank" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Tutorialspoint Instagram"><i class="fab fa-instagram"></i></a> </li>
+					<li><a class="px-2 nav-link" rel="nofollow" href="https://twitter.com/tutorialspoint" target="_blank" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Tutorialspoint Twitter"><i class="fab fa-twitter"></i></a> </li>
+					<li><a class="px-2 nav-link" rel="nofollow" href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Tutorialspoint Youtube"><i class="fab fa-youtube"></i></a> </li>
+					<li><a class="px-2 nav-link" rel="nofollow" href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQEkqX2eckF__gAAAX-wMwEYvrsjBVbEtWQd4pgEdVSzkL22Nik1KEpY_ECWLKDGc41z8IOZWr2Bb0fvJplT60NPBtSw87J6QCpc7wD4qQ3iU13n6xJtBxME5o05Wmpg5JPm5YY=&originalReferer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Ftutorialspoint" target="_blank"  data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Tutorialspoint LinkedIn"><i class="fab fa-linkedin-in"></i></a> </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<header class="navbar-light navbar-sticky header-static">
+	<nav class="navbar navbar-expand-xl">
+		<div class="container-fluid px-3 px-xl-4">
+			<a class="navbar-brand" href="https://www.tutorialspoint.com/index.htm"><img class="light-mode-item navbar-brand-item" src="/static/images/logo-color.png" alt="logo" /> <img class="dark-mode-item navbar-brand-item" src="/static/images/logo-color-b.png" alt="logo" /></a>
+			<button class="navbar-toggler-toc collapsed ms-auto-toc" type="button"  id="btn-tutorial-toc">
+                        <span><i class="fal fa-th-list"></i></span>
+			</button>
+			<button class="navbar-toggler ms-auto" type="button" id="btn-menu-collapse">
+				<span class="navbar-toggler-animation">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
+			</button>
+			<div class="navbar-collapse w-100 collapse" id="navbarCollapse">
+				<ul class="navbar-nav navbar-nav-scroll me-auto">
+					<li class="nav-item nav-xs-login">
+						<a class="nav-link" href="#"><i class="fal fa-sign-in-alt me-2"></i>Login</a>
+					</li>
+					<li class="nav-item dropdown dropdown-menu-shadow-stacked">
+						<a class="nav-link" id="categoryMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fal fa-th-list fs-5 me-xl-1 d-xl-none"></i>
+							<i class="fal fa-th me-1 d-none d-xl-inline-block"></i>
+							<span class="d-xl-inline-block">Category <i class="fal fa-angle-down"></i></span>
+						</a>
+												<ul class="dropdown-menu categories-menu shadow" id="categories-menu">
+							<li><a href="/academic_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Academic Tutorials</a></li>
+							<li><a href="/big_data_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Big Data &amp; Analytics </a></li>
+							<li><a href="/computer_programming_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Computer Programming </a></li>
+							<li><a href="/computer_science_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Computer Science </a></li>
+							<li><a href="/database_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Databases </a></li>
+							<li><a href="/devops_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> DevOps </a></li>
+							<li><a href="/digital_marketing_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Digital Marketing </a></li>
+							<li><a href="/engineering_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Engineering Tutorials </a></li>
+							<li><a href="/upsc_ias_exams.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Exams Syllabus </a></li>
+							<li><a href="/famous_monuments.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Famous Monuments </a></li>
+							<li><a href="/gate_exams_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> GATE Exams </a></li>
+							<li><a href="/latest_technologies.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Latest Technologies </a></li>
+							<li><a href="/machine_learning_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Machine Learning </a></li>
+							<li><a href="/mainframe_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Mainframe Development </a></li>
+							<li><a href="/management_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Management Tutorials </a></li>
+							<li><a href="/maths_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Mathematics Tutorials</a></li>
+							<li><a href="/microsoft_technologies_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Microsoft Technologies </a></li>
+							<li><a href="/misc_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Misc tutorials </a></li>
+							<li><a href="/mobile_development_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Mobile Development </a></li>
+							<li><a href="/java_technology_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Java Technologies </a></li>
+							<li><a href="/python_technologies_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Python Technologies </a></li>
+							<li><a href="/sap_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> SAP Tutorials </a></li>
+							<li><a href="/scripting_lnaguage_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Programming Scripts </a></li>
+							<li><a href="/selected_reading.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Selected Reading </a></li>
+							<li><a href="/software_quality_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Software Quality </a></li>
+							<li><a href="/soft_skill_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Soft Skills </a></li>
+							<li><a href="/telecom_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Telecom Tutorials </a></li>
+							<li><a href="/upsc_ias_exams.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> UPSC IAS Exams </a></li>
+							<li><a href="/web_development_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Web Development </a></li>
+							<li><a href="/sports_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Sports Tutorials </a></li>
+							<li><a href="/xml_technologies_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> XML Technologies </a></li>
+							<li><a href="/multi_language_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Multi-Language</a></li>
+							<li><a href="/questions_and_answers.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Interview Questions</a></li>
+						</ul>
+											</li>
+				</ul>
+				<div class="navbar-collapse">
+					<div class="col-xl-9">
+						<div class="nav my-3 my-xl-0 px-4 flex-nowrap align-items-center">
+							<div class="nav-item w-100">
+								<form class="rounded position-relative">
+									<input class="form-control pe-4 bg-secondary bg-opacity-10 border-0 search-strings" type="search" placeholder="Search tutorials ..." id="search-strings" name="key" data-result="search-results" aria-label="Search">
+									<button type="button" id="btnSearch" class="btn bg-transparent px-2 py-0 position-absolute top-50 end-0 translate-middle-y"><i class="fal fa-search fs-6"></i></button>
+									<div class="search-box search-box-inn" id="search-results"></div>
+									<div class="clear"></div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<ul class="navbar-nav navbar-nav-scroll">
+					<li class="nav-item">
+						<a class="nav-link" href="https://www.tutorialspoint.com/latest/prime-packs" target="_self"><i class="fal fa-cubes me-1"></i>Prime Packs</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://www.tutorialspoint.com/market/index.asp" target="_self"><i class="fal fa-play-circle me-1"></i>Courses</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://www.tutorialspoint.com/latest/ebooks" target="_self"><i class="fal fa-book-reader me-1"></i>eBooks</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://www.tutorialspoint.com/tutorialslibrary.htm" target="_self"><i class="fal fa-books me-1"></i>Library</a>
+					</li>
+					<li class="nav-item">
+					        <a class="nav-link" href="https://www.tutorialspoint.com/questions/index.php" target="_self"><i class="fal fa-comments-alt me-1"></i> Q/A</a>
+					</li>
+				</ul>
+			</div>
+			<div class="navbar-nav d-lg-inline-block nav-login">
+			   <a href="https://www.tutorialspoint.com/market/login.asp" class="btn btn-grey-border mb-0"><i class="fal fa-sign-in-alt me-2"></i>Login</a>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<div class="home-intro-sub card">
+	<div class="container">
+		<div class="row g-4">
+			<div class="col-sm-6 col-lg-3 col-xl-3 text-center">
+				<img src="/images/library-sub-banner.png" alt="Machine Learning Tutorials" />
+			</div>
+			<div class="col-sm-6 col-lg-9 col-xl-9">
+				<h2>Tutorials Library</h2>
+				<p>Machine Learning Tutorials</p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+
+<main class="bg-white pb-4 pt-5">
+	<div class="container">
+		<div class="bg-gray p-3 mb-5 rounded-3">
+			<div class="row g-4">
+				<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/artificial_intelligence_with_python/index.htm" title="Learn Artificial Intelligence with Python">
+<img style="width:100px; height:80px;" src="/images/artificial_intelligence_with_python_icon.png" alt="Learn Artificial Intelligence with Python"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/caffe2/index.htm" title="Learn Caffe2">
+<img style="width:100px; height:80px;" src="/images/caffe2_icon.png" alt="Learn Caffe2"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/deep_learning_with_keras/index.htm" title="Learn Deep Learning with Keras">
+<img style="width:100px; height:80px;" src="/images/deep_learning_with_keras_icon.png" alt="Learn Deep Learning with Keras"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/h2o/index.htm" title="Learn H2O">
+<img style="width:100px; height:80px;" src="/images/h2o_icon.png" alt="Learn H2O"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/python_deep_learning/index.htm" title="Python Deep Learning">
+<img style="width:100px; height:80px;" src="/images/python_deep_learning_icon.png" alt="Python Deep Learning"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/keras/index.htm" title="Learn Keras">
+<img style="width:100px; height:80px;" src="/images/keras_icon.png" alt="Learn Keras"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/knime/index.htm" title="Learn Knime">
+<img style="width:100px; height:80px;" src="/images/knime_icon.png" alt="Learn Knime"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/logistic_regression_in_python/index.htm" title="Logistic Regression in Python">
+<img style="width:100px; height:80px;" src="/images/logistic_regression_in_python_icon.png" alt="Logistic Regression in Python"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/machine_learning/index.htm" title="Learn Machine Learning">
+<img style="width:100px; height:80px;" src="/images/machine_learning_icon.png" alt="Learn Machine Learning"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/apache_mxnet/index.htm" title="Learn Apache MXNet">
+<img style="width:100px; height:80px;" src="/images/apache_mxnet_icon.png" alt="Learn Apache MXNet"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/pybrain/index.htm" title="Learn PyBrain">
+<img style="width:100px; height:80px;" src="/images/pybrain_icon.png" alt="Learn PyBrain"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/pytorch/index.htm" title="Learn PyTorch">
+<img style="width:100px; height:80px;" src="/images/pytorch_icon.png" alt="Learn PyTorch"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/scikit_learn/index.htm" title="Learn Scikit Learn">
+<img style="width:100px; height:80px;" src="/images/scikit_learn_icon.png" alt="Learn Scikit Learn"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/tensorflow/index.htm" title="Learn TensorFlow">
+<img style="width:100px; height:80px;" src="/images/tensorflow_icon.png" alt="Learn TensorFlow"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/theano/index.htm" title="Learn Theano">
+<img style="width:100px; height:80px;" src="/images/theano_icon.png" alt="Learn Theano"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/time_series/index.htm" title="Learn Time Series">
+<img style="width:100px; height:80px;" src="/images/time_series_icon.png" alt="Learn Time Series"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/machine_learning_with_python/index.htm" title="Learn Machine Learning with Python">
+<img style="width:100px; height:80px;" src="/images/machine_learning_with_python_icon.png" alt="Learn Machine Learning with Python"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/microsoft_cognitive_toolkit/index.htm" title="Learn Microsoft Cognitive Toolkit(CNTK)">
+<img style="width:100px; height:80px;" src="/images/microsoft_cognitive_toolkit_icon.png" alt="Learn Microsoft Cognitive Toolkit(CNTK)"/>
+</a></div>
+</div>
+<div class="col-sm-4 col-lg-3 col-xl-3">
+<div class="course-box">
+<a target="_top" href="/python_data_science/index.htm" title="Learn Python Data Science">
+<img style="width:100px; height:80px;" src="/images/python_data_science_icon.png" alt="Learn Python Data Science"/>
+</a></div>
+</div>
+<div class="clear"></div>
+<div class="clear"></div>
+<div class="py-4">
+	<div class="px-0">
+		<div class="col-sm-12 col-lg-12 col-xl-12 px-0">
+           <!--<div class="special-reading-box">-->
+           <div class="">
+				<div class="row">
+					<div class="col-6 col-sm-2 col-md-2 col-lg-2 col-xxl-2 col-xl-2 px-1 text-center">
+						<a href="https://www.tutorialspoint.com/developers_best_practices/index.htm" title="Developer's Best Practices" class="nav-link">
+							<i class="fal fa-laptop-code fa-3x w-lg-80px w-sm-50px mb-3"></i>
+							<div class="text-secondary">Developers <br><b>Best Practices</b></div>
+						</a>
+					</div>
+					<div class="col-6 col-sm-2 col-md-2 col-lg-2 col-xxl-2 col-xl-2 px-1 text-center">
+						<a href="https://www.tutorialspoint.com/effective_resume_writing.htm" title="Effective Resume Writing" class="nav-link">
+							<i class="fal fa-money-check-edit fa-3x w-lg-80px w-sm-50px mb-3"></i>
+							<div class="text-secondary">Effective <br><b>Resume Writing</b></div>
+						</a>
+					</div>
+					<div class="col-6 col-sm-2 col-md-2 col-lg-2 col-xxl-2 col-xl-2 px-1 text-center">
+						<a href="https://www.tutorialspoint.com/computer_glossary.htm" title="Computer Glossary" class="nav-link">
+							<i class="fal fa-address-book fa-3x w-lg-80px w-sm-50px mb-3"></i>
+							<div class="text-secondary">Computer <br><b>Glossary</b></div>
+						</a>
+					</div>
+					<div class="col-6 col-sm-2 col-md-2 col-lg-2 col-xxl-2 col-xl-2 px-1 text-center">
+						<a href="https://www.tutorialspoint.com/computer_whoiswho.htm" title="Who is Who in Computer Science" class="nav-link">
+							<i class="fal fa-users fa-3x w-lg-80px w-sm-50px mb-3"></i>
+							<div class="text-secondary">Who is Who <br><b>in Computer</b></div>
+						</a>
+					</div>
+					<div class="col-6 col-sm-2 col-md-2 col-lg-2 col-xxl-2 col-xl-2 px-1 text-center">
+						<a href="https://www.tutorialspoint.com/questions_and_answers.htm" title="Technical Questions and Answers" class="nav-link">
+							<i class="fal fa-comments-alt fa-3x w-lg-80px w-sm-50px mb-3"></i>
+							<div class="text-secondary">Technical <br><b>Q &amp; A</b></div>
+						</a>
+					</div>
+					<div class="col-6 col-sm-2 col-md-2 col-lg-2 col-xxl-2 col-xl-2 px-1 text-center">
+						<a href="https://www.tutorialspoint.com/multi_language_tutorials.htm" title="Multi-Lingual Tutorials" class="nav-link">
+							<i class="fal fa-globe fa-3x w-lg-80px w-sm-50px mb-3"></i>
+							<div class="text-secondary">Multi-Lingual <br><b>Tutorials</b></div>
+						</a>
+					</div>   
+				</div>   
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- End of Body Content -->
+<div class="clear"></div>
+<div class="mui-container selected-reading-boxes">
+</div>   
+			<div class="clear"></div>
+			</div>
+		</div>
+		<div class="bg-gray p-1 rounded-3">
+			<div class="clear"></div>
+<div class="py-4">
+	<div class="px-0">
+		<div class="col-sm-12 col-lg-12 col-xl-12 px-0">
+           <!--<div class="special-reading-box">-->
+           <div class="">
+				<div class="row">
+					<div class="col-6 col-sm-2 col-md-2 col-lg-2 col-xxl-2 col-xl-2 px-1 text-center">
+						<a href="https://www.tutorialspoint.com/developers_best_practices/index.htm" title="Developer's Best Practices" class="nav-link">
+							<i class="fal fa-laptop-code fa-3x w-lg-80px w-sm-50px mb-3"></i>
+							<div class="text-secondary">Developers <br><b>Best Practices</b></div>
+						</a>
+					</div>
+					<div class="col-6 col-sm-2 col-md-2 col-lg-2 col-xxl-2 col-xl-2 px-1 text-center">
+						<a href="https://www.tutorialspoint.com/effective_resume_writing.htm" title="Effective Resume Writing" class="nav-link">
+							<i class="fal fa-money-check-edit fa-3x w-lg-80px w-sm-50px mb-3"></i>
+							<div class="text-secondary">Effective <br><b>Resume Writing</b></div>
+						</a>
+					</div>
+					<div class="col-6 col-sm-2 col-md-2 col-lg-2 col-xxl-2 col-xl-2 px-1 text-center">
+						<a href="https://www.tutorialspoint.com/computer_glossary.htm" title="Computer Glossary" class="nav-link">
+							<i class="fal fa-address-book fa-3x w-lg-80px w-sm-50px mb-3"></i>
+							<div class="text-secondary">Computer <br><b>Glossary</b></div>
+						</a>
+					</div>
+					<div class="col-6 col-sm-2 col-md-2 col-lg-2 col-xxl-2 col-xl-2 px-1 text-center">
+						<a href="https://www.tutorialspoint.com/computer_whoiswho.htm" title="Who is Who in Computer Science" class="nav-link">
+							<i class="fal fa-users fa-3x w-lg-80px w-sm-50px mb-3"></i>
+							<div class="text-secondary">Who is Who <br><b>in Computer</b></div>
+						</a>
+					</div>
+					<div class="col-6 col-sm-2 col-md-2 col-lg-2 col-xxl-2 col-xl-2 px-1 text-center">
+						<a href="https://www.tutorialspoint.com/questions_and_answers.htm" title="Technical Questions and Answers" class="nav-link">
+							<i class="fal fa-comments-alt fa-3x w-lg-80px w-sm-50px mb-3"></i>
+							<div class="text-secondary">Technical <br><b>Q &amp; A</b></div>
+						</a>
+					</div>
+					<div class="col-6 col-sm-2 col-md-2 col-lg-2 col-xxl-2 col-xl-2 px-1 text-center">
+						<a href="https://www.tutorialspoint.com/multi_language_tutorials.htm" title="Multi-Lingual Tutorials" class="nav-link">
+							<i class="fal fa-globe fa-3x w-lg-80px w-sm-50px mb-3"></i>
+							<div class="text-secondary">Multi-Lingual <br><b>Tutorials</b></div>
+						</a>
+					</div>   
+				</div>   
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- End of Body Content -->
+<div class="clear"></div>
+<div class="mui-container selected-reading-boxes">
+</div>   
+		</div>
+	</div>
+</main>
+
+	<footer class="bg-white py-3 card navbar-dark border-top h220">
+		<div class="container">
+			<div class="row g-4">
+				<div class="col-lg-12 text-center">
+					<a class="me-0 pb-4" href="index.html">
+						<img class="light-mode-item h-100px" src="/static/images/logo-color-footer.png" alt="Tutorials Point" />
+						<img class="dark-mode-item h-100px" src="/static/images/logo-footer-b.png" alt="Tutorials Point" />
+					</a>
+					<ul class="nav justify-content-center py-3 mt-md-0 ">
+						<li class="nav-item"><a class="nav-link fw-bold" href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+						<li class="nav-item"><a class="nav-link fw-bold" href="/about/return_refund_policy.htm"> <i class="fal fa-check"></i> Refund Policy</a></li>
+						<li class="nav-item"><a class="nav-link fw-bold" href="/about/about_terms_of_use.htm"><i class="fal fa-file-signature"></i> Terms of use</a></li>
+						<li class="nav-item"><a class="nav-link fw-bold" href="/about/about_privacy.htm"> <i class="fal fa-shield-check"></i> Privacy Policy</a></li>
+						<li class="nav-item"><a class="nav-link fw-bold" href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+						<li class="nav-item"><a class="nav-link fw-bold" href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+					</ul>
+					<div class="small">&#169; Copyright 2022. All Rights Reserved.</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</footer>
+	<style>.ms-auto-toc{display:none;}</style>
+	<div class="back-top">
+		<i class="fal fa-angle-up position-absolute top-50 start-50 translate-middle"></i>
+	</div>
+	<script src="/static/js/script-min.js?v=100"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-6"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-232293-6');
+	</script>
+</body>
+</html>

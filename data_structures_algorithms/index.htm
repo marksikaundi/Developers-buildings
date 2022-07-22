@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Data Structure and Algorithms Tutorial</title>
+<meta charset="utf-8">
+<meta name="description" content="Data Structure and Algorithms Tutorial,  Data Structures are the programmatic way of storing data so that data can be used efficiently. Almost every enterprise application uses various types of data st"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/data_structures_algorithms/index.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+<link id="style-switch" rel="stylesheet" href="/static/css/purge/style-min.css?v=5.11">
+<link rel="stylesheet" href="/static/css/custom.css?v=7.40213">
+<style>.navbar-expand-xl .navbar-brand .navbar-brand-item, .h-100px, ul.toc li.heading, .light-mode-item, .dark-mode-item, .back-top, a.demo, .home-intro-sub{background:#cd3300; color:#fff;}  ul.toc li.heading:hover{background:#cd3300;} .btn-grey-border{background:#cd3300; color:#fff; border:1px solid #cd3300;} .course-box{background:#cd3300;} 
+</style>
+<script id="adp1" data-cfasync="false">(function(w, d) { var s = d.createElement('script'); s.src = '//cdn.adpushup.com/40046/adpushup.js'; s.type = 'text/javascript'; s.async = true; (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s); })(window, document);</script>
+<script id="adp2" data-cfasync="false">(function(w, d) {var s = d.createElement('script'); s.src = '//delivery.adrecover.com/18107/adRecover.js'; s.type = 'text/javascript'; s.async = true; (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s); })(window, document);</script>
+</head>
+<body>
+<div class="navbar-top navbar-dark d-xl-block py-2 mx-2 mx-md-4 rounded-bottom-4">
+	<div class="container-fluid px-3 px-xl-0">
+		<div class="d-lg-flex justify-content-lg-between align-items-center top-nav-links">
+			<ul class="nav align-items-center justify-content-center">
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Home Page">
+					<a class="nav-link" href="https://www.tutorialspoint.com/index.htm"><i class="fal fa-home-alt me-1"></i> Home</a>
+				</li>
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Online Coding System">
+					<a class="nav-link" href="https://www.tutorialspoint.com/codingground.htm"><i class="fal fa-code me-1"></i> Coding Ground</a>
+				</li>
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Job Openings">
+					<span><a class="nav-link" href="https://www.tutorialspoint.com/about/about_careers.htm"><i class="fal fa-suitcase me-1"></i> Jobs</a></span>
+				</li>
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Digital Whiteboard">
+					<span><a class="nav-link" href="https://www.tutorialspoint.com/whiteboard.htm"><i class="fal fa-chalkboard me-1"></i> Whiteboard</a></span>
+				</li>
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Developer's Tools">
+					<span><a class="nav-link" href="https://www.tutorialspoint.com/online_dev_tools.htm"><i class="fal fa-tools me-1"></i> Tools</a></span>
+				</li>
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Corporate Trainings">
+					<span><a class="nav-link" href="https://www.tutorialspoint.com/business/index.asp"><i class="fal fa-analytics me-1"></i> Business</a></span>
+				</li>
+			</ul>
+			<!-- Navbar top Right-->
+			<div class="d-flex align-items-center justify-content-center">
+				<div class="navbar-nav ms-2">
+				  <div class="modeswitch-wrap" id="darkModeSwitch">
+					 <div class="modeswitch-item">
+						<div class="modeswitch-icon">
+							<i class="fal fa-sun toggle-sun"></i>
+							<i class="fal fa-moon toggle-moon"></i>
+						</div>
+					 </div>
+				  </div>
+				</div>
+				<div class="me-3c top-nav-social">
+				  <a class="nav-link" href="https://www.tutorialspoint.com/market/teach_with_us.jsp" target="_self"  data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Teach with us"><i class="fal fa-users-class me-2"></i> <span>Teach with us</span></a>
+				</div>
+				<ul class="list-unstyled d-flex mb-0 top-nav-social">
+					<li><a class="px-2 nav-link" rel="nofollow" href="https://www.facebook.com/tutorialspointindia" target="_blank"   data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Tutorialspoint Facebook"><i class="fab fa-facebook"></i></a> </li>
+					<li><a class="px-2 nav-link" rel="nofollow" href="https://www.instagram.com/tutorialspoint_/" target="_blank" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Tutorialspoint Instagram"><i class="fab fa-instagram"></i></a> </li>
+					<li><a class="px-2 nav-link" rel="nofollow" href="https://twitter.com/tutorialspoint" target="_blank" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Tutorialspoint Twitter"><i class="fab fa-twitter"></i></a> </li>
+					<li><a class="px-2 nav-link" rel="nofollow" href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Tutorialspoint Youtube"><i class="fab fa-youtube"></i></a> </li>
+					<li><a class="px-2 nav-link" rel="nofollow" href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQEkqX2eckF__gAAAX-wMwEYvrsjBVbEtWQd4pgEdVSzkL22Nik1KEpY_ECWLKDGc41z8IOZWr2Bb0fvJplT60NPBtSw87J6QCpc7wD4qQ3iU13n6xJtBxME5o05Wmpg5JPm5YY=&originalReferer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Ftutorialspoint" target="_blank"  data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Tutorialspoint LinkedIn"><i class="fab fa-linkedin-in"></i></a> </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<header class="navbar-light navbar-sticky header-static">
+	<nav class="navbar navbar-expand-xl">
+		<div class="container-fluid px-3 px-xl-4">
+			<a class="navbar-brand" href="https://www.tutorialspoint.com/index.htm"><img class="light-mode-item navbar-brand-item" src="/static/images/logo-color.png" alt="logo" /> <img class="dark-mode-item navbar-brand-item" src="/static/images/logo-color-b.png" alt="logo" /></a>
+			<button class="navbar-toggler-toc collapsed ms-auto-toc" type="button"  id="btn-tutorial-toc">
+                        <span><i class="fal fa-th-list"></i></span>
+			</button>
+			<button class="navbar-toggler ms-auto" type="button" id="btn-menu-collapse">
+				<span class="navbar-toggler-animation">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
+			</button>
+			<div class="navbar-collapse w-100 collapse" id="navbarCollapse">
+				<ul class="navbar-nav navbar-nav-scroll me-auto">
+					<li class="nav-item nav-xs-login">
+						<a class="nav-link" href="#"><i class="fal fa-sign-in-alt me-2"></i>Login</a>
+					</li>
+					<li class="nav-item dropdown dropdown-menu-shadow-stacked">
+						<a class="nav-link" id="categoryMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fal fa-th-list fs-5 me-xl-1 d-xl-none"></i>
+							<i class="fal fa-th me-1 d-none d-xl-inline-block"></i>
+							<span class="d-xl-inline-block">Category <i class="fal fa-angle-down"></i></span>
+						</a>
+												<ul class="dropdown-menu categories-menu shadow" id="categories-menu">
+							<li><a href="/academic_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Academic Tutorials</a></li>
+							<li><a href="/big_data_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Big Data &amp; Analytics </a></li>
+							<li><a href="/computer_programming_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Computer Programming </a></li>
+							<li><a href="/computer_science_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Computer Science </a></li>
+							<li><a href="/database_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Databases </a></li>
+							<li><a href="/devops_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> DevOps </a></li>
+							<li><a href="/digital_marketing_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Digital Marketing </a></li>
+							<li><a href="/engineering_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Engineering Tutorials </a></li>
+							<li><a href="/upsc_ias_exams.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Exams Syllabus </a></li>
+							<li><a href="/famous_monuments.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Famous Monuments </a></li>
+							<li><a href="/gate_exams_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> GATE Exams </a></li>
+							<li><a href="/latest_technologies.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Latest Technologies </a></li>
+							<li><a href="/machine_learning_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Machine Learning </a></li>
+							<li><a href="/mainframe_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Mainframe Development </a></li>
+							<li><a href="/management_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Management Tutorials </a></li>
+							<li><a href="/maths_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Mathematics Tutorials</a></li>
+							<li><a href="/microsoft_technologies_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Microsoft Technologies </a></li>
+							<li><a href="/misc_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Misc tutorials </a></li>
+							<li><a href="/mobile_development_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Mobile Development </a></li>
+							<li><a href="/java_technology_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Java Technologies </a></li>
+							<li><a href="/python_technologies_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Python Technologies </a></li>
+							<li><a href="/sap_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> SAP Tutorials </a></li>
+							<li><a href="/scripting_lnaguage_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Programming Scripts </a></li>
+							<li><a href="/selected_reading.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Selected Reading </a></li>
+							<li><a href="/software_quality_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Software Quality </a></li>
+							<li><a href="/soft_skill_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Soft Skills </a></li>
+							<li><a href="/telecom_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Telecom Tutorials </a></li>
+							<li><a href="/upsc_ias_exams.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> UPSC IAS Exams </a></li>
+							<li><a href="/web_development_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Web Development </a></li>
+							<li><a href="/sports_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Sports Tutorials </a></li>
+							<li><a href="/xml_technologies_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> XML Technologies </a></li>
+							<li><a href="/multi_language_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Multi-Language</a></li>
+							<li><a href="/questions_and_answers.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Interview Questions</a></li>
+						</ul>
+											</li>
+				</ul>
+				<div class="navbar-collapse">
+					<div class="col-xl-9">
+						<div class="nav my-3 my-xl-0 px-4 flex-nowrap align-items-center">
+							<div class="nav-item w-100">
+								<form class="rounded position-relative">
+									<input class="form-control pe-4 bg-secondary bg-opacity-10 border-0 search-strings" type="search" placeholder="Search tutorials ..." id="search-strings" name="key" data-result="search-results" aria-label="Search">
+									<button type="button" id="btnSearch" class="btn bg-transparent px-2 py-0 position-absolute top-50 end-0 translate-middle-y"><i class="fal fa-search fs-6"></i></button>
+									<div class="search-box search-box-inn" id="search-results"></div>
+									<div class="clear"></div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<ul class="navbar-nav navbar-nav-scroll">
+					<li class="nav-item">
+						<a class="nav-link" href="https://www.tutorialspoint.com/latest/prime-packs" target="_self"><i class="fal fa-cubes me-1"></i>Prime Packs</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://www.tutorialspoint.com/market/index.asp" target="_self"><i class="fal fa-play-circle me-1"></i>Courses</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://www.tutorialspoint.com/latest/ebooks" target="_self"><i class="fal fa-book-reader me-1"></i>eBooks</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://www.tutorialspoint.com/tutorialslibrary.htm" target="_self"><i class="fal fa-books me-1"></i>Library</a>
+					</li>
+					<li class="nav-item">
+					        <a class="nav-link" href="https://www.tutorialspoint.com/questions/index.php" target="_self"><i class="fal fa-comments-alt me-1"></i> Q/A</a>
+					</li>
+				</ul>
+			</div>
+			<div class="navbar-nav d-lg-inline-block nav-login">
+			   <a href="https://www.tutorialspoint.com/market/login.asp" class="btn btn-grey-border mb-0"><i class="fal fa-sign-in-alt me-2"></i>Login</a>
+			</div>
+		</div>
+	</nav>
+</header>
+<main class="bg-light pb-4">
+<div class="container-fluid mt-3 px-3 px-xl-3">
+<div class="row g-4">
+<div class="col-sm-12 col-md-4 col-xl-3 ps-0 pe-0 collapse tutorial-toc" id="tocCollapse">
+<div class="card card-body bg-light pt-0">
+<div class="mini-logo">
+<img src="/data_structures_algorithms/images/data-structure-mini-logo.jpg" alt="Data Structures & Algorithms Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Data Structures &amp; Algorithms</li>
+<li><a href="/data_structures_algorithms/index.htm">DSA - Home</a></li>
+<li><a href="/data_structures_algorithms/data_structure_overview.htm">DSA - Overview</a></li>
+<li><a href="/data_structures_algorithms/data_structure_environment.htm">DSA - Environment Setup</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Algorithm</li>   
+<li><a href="/data_structures_algorithms/algorithms_basics.htm">DSA - Algorithms Basics</a></li>
+<li><a href="/data_structures_algorithms/asymptotic_analysis.htm">DSA - Asymptotic Analysis</a></li>
+<li><a href="/data_structures_algorithms/greedy_algorithms.htm">DSA - Greedy Algorithms</a></li>
+<li><a href="/data_structures_algorithms/divide_and_conquer.htm">DSA - Divide and Conquer</a></li>
+<li><a href="/data_structures_algorithms/dynamic_programming.htm">DSA - Dynamic Programming</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Data Structures</li>
+<li><a href="/data_structures_algorithms/data_structures_basics.htm">DSA - Data Structure Basics</a></li>
+<li><a href="/data_structures_algorithms/array_data_structure.htm">DSA - Array Data Structure</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Linked Lists</a></li>
+<li><a href="/data_structures_algorithms/linked_list_algorithms.htm">DSA - Linked List Basics</a></li>
+<li><a href="/data_structures_algorithms/doubly_linked_list_algorithm.htm">DSA - Doubly Linked List</a></li>
+<li><a href="/data_structures_algorithms/circular_linked_list_algorithm.htm">DSA - Circular Linked List</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Stack &amp; Queue</li>
+<li><a href="/data_structures_algorithms/stack_algorithm.htm">DSA - Stack</a></li>
+<li><a href="/data_structures_algorithms/expression_parsing.htm">DSA - Expression Parsing</a></li>
+<li><a href="/data_structures_algorithms/dsa_queue.htm">DSA - Queue</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Searching Techniques</li>
+<!--<li style="background:yellow;"><a href="/data_structures_algorithms/searching_algorithms.htm">DSA - Searching Algorithms</a></li>-->
+<li><a href="/data_structures_algorithms/linear_search_algorithm.htm">DSA - Linear Search</a></li>
+<li><a href="/data_structures_algorithms/binary_search_algorithm.htm">DSA - Binary Search</a></li>
+<li><a href="/data_structures_algorithms/interpolation_search_algorithm.htm">DSA - Interpolation Search</a></li>
+<li><a href="/data_structures_algorithms/hash_data_structure.htm">DSA - Hash Table</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Sorting Techniques</li>
+<li><a href="/data_structures_algorithms/sorting_algorithms.htm">DSA - Sorting Algorithms</a></li>
+<li><a href="/data_structures_algorithms/bubble_sort_algorithm.htm">DSA - Bubble Sort</a></li>
+<li><a href="/data_structures_algorithms/insertion_sort_algorithm.htm">DSA - Insertion Sort</a></li>
+<li><a href="/data_structures_algorithms/selection_sort_algorithm.htm">DSA - Selection Sort</a></li>
+<li><a href="/data_structures_algorithms/merge_sort_algorithm.htm">DSA - Merge Sort</a></li>
+<li><a href="/data_structures_algorithms/shell_sort_algorithm.htm">DSA - Shell Sort</a></li>
+<li><a href="/data_structures_algorithms/quick_sort_algorithm.htm">DSA - Quick Sort</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Graph Data Structure</li>
+<li><a href="/data_structures_algorithms/graph_data_structure.htm">DSA - Graph Data Structure</a></li>
+<li><a href="/data_structures_algorithms/depth_first_traversal.htm">DSA - Depth First Traversal</a></li>
+<li><a href="/data_structures_algorithms/breadth_first_traversal.htm">DSA - Breadth First Traversal</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Tree Data Structure</li>
+<li><a href="/data_structures_algorithms/tree_data_structure.htm">DSA - Tree Data Structure</a></li>
+<li><a href="/data_structures_algorithms/tree_traversal.htm">DSA - Tree Traversal</a></li>
+<li><a href="/data_structures_algorithms/binary_search_tree.htm">DSA - Binary Search Tree</a></li>
+<li><a href="/data_structures_algorithms/avl_tree_algorithm.htm">DSA - AVL Tree</a></li>
+<li><a href="/data_structures_algorithms/spanning_tree.htm">DSA - Spanning Tree</a></li>
+<li><a href="/data_structures_algorithms/heap_data_structure.htm">DSA - Heap</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Recursion</li>
+<li><a href="/data_structures_algorithms/recursion_basics.htm">DSA - Recursion Basics</a></li>
+<li><a href="/data_structures_algorithms/tower_of_hanoi.htm">DSA - Tower of Hanoi</a></li>
+<li><a href="/data_structures_algorithms/fibonacci_series.htm">DSA - Fibonacci Series</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">DSA Useful Resources</li>
+<li><a href="/data_structures_algorithms/data_structures_algorithms_questions_answers.htm">DSA - Questions and Answers</a></li>
+<li><a href="/data_structures_algorithms/dsa_quick_guide.htm">DSA - Quick Guide</a></li>
+<li><a href="/data_structures_algorithms/dsa_useful_resources.htm">DSA - Useful Resources</a></li>
+<li><a href="/data_structures_algorithms/dsa_discussion.htm">DSA - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+<div id="stickyparent" class="d-none d-sm-block">
+<div style="height:250px;width:300px;" id="sticky-ad">
+<div id="430c9911-782f-495d-88f9-69f58ca8c9a4" class="_ap_apex_ad" >
+<script>
+var adpushup = adpushup || {};
+adpushup.que = adpushup.que || [];
+adpushup.que.push(function() {
+adpushup.triggerAd("430c9911-782f-495d-88f9-69f58ca8c9a4");
+});
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Tutorial ToC Ends Here -->
+
+<!-- Tutorial Content Starts Here -->
+<div class="col-sm-12 col-md-8 col-xl-6 rounded-3 tutorial-content" id="mainContent">
+<div class="cover">
+<img class="img-responsive" src="/data_structures_algorithms/images/data-structure-algorithm.jpg" alt="Data Structures & Algorithms (DSA) Tutorial" />
+</div>
+<h1>Data Structure and Algorithms Tutorial</h1>
+<div class="center-aligned tutorial-menu">
+<form action="/job_search.php" method="POST">
+<input type="hidden" name="search_string" value="Data Structures" />
+<button class="tp-btn"><i class="fal fa-file-pdf"></i> <a href="/data_structures_algorithms/data_structures_algorithms_pdf_version.htm">PDF Version</a></button>
+<button class="tp-btn"><i class="fal fa-book-reader"></i> <a href="/data_structures_algorithms/dsa_quick_guide.htm">Quick Guide</a></button>
+<button class="tp-btn"><i class="fal fa-external-link"></i> <a href="/data_structures_algorithms/dsa_useful_resources.htm">Resources</a></button>
+<button type="submit" class="tp-btn"><i class="fal fa-search-dollar"></i> Job Search</button>
+<button class="tp-btn"><i class="fal fa-comments"></i> <a href="/data_structures_algorithms/dsa_discussion.htm">Discussion</a></button>
+</form>
+</div>
+<p>Data Structures are the programmatic way of storing data so that data can be used efficiently. Almost every enterprise application uses various types of data structures in one or the other way. This tutorial will give you a great understanding on Data Structures needed to understand the complexity of enterprise level applications and need of algorithms, and data structures.</p>
+<h2>Why to Learn Data Structure and Algorithms?</h2>
+<p>As applications are getting complex and data rich, there are three common problems that applications face now-a-days.</p>
+<ul class="list">
+<li><p><b>Data Search</b> &minus; Consider an inventory of 1 million(10<sup>6</sup>) items of a store. If the application is to search an item, it has to search an item in 1 million(10<sup>6</sup>) items every time slowing down the search. As data grows, search will become slower.</p></li>
+<li><p><b>Processor speed</b> &minus; Processor speed although being very high, falls limited if the data grows to billion records.</p></li>
+<li><p><b>Multiple requests</b> &minus; As thousands of users can search data simultaneously on a web server, even the fast server fails while searching the data.</p></li>
+</ul>
+<p>To solve the above-mentioned problems, data structures come to rescue. Data can be organized in a data structure in such a way that all items may not be required to be searched, and the required data can be searched almost instantly.</p>
+<h2>Applications of Data Structure and Algorithms</h2>
+<p>Algorithm is a step-by-step procedure, which defines a set of instructions to be executed in a certain order to get the desired output. Algorithms are generally created independent of underlying languages, i.e. an algorithm can be implemented in more than one programming language.</p>
+<p>From the data structure point of view, following are some important categories of algorithms &minus;</p>
+<ul class="list">
+<li><p><b>Search</b> &minus; Algorithm to search an item in a data structure.</p></li>
+<li><p><b>Sort</b> &minus; Algorithm to sort items in a certain order.</p></li>
+<li><p><b>Insert</b> &minus; Algorithm to insert item in a data structure.</p></li>
+<li><p><b>Update</b> &minus;  Algorithm to update an existing item in a data structure.</p></li>
+<li><p><b>Delete</b> &minus; Algorithm to delete an existing item from a data structure.</p></li>
+</ul>
+<p>The following computer problems can be solved using Data Structures &minus;</p>
+<ul class="list">
+<li>Fibonacci number series</li>
+<li>Knapsack problem</li>
+<li>Tower of Hanoi</li>
+<li>All pair shortest path by Floyd-Warshall</li>
+<li>Shortest path by Dijkstra</li>
+<li>Project scheduling</li>
+</ul>
+<h2>Audience</h2>
+<p>This tutorial is designed for Computer Science graduates as well as Software Professionals who are willing to learn data structures and algorithm programming in simple and easy steps.</p>
+<p>After completing this tutorial you will be at intermediate level of expertise from where you can take yourself to higher level of expertise.</p>
+<h2>Prerequisites</h2>
+<p>Before proceeding with this tutorial, you should have a basic understanding of C programming language, text editor, and execution of programs, etc.</p>
+<div class="d-flex justify-content-between border-bottom border-top py-2" id="bottom_navigation">
+<a href="/data_structures_algorithms/index.htm" class="pre-btn"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+<a id="print-page" href="#" class="pre-btn d-none d-sm-block"><i class="fal fa-print"></i> Print Page</a>
+<a href="/data_structures_algorithms/data_structure_overview.htm" class="nxt-btn">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+			<div class="google-bottom-ads" id="google-bottom-ads">
+				<div>Advertisements</div>
+				<div>
+					<div id="adp_bottom_ads"></div>
+					<script>
+						var adPos = document.getElementById('adp_bottom_ads');
+						var mobile_ad_id = "6d621d7e-9531-4f26-810f-68af67dc6366";
+						var desktop_ad_id = "4951d1d6-24d4-4a31-afb7-2c22c489eae1";
+						var adpushup = adpushup || {};
+						adpushup.que = adpushup.que || [];
+						adpushup.que.push(function() {
+							var ad_id = window.innerWidth <= 768 ? mobile_ad_id : desktop_ad_id;
+							adPos.innerHTML = '<div id="' + ad_id + '" class="_ap_apex_ad"></div>';
+							adpushup.triggerAd(ad_id);
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+	<!-- Tutorial Content Ends Here -->
+
+	<!-- Right Column Starts Here -->
+	<div class="col-sm-6 col-md-3 col-xl-3" id="google-right-ads">
+		<div class="data-sticky">
+			<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;min-height:250px!important">
+				<div id="f0f6cff6-393d-4170-b63a-d9ff06ca9f25" class="_ap_apex_ad">
+					<script>
+						if( window.innerWidth > 768 ){
+						   var adpushup = adpushup || {};
+						   adpushup.que = adpushup.que || [];
+						   adpushup.que.push(function() {
+						   adpushup.triggerAd("f0f6cff6-393d-4170-b63a-d9ff06ca9f25");
+						   });
+						}
+					</script>
+				</div>
+			</div>
+			<div class="google-right-ad" style="margin-top:16px;min-height:250px!important">
+				<div id="5c0affd5-724a-475c-bfcd-cecbc7660c36" class="_ap_apex_ad">
+					<script>
+						if( window.innerWidth > 768 ){
+						   var adpushup = adpushup || {};
+						   adpushup.que = adpushup.que || [];
+						   adpushup.que.push(function() {
+						   adpushup.triggerAd("5c0affd5-724a-475c-bfcd-cecbc7660c36");
+						   });
+						}
+					</script>
+				</div>
+			</div>
+			<div class="google-right-ad" style="margin-top:16px;margin-bottom:15px;min-height:600px!important">
+				<div id="8f8814c2-d64c-4d26-9cb9-543653c0b48f" class="_ap_apex_ad">
+					<script>
+						if( window.innerWidth > 768 ){
+						   var adpushup = adpushup || {};
+						   adpushup.que = adpushup.que || [];
+						   adpushup.que.push(function() {
+						   adpushup.triggerAd("8f8814c2-d64c-4d26-9cb9-543653c0b48f");
+						   });
+						}
+					</script>
+				</div>
+			</div>
+			<!-- Right Column Ends Here -->
+		</div>
+	</div>
+</div>
+</div>
+</main>
+
+<footer class="py-3 card navbar-dark border-top" id="footer">
+	<div class="container">
+		<div class="row g-4">
+			<div class="col-lg-12 text-center">
+				<a class="me-0 pb-4" href="https://www.tutorialspoint.com">
+					<img class="light-mode-item h-100px" src="/static/images/logo-color-footer.png" alt="Tutorials Point" />
+					<img class="dark-mode-item h-100px" src="/static/images/logo-footer-b.png" alt="Tutorials Point" />
+				</a>
+				<ul class="nav justify-content-center py-3 mt-md-0 ">
+					<li class="nav-item"><a class="nav-link fw-bold" href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+					<li class="nav-item"><a class="nav-link fw-bold" href="/about/return_refund_policy.htm"> <i class="fal fa-check"></i> Refund Policy</a></li>
+					<li class="nav-item"><a class="nav-link fw-bold" href="/about/about_terms_of_use.htm"><i class="fal fa-check"></i> Terms of use</a></li>
+					<li class="nav-item"><a class="nav-link fw-bold" href="/about/about_privacy.htm"> <i class="fal fa-shield-check"></i> Privacy Policy</a></li>
+					<li class="nav-item"><a class="nav-link fw-bold" href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+					<li class="nav-item"><a class="nav-link fw-bold" href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+				</ul>
+				<p class="small">© Copyright 2022. All Rights Reserved.</p>
+			</div>
+			<div id="privacy-banner">
+				<div>
+					<p>We make use of cookies to improve our user experience. By using this website, you agree with our Cookies Policy.
+						<a id="banner-accept" href="#">Agree</a>
+						<a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<div class="back-top">
+<i class="fal fa-angle-up position-absolute top-50 start-50 translate-middle"></i>
+</div>
+<script src="/static/js/script-min.js?v=119"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-6"></script>
+<script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'UA-232293-6');
+</script>
+</body>
+</html>

@@ -1,0 +1,2197 @@
+var currencyList = {
+    'usd': {
+        'country': 'USA',
+        'currency': 'usd',
+        'symbol': '&#36;',
+        'format': 'en-US'
+    },
+    'inr': {
+        'country': 'INDIA',
+        'currency': 'inr',
+        'symbol': '&#8377;',
+        'format': 'en-IN'
+    },
+    'cad': {
+        'country': 'CANADA',
+        'currency': 'cad',
+        'symbol': '&#36;',
+        'format': 'en-CA'
+    },
+    'aud': {
+        'country': 'AUSTRALIA',
+        'currency': 'aud',
+        'symbol': '&#36;',
+        'format': 'en-AU'
+    },
+    'gbp': {
+        'country': 'BRITAN',
+        'currency': 'gbp',
+        'symbol': '&#163;',
+        'format': 'en-GB'
+    },
+    'eur': {
+        'country': 'EUROPE',
+        'currency': 'eur',
+        'symbol': '&#8364;',
+        'format': 'en-US'
+    }
+};
+
+var countDownDate = new Date("12 19, 2021 23:59:59").getTime(); // Format: month date, year hour:min:sec
+setInterval(function(){
+    setEndTime();
+}, 1000);
+
+var temp = localStorage.getItem("userType");
+var siteMainURL = 'https://www.tutorialspoint.com/';
+var isPreviewAvailable = false;
+var items = ['ebook', 'prime-pack'];
+var type = 'course', $bodyEl = $('body');
+
+if (temp == "S") {
+    $('#switch_to_student').hide();
+    $('#switch_to_instructor').show();
+} else {
+    $('#switch_to_student').show();
+    $('#switch_to_instructor').hide();
+}
+var _itemsLoading = false;
+$(document).ready(function () {
+    if (!localStorage.view_type) {
+        localStorage.setItem("view_type", "grid");
+    }
+    if (localStorage.getItem('view_type') == "grid") {
+        $("#ebooks_grid").show();
+        $("#ebooks_list").hide();
+        $(".grid_view").addClass('active');
+    } else {
+        $("#ebooks_grid").hide();
+        $("#ebooks_list").show();
+        $(".list_view").addClass('active');
+    }
+    $("#pagination_div").show();
+
+    $(document).on("click", ".grid_view", function () {
+        $("#ebooks_grid").show();
+        $("#ebooks_list").hide();
+        $("#grid_view").addClass('active');
+        $(".grid_view").addClass('active');
+        $(".list_view").removeClass('active');
+        localStorage.setItem("view_type", "grid");
+    });
+    $(document).on("click", ".list_view", function () {
+        $("#ebooks_grid").hide();
+        $("#ebooks_list").show();
+        $(".list_view").addClass('active');
+        $(".grid_view").removeClass('active');
+        localStorage.setItem("view_type", "list");
+    });
+    // Setting the price of all the products in display
+    setPrice();
+    // Fetching user profile if loggedin
+    getUserProfileDetails();
+    // Operations for course details page 
+    if (typeof course !== 'undefined') {
+
+        //Setting the sticky on first load 
+        setSticky(1);
+        //load All the relates couses
+        var pathname = window.location.pathname.split('/');
+        if (pathname[1] == 'market') {
+            type = pathname[2];
+        } else {
+            type = pathname[1];
+        }
+        if (!items.includes(type)) {
+            type = 'course';
+        }
+
+        getCourseWishlist(course);
+        // User Subscription
+        checkUserCourseSubscription();
+        // if ($('#liFeedback').length > 0) {
+            // $('#liFeedback').hide();
+        // }
+        $(window).scroll(function (event) {
+           // loading price card 
+           if ($("#rateCard").length > 0) {
+              var elementTop = $("#price-div-clear").offset().top;
+              var elementBottom = elementTop + $("#price-div-clear").outerHeight();
+              var viewportTop = $(window).scrollTop();
+              var viewportBottom = viewportTop + $(window).height();
+        
+              if (viewportBottom >= elementBottom) {
+                 if ($("#mobile-view").hasClass("mobile-view")) {
+                    $("#mobile-view").removeClass("mobile-view");
+                 }
+              } else {
+                 if (!$("#mobile-view").hasClass("mobile-view")) {
+                    $("#mobile-view").addClass("mobile-view");
+                 }
+              }
+           }
+           // Loading related items
+           if ((type != 'prime-pack') && $('.related-items').length > 0) {
+              if ((!_itemsLoading) && ($(window).scrollTop() + $(window).height() > $('.related-items').offset().top)) {
+                 getRelatedCourses(course, type);
+                 _itemsLoading = true;
+              }
+           }
+        });
+        onScrollLoadItems();
+    }
+	// For datatable
+	if ($("#listOrders").length > 0) {
+		initilizeOrderDataTable();
+	}    
+    // For dashboard
+    if ($("#sidedrawer").length > 0) {
+        $sidedrawerEl = $('#sidedrawer');
+        $("strong#sidedrawer").next().hide();
+    }
+});
+
+
+/* js for popups */
+$(document).ready(function () {
+  $(".canvas-tag").click(function () {
+    $(".tags-sidewrap").show();
+    $(".tags-overlay").show();
+    $("body").css("overflow", "hidden");
+  });
+});
+$(document).ready(function () {
+  $(".canvas-wrap").click(function () {
+    $(".canvas-sidewrap").show();
+    $(".canvas-overlay").show();
+	$("body").css("overflow", "hidden");
+  });
+  
+  $(".canvas-close").click(function () {
+    $(".canvas-sidewrap").hide();
+	$(".canvas-overlay").hide();
+	$("body").css("overflow", "scroll");
+  });
+  
+  $(".canvas-overlay").click(function (event) {
+    event.stopPropagation();
+  });
+});
+/* end of js for popups */
+
+function initilizeOrderDataTable() {
+    jQuery.getScript(
+      "https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js",
+      function () {
+        $("#listOrders").DataTable({
+          //"order": [[ 1, "desc" ]],
+          bSort: false,
+        });
+      }
+    );
+  }
+function onScrollLoadItems(){
+       $(window).scroll(function (event) {
+           // loading price card
+           if ($("#rateCard").length > 0) {
+              var elementTop = $("#rateCard").offset().top;
+              var elementBottom = elementTop + $("#rateCard").outerHeight();
+              var viewportTop = $(window).scrollTop();
+              var viewportBottom = viewportTop + $(window).height();
+
+              if (viewportBottom >= elementBottom) {
+                 if ($("#mobile-view").hasClass("mobile-view")) {
+                    $("#mobile-view").removeClass("mobile-view");
+                 }
+              } else {
+                 if (!$("#mobile-view").hasClass("mobile-view")) {
+                    $("#mobile-view").addClass("mobile-view");
+                 }
+              }
+           }
+           // Loading related items
+           if ((type != 'prime-pack') && $('.related-items').length > 0) {
+              if ((!_itemsLoading) && ($(window).scrollTop() + $(window).height() > $('.related-items').offset().top)) {
+                 getRelatedCourses(course, type);
+                 _itemsLoading = true;
+              }
+           }
+        });
+}
+
+$(document).on('click', '.js-show-sidedrawer', showSidedrawer);
+$(document).on('click', '.js-hide-sidedrawer', hideSidedrawer);
+$(document).on('strong#sidedrawer', 'click', function () {
+    $(this).next().slideToggle(200);
+});
+$(document).on('click','.bookmark-list strong',function(){
+    
+    $(this).siblings('.bookmark-content').slideToggle();
+});
+$(document).on("click", ".overview", function () {  
+  resizeObserver.observe(elem);
+});
+
+$(document).on("click", ".remove_notes", function(){
+    swal({
+    title: "Are you sure?",
+        text: "You want to remove Notes",
+        icon: 'warning',
+        dangerMode: true,
+        buttons: {
+        cancel: true,
+            delete: 'Yes, Delete It'
+        }
+    }).then((willDelete) => {
+        if (willDelete) {
+            var lecture_id = $(this).data("lecture_id");
+            var notes = "";
+            var t = $(this);
+            $.ajax({
+                type: 'POST',
+                url: appURL+'video/saveNotes.jsp',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    "lecture_id" : lecture_id,
+                    "notes" : notes
+                },
+                complete: function (xhr, statusText) {
+                    var message = xhr.responseJSON.message;
+                    t.closest(".notes_list").remove();
+                    toastr.success("Notes Deleted");
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 1500);
+                },
+                error:function(data){
+                    console.log(data);
+                    return false;
+                }
+            });
+        }
+    });
+});
+$(document).on("click", ".delete_text_notes", function(){
+    swal({
+    title: "Are you sure?",
+        text: "You want to remove Notes",
+        icon: 'warning',
+        dangerMode: true,
+        buttons: {
+        cancel: true,
+            delete: 'Yes, Delete It'
+        }
+    }).then((willDelete) => {
+        if (willDelete) {
+            var id = $(this).data('id');
+            var this_li = $(this).closest('li');
+            $.ajax({
+                type: 'POST',
+                url: appURL+'text/notes.jsp',
+                dataType: 'JSON',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    "id": id
+                },
+                beforeSend: function () {
+                    $('.wrap_loader').show();
+                },
+                complete: function (xhr, statusText) {
+                    $('.wrap_loader').hide();
+                    if (xhr.status == 200) {
+                        this_li.remove();
+                        toastr.success(xhr.responseJSON.message);
+                    } else {
+                        toastr.error(xhr.responseJSON.message);
+                    }
+                },
+                error: function (data) {
+                    $('.wrap_loader').hide();
+                    if (data.status === 422) {
+                        var return_data = $.parseJSON(data.responseText);
+                        var message = return_data['message'];
+                        var errors = return_data['errors'];
+                        $.each(errors, function (key, val) {
+                            toastr.error(val);
+                        });
+                    }
+                }
+            });
+        }
+    });
+});
+
+$(document).ready(function () {
+    if ($(".page_title_span").length > 0) {
+        $(".page_title_span").html($('#pageTitleTxt').val());
+    }
+    if ($('.slick-carousel').length > 0) {
+        $.ajaxSetup({ cache: true });
+        jQuery.getScript("/market/public/assets/js/mui/slick.min.js", function () {
+            $.ajaxSetup({ cache: false }); 
+            $('.slick-carousel').slick({
+                infinite: true,
+                slidesToShow: 6, // Shows a three slides at a time
+                slidesToScroll: 1, // When you click an arrow, it scrolls 1 slide at a time
+                arrows: true, // Adds arrows to sides of slider
+                dots: false // Adds the dots on the bottom
+            });
+            $('.responsive').slick({
+                dots: true,
+                infinite: false,
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 5,
+                            slidesToScroll: 1,
+                            infinite: false,
+                            dots: false,
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    }
+                    // You can unslick at a given breakpoint now by adding:
+                    // settings: "unslick"
+                    // instead of a settings object
+                ]
+            });
+
+
+
+        });
+    }
+});
+$(document).on('click', '.close-login-wrap', function () {
+
+    $('.without-login-sidewrap').slideToggle();
+});
+$(document).on("click", ".remove_bookmark", function() {
+    swal({
+        title: "Are you sure?",
+        text: "You want to remove bookmark",
+        icon: 'warning',
+        dangerMode: true,
+        buttons: {
+            cancel: true,
+            delete: 'Yes, Delete It'
+        }
+    }).then((willDelete) => {
+        if (willDelete) {
+            var lecture_id = $(this).data("lecture_id");
+            var t = $(this);
+            $.ajax({
+                type: 'POST',
+                url: appURL + 'video/setBookmark.jsp',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    "lecture_id": lecture_id
+                },
+                complete: function(xhr, statusText) {
+                    var message = xhr.responseJSON.message;
+                    t.closest(".bookmark_list").remove();
+                    toastr.success(message);
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1500);
+                },
+                error: function(data) {
+                    console.log(data);
+                    return false;
+                }
+            });
+        }
+    });
+});
+
+$(document).on("click", ".delete_text_bookmark", function() {
+    swal({
+        title: "Are you sure?",
+        text: "You want to remove Bookmark",
+        icon: 'warning',
+        dangerMode: true,
+        buttons: {
+            cancel: true,
+            delete: 'Yes, Delete It'
+        }
+    }).then((willDelete) => {
+        if (willDelete) {
+            var id = $(this).data('id');
+            var this_li = $(this).closest('li');
+            $.ajax({
+                type: 'POST',
+                url: "{{url('text/bookmarks.jsp')}}",
+                dataType: 'JSON',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    "id": id
+                },
+                beforeSend: function() {
+                    $('.wrap_loader').show();
+                },
+                complete: function(xhr, statusText) {
+                    $('.wrap_loader').hide();
+                    if (xhr.status == 200) {
+                        this_li.remove();
+                        toastr.success(xhr.responseJSON.message);
+                    } else {
+                        toastr.error(xhr.responseJSON.message);
+                    }
+                },
+                error: function(data) {
+                    $('.wrap_loader').hide();
+                    if (data.status === 422) {
+                        var return_data = $.parseJSON(data.responseText);
+                        var message = return_data['message'];
+                        var errors = return_data['errors'];
+                        $.each(errors, function(key, val) {
+                            toastr.error(val);
+                        });
+                    }
+                }
+            });
+        }
+    });
+});
+
+$(document).on("click", ".start_learning", function () {
+    title = $(this).attr('data-title');
+    $.ajax({
+        type: 'POST',
+        url: appURL + 'getLectureUrl.php',
+        cache: false,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            "title": title
+        },
+        complete: function (xhr, statusText) {
+            if (xhr.status == 200) {
+                window.location.href = xhr.responseJSON.url;
+            }
+        },
+        error: function (data) {
+            return false;
+        }
+    });
+});
+
+
+var data={};
+$(document).on('click',"#course-tab .pagination li a",function(e){
+	 e.preventDefault();
+	 var url = $(this).attr('href');
+	 getProducts(url,data);
+	 window.history.pushState("", "", url);
+});
+
+
+
+$(document).on("click", ".logout", function () {
+    $.ajax({
+        type: 'GET',
+        dataType: 'JSON',
+        cache: false,
+        url: appURL + 'logout.jsp',
+        complete: function (xhr, statusText) {
+            if (xhr.status == 200) {
+                localStorage.removeItem("profile_name");
+                localStorage.removeItem("profile_image");
+                localStorage.removeItem("isVisited");
+                window.location.href = siteMainURL + 'index.htm';
+            } else {
+                console.log("something went wrong");
+            }
+        }
+    });
+});
+function showSidedrawer() {
+    // show overlay
+    var options = {
+        onclose: function () {
+            $sidedrawerEl
+                .removeClass('active')
+                .appendTo(document.body);
+        }
+    };
+
+    var $overlayEl = $(mui.overlay('on', options));
+    $sidedrawerEl.appendTo($overlayEl);
+    setTimeout(function () {
+        $sidedrawerEl.addClass('active');
+    }, 20);
+}
+function hideSidedrawer() {
+    $bodyEl.toggleClass('hide-sidedrawer');
+}
+function checkUserEnrollment(course_id){
+    var post_url = appURL + "checkUserSubscription.php";
+    $.ajax({
+        type: 'GET',
+        url: post_url,
+        dataType: 'JSON',
+        cache:false,
+        data: {
+            "course_id": course_id
+        },
+        complete: function (xhr, statusText) {
+            if (xhr.status == 200) {
+                $(".button_content").html(xhr.responseJSON.html);
+            }
+        }
+    });
+}
+// Get Products 
+function getProducts(url,data){
+	var fromData = JSON.stringify(data);
+	$.ajax({
+		type:"GET",
+		url : url,
+		data:data,
+		beforeSend:function(){
+			$('.wrap_loader').show();
+		},
+		success:function(data){
+			$('.list-div').html(data);
+			$('body,html').animate({scrollTop: 0}, 1000);
+		},
+		errorr:function(){
+			
+		},
+		complete:function(){
+			$('.wrap_loader').hide();
+			setPrice();
+		}
+	});
+}
+
+
+// User Profile
+function getUserProfileDetails() {
+    $.ajax({
+        type: 'GET',
+        dataType: 'JSON',
+        cache: false,
+        url: appURL + 'site_visiting.php',
+        data: { 'isMui': 1 },
+        complete: function (xhr, statusText) {
+            $(".menu-right-head").html(xhr.responseJSON.html);
+            cartItemsCount(xhr.responseJSON.loginStatus);
+            if (typeof course !== 'undefined' && xhr.responseJSON.loginStatus == 1) {
+                //checkUserEnrollment(course);
+            }
+            if (xhr.status == 200) {
+                var notification_flag = xhr.responseJSON.notification_flag;
+                var profile_name = xhr.responseJSON.profile_name;
+                var profile_image_rating = xhr.responseJSON.profile_image_rating;
+                
+                // console.log($(".profile_photo_drop").html());
+                // Feedbacks 
+                if(xhr.responseJSON.loginStatus == 1) {
+                    var notification_flag = xhr.responseJSON.notification_flag;
+                    var profile_name = xhr.responseJSON.profile_name;
+                    var profile_image_rating = xhr.responseJSON.profile_image_rating;
+
+                    $("#divRatingUserName").html(profile_name);
+                    $("#divRatingUserImage").html(profile_image_rating);
+                    $("#divSubmitReview").show();
+                }
+                //$("#divRatingUserName").html(profile_name);
+                //$("#divRatingUserImage").html(profile_image_rating);
+                //$("#liFeedback").show();
+                //$("#divSubmitReview").show();
+                
+                // if ($('#liFeedback').length > 0) {
+                    // $('#divRatingUserName').html(profile_name);
+                    
+                    // setTimeout(function(){
+                        // $('#divRatingUserImage').html($(".profile_photo_drop").html());
+                        
+                    // }, 3000);
+                    // $('#liFeedback').show();
+                    // $('#divSubmitReview').show();
+                // }
+                // Hide login
+                $('.m-login').hide();
+                if (notification_flag == 1) {
+                    $('#liQuesitons').find('span').addClass('clsNotification');
+                }
+            }else{
+                toastr.error(xhr.responseJSON.message);
+                $('.wrap_loader').show();
+                setTimeout(function(){
+                    window.location.href = appURL + 'login.jsp?v=5';
+                }, 2500);
+            }
+        }
+    });
+}
+
+// Get Cart Count  
+function cartItemsCount(video_auth) {
+    if (video_auth > 0) {
+        $.ajax({
+            type: 'GET',
+            url: appURL + "cartItems.jsp",
+            dataType: 'JSON',
+            cache: false,
+            complete: function (xhr, statusText) {
+                if (xhr.status == 200) {
+                    if (xhr.responseJSON.count > 0) {
+                        $(".header_cart_count").html(xhr.responseJSON.count).show();
+                    } else {
+                        $(".header_cart_count").html("").hide();
+                    }
+                }
+            }
+
+        });
+    } else {
+        if (localStorage.cartData && localStorage.cartData != '') {
+            var x = JSON.parse(localStorage.cartData);
+            var count = x.length;
+            if (count > 0) {
+                $(".header_cart_count").html(count).show();
+            } else {
+                $(".header_cart_count").html("").hide();
+            }
+        }
+    }
+}
+
+$(document).on("click", ".wishlist", function () {
+    var post_url = appURL + "wishlist.jsp";
+    id = $(this).data('course_id');
+    var redirect = 0;
+    if ($(this).data('redirect')) {
+        redirect = $(this).data('redirect');
+    }
+    wishlist(post_url, id, redirect, $(this));
+});
+$(document).on('click', '.tp-close-btn', function () {
+    window.location.href = '../index.htm'
+})
+$(document).on("click", ".add_to_cart", function () {
+    var course_id = $(this).data('course_id');
+    var redirect = $(this).data('redirect');
+
+    var addingItem = addItemToCart(course_id);
+
+    if (addingItem.status) {
+        toastr.success(addingItem.message);
+    } else {
+        toastr.error(addingItem.message);
+    }
+    if (redirect == 1) {
+        window.location = siteMainURL + "cart.jsp";
+    }
+});
+$(document).on("click", ".business_add_to_cart", function () {
+  var course_id = $(this).data("course_id");
+  var redirect = $(this).data("redirect");
+  var video_auth = +$("#video_auth").val();
+    var addingItem = addItemToCart(course_id);
+    if (addingItem.status) {
+      toastr.success(addingItem.message);
+    } else {
+      toastr.error(addingItem.message);
+    }
+    window.location = appURL + "cart.jsp";
+});
+$(document).on("click", ".enroll_course", function () {
+    var video_auth = +$('#video_auth').val();
+    if (video_auth > 0) {
+        var course_id = $(this).data('course_id');
+        var enrollItem = enrollCourse(course_id);
+        if (enrollItem.status) {
+            toastr.success(enrollItem.message);
+        } else {
+            toastr.error(enrollItem.message);
+        }
+    } else {
+        toastr.error("Please login to enroll free course");
+    }
+});
+$(document).on("click", "#button_search", function () {
+    searchByCourse($(".searchbox .search_by_course").val());
+});
+$(document).on("keypress", ".search_by_course", function (e) {
+    if (e.which == 13) {
+        searchByCourse($(this).val());
+    }
+});
+if (localStorage.search_data) {
+    values = localStorage.getItem("search_data");
+    values = values.split(",");
+    values = values.reverse();
+    search_url = baseURL + "search/";
+    var search_list = '<li class="list-title"> Recent Searches</li>';
+    $.each(values, function (k, v) {
+        search_list += '<li><div class="dropdown-searchli">';
+        search_list += '<a href="' + search_url + v + '">' + v + '</a><span class="dropdown-search-close" title="remove item" data-search="' + v + '"><i class="fa fa-times"></i></span>';
+        search_list += '</div></li>';
+    });
+    $(".dropdown-search-list").html(search_list);
+}
+
+$(document).on("click", ".dropdown-search-close", function () {
+    $(this).parent().parent().remove();
+
+    search = $(this).data("search");
+    values = localStorage.getItem("search_data");
+    values = values.split(",");
+    index = $.inArray(search, values);
+    values.splice(index, 1);
+    values = values.toString();
+    localStorage.setItem("search_data", values);
+});
+
+window.onload = function () {
+    var el = document.getElementsByClassName('toggle1');
+    var menu1 = document.getElementsByClassName('toggle-content1');
+    var plus1 = document.getElementsByClassName('icon-plus');
+    var minus1 = document.getElementsByClassName('icon-minus');
+    for (var i = 0; i < el.length; i++) {
+        el[i].addEventListener('click', handle1, false);
+        el[i].myParam = i;
+    }
+    function handle1(event) {
+        a = event.currentTarget.myParam;
+        if (menu1[a].style.display == "block") {
+            menu1[a].style.display = "block";
+            minus1[a].style.display = "none";
+            plus1[a].style.display = "inline-block";
+        } else {
+            menu1[a].style.display = "block";
+            plus1[a].style.display = "none";
+            minus1[a].style.display = "inline-block";
+        }
+    }
+}
+
+// Nizam's code start's here --------------------//
+$(document).on('click', '.show-sidewrap', function () {
+    $('.without-login-sidewrap').slideToggle();
+});
+$(document).on('click', '.m-searchbar', function () {
+    $('.search-bar-wrap').slideToggle();
+});
+$(document).on('click', '.closed', function () {
+    $('.search-bar-wrap').hide();
+});
+$(document).on('keyup', '.search-strings', function () {
+
+    var keyword = $(this).val();
+    var resultDiv = $(this).attr('data-result');
+    if (keyword != "" && keyword.length > 2) {
+        $.ajax({
+            url: "https://search.tutorialspoint.com/market_urls_suggestion.php",
+            method: "POST",
+            dataType: "json",
+            data: { 'keyword': keyword },
+            error: function (err) {
+                console.log(err);
+            },
+            success: function (data) {
+
+                if (data.length > 0) {
+                    //var str = '<div class="search_title arrow_search">Search Results</div><ul>';
+                    var str = '<div class="search-overlay"><ul>';
+                    data.forEach((item) => {
+                        var iconStr = '<i class="fa fa-play-circle"></i>';
+                        if (item.type == 'E') {
+                            iconStr = '<i class="fa fa-file-pdf"></i>';
+                        }
+                        if (item.type == 'B') {
+                            iconStr = '<i class="fa fa-cubes"></i>';
+                        }
+                        if (item.type == 'A' || item.type == 'I' || item.type == 'P') { // profile/author/instructor
+                            iconStr = '<i class="fa fa-user"></i>';
+                        }
+                        if(item.id != 6114){
+                        str = str + '<a href="' + item.url + '" target="_blank"><li class="clsHeadQuestion">' + iconStr + ' ' + item.name + '</li></a>';
+                        }
+                    });
+                    str = str + '</ul><br/></div><div class="clear"></div>';
+                    $('#' + resultDiv).show().css('display', 'inline');
+                    $('#' + resultDiv).html(str);
+                } else {
+                    $('#search-results').hide();
+                    $('#search-results').html('');
+                }
+            }
+        });
+    } else {
+        $('#search-results').hide();
+        $('#search-results').html('');
+    }
+});
+$('#btnSearch').click(function () {
+    var keyword = $('.search-strings').val();
+    window.location.href = baseURL + "search/" + keyword;
+});
+$(document).mouseup(function (e) {
+    var container = $('#search-results');
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        container.hide();
+    }
+});
+$(document).on('click', '#ancCloseTopMsg', function () {
+    //$('#site-message-div').hide();
+    // $('.mui-appbar').css('margin-top', '0px');
+    // $('.content-top').css('margin-top', '0px');
+    // $('#site-message-div').css('margin-top', '0px');
+    createDayCookie('topAds_', 1, 1);
+});
+$(document).on('click', '.section_content', function () {
+    var section = $(this).attr('data-section');
+    var isLoaded = $(this).attr('data-load');
+    var preview_flag = $(this).attr('data-preview_flag');
+    $(this).closest('div').next('.collapsible-body').toggle();
+    if (isLoaded == 1) {
+        setSticky();
+        return false;
+    }
+    loadSectionContent(section, preview_flag, $(this));
+});
+
+$(document).on('click', '.course_content', function () {
+    var loadItem = $(this).attr('data-item');
+    var isLoaded = $(this).attr('data-load');
+    $(this).closest('div').next('.collapsible-body').toggle();
+    if (isLoaded == 1) {
+        // Toggle the view 
+        setSticky();
+        return false;
+    }
+    loadCourseContent(loadItem, $(this));
+});
+$(document).on('click', '.rotate', function () {
+    $(this).toggleClass("down");
+})
+$(document).on("click", ".author_details", function () {
+    $(this).removeClass('author_details');
+    $.ajax({
+        type: 'GET',
+        url: appURL + type + "/author/details.jsp",
+        data: {
+            "type": type,
+            "course": course
+        },
+        beforeSend: function () {
+            $('.wrap_loader').show();
+        },
+        success: function (data) {
+
+            x = "";
+            $(data.authorData).each(function (key, val) {
+                if (val.user_name != "") {
+                    x += "<u><h4>" + val.user_name + "</h4></u>";
+                }
+
+                if (val.tag_line != "") {
+                    x += "<u><h5>" + val.tag_line + "</h5></u>";
+                }
+                if (val.description != "") {
+                    x += "<p>" + val.description + "</p><br>";
+                }
+            });
+            if (x == "") {
+                x = "No information available";
+            }
+            setSticky();
+            $('.author-details-div').html(x);
+        },
+        complete: function (xhr, statusText) {
+            $('.wrap_loader').hide();
+        }
+    });
+});
+$("#trailer-modal").on({
+
+    'show.uk.modal': function () {
+
+    },
+    'hide.uk.modal': function () {
+        var player = videojs('player_one');
+        player.pause();
+    }
+
+
+});
+$(document).on('click', '.preview_videos', function () {
+    var link = $(this).data('link');
+    //var videoFile = cloudUrl + link + videoName;
+    var videoFile = link;
+    if (!isPreviewAvailable) {
+        if (!loadPreview(course)) {
+            toastr.error('Sorry No preview available for this course ');
+            return false;
+        }
+        isPreviewAvailable = true;
+    }
+
+    $("#course_title").html($(this).data('title'));
+    $(".preview_list").parent('li').removeClass('course-model-active');
+    $(".preview_list[data-link='" + link + "']").parent('li').addClass('course-model-active');
+    playVideo(videoFile);
+    $('.modal').css('display', 'block');
+    $('body').css('overflow', 'hidden');
+    // UIkit.modal("#pre-video").show();
+
+});
+$(document).on('click', '.pre_video_bundle', function () {
+    var link = $(this).data('link');
+    var course_id = $(this).data('item');
+    var videoFile = cloudUrl + link + videoName;
+    
+    
+    if (!isPreviewAvailable) {
+        if (!loadBundlePreview(course)) {
+            toastr.error('Sorry No preview available for this course ');
+            return false;
+        }
+        isPreviewAvailable = true;
+    }
+    
+    cookie_value = $("#setCookies").val();
+    if(cookie_value != course_id){
+        set_cookies(course_id, $(this).data('title'), link, videoFile);
+        $("#setCookies").val(course_id);
+    }else{
+        $("#course_title").html($(this).data('title'));
+        $(".preview_list").parent('li').removeClass('course-model-active');
+        $(".preview_list[data-link='" + link + "']").parent('li').addClass('course-model-active');
+        playVideo(videoFile);
+        $('.modal').css('display', 'block');
+        $('body').css('overflow', 'hidden');
+        // UIkit.modal("#pre-video").show();
+    }
+});
+$(document).on('click', '#sample-link', function () {
+    $('.modal-certificate').css('display', 'block');
+    $('body').css('overflow', 'hidden');
+});
+$(document).on('click', '.close-certificate', function () {
+    $('.modal-certificate').css('display', 'none');
+    $('body').css('overflow', 'auto');
+})
+
+
+$(document).on('click', '.preview_list', function () {
+    if (!isPreviewAvailable) {
+
+        if (!loadPreview(course)) {
+            toastr.error('Sorry No preview available for this course ');
+        }
+        isPreviewAvailable = true;
+    }
+    var link = $(this).data('link');
+    $("#course_title").html($(this).data('title'));
+    $(".preview_list").parent('li').removeClass('course-model-active');
+    $(this).parent('li').addClass('course-model-active');
+    //var videoFile = cloudUrl + link + "/playlist.m3u8";
+    var videoFile = link;
+    playVideo(videoFile);
+});
+$(document).on('click', ".play-button-trigger-video", function () {
+    $("a.preview_videos").first().trigger('click');
+});
+// $(document).on('click', '.ebook-preview', function () {
+//     loadPreviewEbook();
+//     $(this).removeClass('ebook-preview');
+
+// });
+$(document).on('click', '.btn-custom-modal-close', function () {
+    $('.modal').css('display', 'none');
+    $('body').css('overflow', 'auto');
+    player.pause();
+});
+
+
+
+
+
+
+//--------- Code end's here -----------------//
+
+  /*
+   * WISH LIST
+   */
+  $(document).on("click", ".move_to_cart", function () {
+    var post_url = appURL + addToCart.jsp;
+    var course_id = $(this).data("course_id");
+    var redirect = $(this).data("redirect");
+    var currency = JSON.parse(localStorage.getItem("localization"));
+    currency = currency.currency;
+    var video_auth = +$("#video_auth").val();
+    if (video_auth > 0) {
+      $.ajax({
+        type: "POST",
+        url: post_url,
+        dataType: "JSON",
+        headers: {
+          "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        cache: false,
+        data: {
+          course_id: course_id,
+          currency: currency,
+        },
+        beforeSend: function () {
+          $(".wrap_loader").show();
+        },
+        complete: function (xhr, statusText) {
+          $(".wrap_loader").hide();
+          if (xhr.status == 200) {
+            var url = appURL + "wishlist.jsp";
+            wishlist(url, course_id);
+            var count = $(".header_cart_count").html();
+            $(".header_cart_count")
+              .html(+count + +1)
+              .show();
+            toastr.success(xhr.responseJSON.message);
+            if (redirect == 1) {
+              window.location = "{{$baseUrl}}" + "cart.jsp";
+            }
+          } else {
+            toastr.error(xhr.responseJSON.message);
+          }
+        },
+        error: function (data) {
+          $(".wrap_loader").hide();
+          if (data.status === 422) {
+            var return_data = $.parseJSON(data.responseText);
+            var message = return_data["message"];
+            var errors = return_data["errors"];
+            $.each(errors, function (key, val) {
+              toastr.error(val);
+            });
+          }
+        },
+      });
+    }
+  });
+  
+
+
+
+
+
+
+//Khaleel's code start here -------------------------//
+$('.star-input').on('click', function () {
+    $('.star-input').removeClass('selected');
+    var count = $(this).attr('name');
+    for (var i = count; i >= 1; i--) {
+        $('.star-input[name=' + i + ']').addClass('selected');
+    }
+    $('#hdnFeedbackRating').val(count);
+});
+
+var page = 1;
+$(document).on('click', '#ancLoadFeedbacks', function () {
+    page++;
+    $.ajax({
+        url: appURL + "student/feedbacks/viewmore.php?page=" + page,
+        method: "GET",
+        datatype: "json",
+        data: { "course_id": course },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
+            $('.wrap_loader').show();
+        },
+        success: function (data) {
+            $(".wrap_loader").hide();
+            if (data.feedbacks_count <= 10) {
+                $('#ancLoadFeedbacks').hide();
+            }
+            $('#ulFeedbacks').append(data.html);
+        }
+    });
+});
+$(document).on('click', '#btnFeedbackSubmit', function () {
+    var feedback_rating = $('#hdnFeedbackRating').val();
+    var feedback_msg = $('#txtFeedbackMsg').val();
+    feedback_msg = $.trim(feedback_msg);
+
+    if (feedback_rating <= 0) {
+        toastr.error("Please select your rating");
+        return false;
+    }
+    // if (feedback_msg == "")
+    // {
+    // toastr.error("Please enter your feedback");
+    // return false;
+    // }
+
+    $('#divFeedbackAlert').html('');
+    $('#divFeedbackAlert').hide();
+
+    $.ajax({
+        url: appURL + "student/feedbacks/save.php",
+        dataType: 'json',
+        method: "POST",
+        data: { "feedback_msg": feedback_msg, "feedback_rating": feedback_rating, "course_id": course },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
+            $('.wrap_loader').show();
+        },
+        success: function (data) {
+            $(".wrap_loader").hide();
+            if (data.flag == 1) {
+                toastr.success("Thanks for Your Feedback");
+                $('#hdnFeedbackRating').val(0);
+                $('#txtFeedbackMsg').val('');
+                $('.star-input').removeClass('selected');
+                var feedback_dates = JSON.parse(localStorage.getItem("feedback_date"));   
+                delete feedback_dates[course]; 
+                localStorage.setItem("feedback_date", JSON.stringify(feedback_dates));
+                $(".modal-overlay").fadeTo(100, 0);
+            } else {
+                toastr.error(data.msg);
+                return false;
+            }
+        }
+    });
+});
+
+// Khaleel's Code end here -------------------------------//
+
+$(document).on("click", ".purge_course", function () {
+    var url = $(this).data("url");
+    $.ajax({
+        type: 'POST',
+        url: appURL + 'admin/purge/course.jsp',
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        data: {
+            "url": url
+        },
+        beforeSend: function () {
+            $(".wrap_loader").show();
+        },
+        success: function (response, statusText, xhr) {
+            $(".wrap_loader").hide();
+            toastr.success(response.message);
+        }
+    });
+});
+
+function loadSectionContent(section, preview_flag, container) {
+    $.ajax({
+        type: 'GET',
+        url: appURL + 'course/section/content.jsp',
+        dataType: 'JSON',
+        // async: false,
+        cache: false,
+        data: {
+            "section": section,
+            "preview_flag":preview_flag
+        },
+        beforeSend: function () {
+
+        },
+        success: function (response, statusText, xhr) {
+            if (xhr.status == 200) {
+                container.attr('data-load', 1);
+                container.css('diplay', 'block');
+                $("#content_" + section).html(response.html);
+                setSticky();
+            }
+        },
+        complete: function (xhr, statusText) {
+
+        },
+        error: function (data) {
+            if (data.status === 422) {
+                var return_data = $.parseJSON(data.responseText);
+                var message = return_data['message'];
+                var errors = return_data['errors'];
+                $.each(errors, function (key, val) {
+                    toastr.error(val);
+                });
+            }
+        }
+    });
+}
+function loadCourseContent(item, container) {
+    $.ajax({
+        type: 'GET',
+        url: appURL + 'prime-pack/course/curriculam.jsp',
+        dataType: 'JSON',
+        // async: false,
+        cache: false,
+        data: {
+            "course": item,
+        },
+        beforeSend: function () { 
+            
+        },
+        success: function (response, statusText, xhr) {
+            if (xhr.status == 200) {
+                container.attr('data-load', 1);
+                container.closest('div').next('.collapsible-body').html(response.html);
+                setSticky();
+            }
+        },
+        complete: function (xhr, statusText) {
+
+        },
+        error: function (data) {
+            if (data.status === 422) {
+                var return_data = $.parseJSON(data.responseText);
+                var message = return_data['message'];
+                var errors = return_data['errors'];
+                $.each(errors, function (key, val) {
+                    toastr.error(val);
+                });
+            }
+        }
+    });
+}
+
+function loadPreview() {
+    var returnStmt = false;
+    $.ajax({
+        type: 'GET',
+        url: appURL + 'course/content/preview.jsp',
+        dataType: 'JSON',
+        async: false,
+        cache: false,
+        data: {
+            "course": course,
+        },
+        beforeSend: function () {
+            $('.wrap_loader').show();
+        },
+        success: function (response, statusText, xhr) {
+            if (xhr.status == 200) {
+
+                $("#right-card").append(response.html);
+                returnStmt = true;
+            }
+
+        },
+        complete: function (xhr, statusText) {
+            $('.wrap_loader').hide();
+
+        },
+        error: function (data) {
+            $('.wrap_loader').hide();
+            console.log('Error encounters');
+        }
+    });
+    return returnStmt;
+}
+
+function loadBundlePreview() {
+    var returnStmt = false;
+    $.ajax({
+        type: 'GET',
+        url: appURL + 'bundle/course/preview.jsp',
+        dataType: 'JSON',
+        async: false,
+        cache: false,
+        data: {
+            "course": course,
+        },
+        beforeSend: function () {
+            $('.wrap_loader').show();
+        },
+        success: function (response, statusText, xhr) {
+            if (xhr.status == 200) {
+
+                $("#right-card").append(response.html);
+                returnStmt = true;
+            }
+
+        },
+        complete: function (xhr, statusText) {
+            $('.wrap_loader').hide();
+
+        },
+        error: function (data) {
+            $('.wrap_loader').hide();
+            console.log('Error encounters');
+        }
+    });
+    return returnStmt;
+}
+function set_cookies(course_id, course_title, link, videoFile) {
+    $.ajax({
+        type: 'GET',
+        url: appURL + 'bundle/course/set_cookies.jsp',
+        dataType: 'JSON',
+        data: {
+            "course_id": course_id,
+        },
+        beforeSend: function () {
+            $('.wrap_loader').show();
+        },
+        success: function (response, statusText, xhr) {
+            $("#course_title").html(course_title);
+            $(".preview_list").parent('li').removeClass('course-model-active');
+            $(".preview_list[data-link='" + link + "']").parent('li').addClass('course-model-active');
+            playVideo(videoFile);
+            $('.modal').css('display', 'block');
+            $('body').css('overflow', 'hidden');
+        },
+        complete: function (xhr, statusText) {
+            $('.wrap_loader').hide();
+        },
+        error: function (data) {
+            $('.wrap_loader').hide();
+            console.log('Error encounters');
+        }
+    });
+}
+function loadPreviewEbook() {
+    var returnStmt = false;
+    $.ajax({
+        type: 'GET',
+        url: appURL + 'ebook/content/preview.jsp',
+        dataType: 'JSON',
+        // async: false, 
+        cache: false,
+        data: {
+            "course": course,
+        },
+        beforeSend: function () {
+            $('.wrap_loader').show();
+        },
+        success: function (response, statusText, xhr) {
+            if (xhr.status == 200) {
+
+                $("#pdf-viewer").html(response.html);
+                returnStmt = true;
+            }
+
+        },
+        complete: function (xhr, statusText) {
+            $('.wrap_loader').hide();
+
+        },
+        error: function (data) {
+            $('.wrap_loader').hide();
+            $("#pdf-viewer").html('No preview available for the ebook');
+            console.log('Error encounters');
+        }
+    });
+    return returnStmt;
+}
+
+
+
+
+
+var time = Date.now || function() {
+    return +new Date;
+  };
+  
+
+
+function switch_to_instructor() {
+    localStorage.userType = 'T';
+    window.location.href = appURL + "tutor/dashboard.jsp?v="+time();
+}
+function switch_to_student() {
+    localStorage.userType = 'S';
+    window.location.href = appURL + "student/dashboard.jsp?v="+time();
+}
+function switch_to_admin() {
+    localStorage.userType = 'A';
+    window.location.href = appURL + "admin/dashboard.jsp?v="+time();
+}
+function switch_to_business() {
+  localStorage.userType = "BA";
+  window.location.href = appURL + "biz/dashboard.jsp";
+}
+function switch_to_qa() {
+  localStorage.userType = "QA";
+  window.location.href = appURL + "qa/dashboard.jsp?v="+unix;
+}
+
+function get_filter_dates(tab) {
+    var d = new Date();
+    var end_date = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+    if (tab == 'Y') {
+        d.setDate(+d.getDate() - +1);
+        start_date = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+        end_date = start_date;
+    } else if (tab == 'C') {
+        e = new Date(d.getFullYear(), d.getMonth(), 1);
+        start_date = e.getFullYear() + "/" + (e.getMonth() + 1) + "/" + e.getDate();
+    } else if (tab == 'P') {
+        l = new Date(d.getFullYear(), d.getMonth(), 0);
+        f = new Date(l.getFullYear(), l.getMonth(), 1);
+        start_date = f.getFullYear() + '/' + (f.getMonth() + 1) + '/' + f.getDate();
+        end_date = l.getFullYear() + '/' + (f.getMonth() + 1) + '/' + l.getDate();
+    } else if (tab == 'A') {
+        start_date = "2019/01/01";
+    } else if (tab == "") {
+        start_date = "";
+        end_date = "";
+    } else {
+        d.setDate(+d.getDate() - +tab + +1);
+        start_date = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+    }
+    if (start_date != "") {
+        start_date = formatDate(start_date);
+        end_date = formatDate(end_date);
+    }
+    if (start_date > end_date) {
+        swal("Error", "Start date should less than end date", "error");
+        return false;
+    }
+    dates = [];
+    dates["start_date"] = start_date;
+    dates["end_date"] = end_date;
+    return dates;
+}
+function formatDate(value) {
+    var date = value.split('/');
+    month = date[1];
+    day = date[2];
+    if (date[1].length < 2)
+        month = '0' + date[1];
+    if (date[2].length < 2)
+        day = '0' + date[2];
+    return date[0] + "-" + month + "-" + day;
+}
+// Check user subscription
+function checkUserCourseSubscription() {
+    var post_url = appURL + "checkUserSubscription.php";
+    $.ajax({
+      type: "GET",
+      url: post_url,
+      dataType: "JSON",
+      cache:false,
+      data: {
+        course_id: course
+      },
+      complete: function (xhr, statusText) {
+        var error = 0;
+        if (xhr.status == 200) {
+          if(xhr.responseJSON.isLogedin >= 0){
+            $(".button_content").html(xhr.responseJSON.html);
+            $(".ebook-price-card").html(xhr.responseJSON.price);
+            setPrice();
+            if (xhr.responseJSON.count > 0) {
+              $("#right-card .add_to_cart_div").hide();
+              $("#right-card .ebook-price-card").hide();
+              $("#right-card .enroll_course_div").hide();
+              $("#right-card .my_ebooks_div").show();
+              //$("#liFeedback").css("display", "");
+              //$("#pane-default-4").css("display", "block");
+            } else {
+              var error = 1;
+            }
+          }else{
+            var error = 1;
+          }
+        }
+        
+        if(error == 1){
+            $("#right-card .add_to_cart_div").show();
+            $("#right-card .ebook-price-card").show();
+            $("#right-card .enroll_course_div").show();
+            $("#right-card .my_ebooks_div").hide();
+            //$("#liFeedback").css("display", "none");
+            //$("#pane-default-4").css("display", "none");
+            $("#divSubmitReview").hide();
+        }
+      },
+    });
+}
+function wishlist(post_url, id, redirect, e) {
+    $.ajax({
+        type: 'POST',
+        url: post_url,
+        dataType: 'JSON',
+        data: {
+            "id": id,
+            "_token": $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
+            $('.wrap_loader').show();
+        },
+        success: function (data) {
+            $('.wrap_loader').hide();
+            if (data.statusCode == 200) {
+                toastr.success(data.message);
+                if (redirect) {
+                    e.closest('.course-card-list').parent().remove();
+                    if ($('.card .course-card.course-card-list').length <= 0) {
+                        window.location.reload();
+                    }
+                    return false;
+                }
+                if (data.count > 0) {
+                    $('a.wishlist').css('color', '#32984e');
+                    $('a.wishlist').html('<i class="fa fa-heart-solid"></i>');
+                } else {
+                    $('a.wishlist').css('color', '#ccc');
+                    $('a.wishlist').html('<i class="fa fa-heart-solid"></i>');
+                }
+            } else {
+                toastr.error(data.message);
+            }
+        },
+        error: function (data) {
+            $('.wrap_loader').hide();
+            if (data.status === 422) {
+                var return_data = $.parseJSON(data.responseText);
+                var message = return_data['message'];
+                var errors = return_data['errors'];
+                $.each(errors, function (key, val) {
+                    toastr.error(val);
+                });
+            }
+        }
+    });
+}
+function addItemToCart(item) {
+    var post_url = appURL + "addToCart.jsp?v=" + time();
+    var currency = JSON.parse(localStorage.getItem('localization'));
+    var response = [];
+    currency = currency.currency;
+    var video_auth = +$('#video_auth').val();
+    if (video_auth > 0) {
+        $.ajax({
+            type: 'POST',
+            url: post_url,
+            dataType: 'JSON',
+            async: false,
+            cache:false,
+            // headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                "course_id": item,
+                "currency": currency
+            },
+            beforeSend: function () {
+                $('.wrap_loader').show();
+            },
+            complete: function (xhr, statusText) {
+                $('.wrap_loader').hide();
+                if (xhr.status == 200) {
+                    var count = $('.header_cart_count').html();
+                    $('.header_cart_count').html(+count + +1).show();
+                    response = {
+                        'status': true,
+                        'message': xhr.responseJSON.message
+                    };
+
+
+                } else {
+                    response = {
+                        'status': false,
+                        'message': xhr.responseJSON.message
+                    };
+
+                }
+            },
+            error: function (data) {
+                $('.wrap_loader').hide();
+                if (data.status === 422) {
+                    var return_data = $.parseJSON(data.responseText);
+                    var message = return_data['message'];
+                    var errors = return_data['errors'];
+                    $.each(errors, function (key, val) {
+                        toastr.error(val);
+                    });
+                }
+            }
+        });
+    } else {
+        if (localStorage.cartData && localStorage.cartData != '') {
+            var x = JSON.parse(localStorage.cartData);
+            if (x.indexOf(item) == -1) {
+                x.push(item);
+                localStorage.setItem("cartData", JSON.stringify(x));
+                var count = $('.header_cart_count').html();
+                $('.header_cart_count').html(+count + +1).show();
+                response = {
+                    'status': true,
+                    'message': "Item added to cart"
+                };
+
+
+            } else {
+                response = {
+                    'status': true,
+                    'message': "Item already added to cart"
+                };
+
+            }
+        } else {
+            var x = [];
+            x.push(item);
+            localStorage.setItem("cartData", JSON.stringify(x));
+            $('.header_cart_count').html(1).show();
+            response = {
+                'status': true,
+                'message': "Item added to cart"
+            };
+
+        }
+
+    }
+    return response;
+}
+function getCourseWishlist(id) {
+    var post_url = appURL + "getWishlist.jsp";
+    $.ajax({
+        type: 'GET',
+        url: post_url,
+        cache: false,
+        dataType: 'JSON',
+        data: {
+            "id": id,
+            "_token": $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
+
+        },
+        success: function (data) {
+            if (data.statusCode == 200) {
+                if (data.count > 0) {
+                    $('a.wishlist').css('color', '#32984e');
+                    $('a.wishlist').html('<i class="fa fa-heart-solid"></i>');
+                }
+            } else {
+                return 0;
+            }
+        },
+        error: function (data) {
+            if (data.status === 422) {
+                var return_data = $.parseJSON(data.responseText);
+                var message = return_data['message'];
+                var errors = return_data['errors'];
+                $.each(errors, function (key, val) {
+                    toastr.error(val);
+                });
+            }
+        }
+    });
+}
+function getLocation() {
+    var returnResponse;
+    $.ajax({
+        type: "GET",
+        url: appURL + "localization.php?v=1.5",
+        dataType: "JSON",
+        async: false,
+        cache: false,
+        success: function (response) {
+            returnResponse = response;
+        },
+        error: function (response) {
+            returnResponse = false;
+        }
+    });
+    return returnResponse;
+}
+
+// Set Price of Products 
+function setPrice() {
+    var localization = getLocalData('localization');
+
+    var locationCurrecny;
+    if (localization != null) {
+        // Set currency from location 
+        locationCurrecny = localization.currency;
+    } else {
+        // Fetch currecny  from back end
+        var currentLocation = getLocation();
+        if (currentLocation == false) {
+            currentLocation = currencyList['usd'];
+        }
+        // var ttl = 300000;
+        var ttl = 1800000;
+        setLocalData('localization', currentLocation, ttl);
+        locationCurrecny = currentLocation['currency'];
+    }
+    if(locationCurrecny == null || locationCurrecny == ''){
+        var currentLocation = getLocation();
+        if (currentLocation == false) {
+            currentLocation = currencyList['usd'];
+        }
+        // var ttl = 300000;
+        var ttl = 1800000;
+        setLocalData('localization', currentLocation, ttl);
+        locationCurrecny = currentLocation['currency'];
+    } 
+    var localFormatSettings = {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+        style: 'currency',
+        currency: locationCurrecny
+    };
+    // Set various currecny values 
+    $(".price").each(function () {
+        $(this).html(
+            ($(this).data(locationCurrecny)).toLocaleString(undefined, localFormatSettings)
+        ).text();
+    });
+    $(".actual-price").each(function () {
+        $(this).html(
+            ($(this).data(locationCurrecny)).toLocaleString(undefined, localFormatSettings)
+        ).text();
+    });
+    $(".discount-amount").each(function () {
+        $(this).html(
+            ($(this).data(locationCurrecny)).toLocaleString(undefined, localFormatSettings)
+        ).text();
+    });
+    $(".ebook-off").each(function () {
+        $(this).html(
+            $(this).data(locationCurrecny) + ' % off'
+        ).text();
+        $(this).css("display", "block");
+    });
+    $("div .pricing-loader,.course-price").css('display', 'none');
+    $(".course-card-body .pricing-loader").css('display', 'none');
+    $("div .ebook-price").css('display', 'block');
+}
+function setLocalData(key, data, ttl) {
+    const now = new Date();
+    const item = {
+        value: data,
+        expiry: now.getTime() + ttl
+    };
+    localStorage.setItem(key, JSON.stringify(item));
+}
+function getLocalData(key) {
+    // Check localization expiry time
+    //    key = "localization";
+    const itemString = localStorage.getItem(key);
+    if (!itemString) {
+        return null;
+    }
+    const item = JSON.parse(itemString);
+    const now = new Date();
+
+    // compare the expiry time of the item with the current time
+    if (now.getTime() >= item.expiry) {
+        // If the item is expired, delete the item from storage
+        // and return null
+        localStorage.removeItem(key);
+        return null;
+    }
+
+    return item.value;
+}
+function readCookie(name) {
+    var cookieName = name + "=";
+    var cookieArray = document.cookie.split(';');
+
+    for (var i = 0; i < cookieArray.length; i++) {
+        var cookie = cookieArray[i];
+        while (cookie.charAt(0) == ' ') {
+            cookie = cookie.substring(1, cookie.length);
+        }
+        if (cookie.indexOf(cookieName) == 0) {
+            return cookie.substring(cookieName.length, cookie.length);
+        }
+        return null;
+    }
+}
+function getCookie(name) {
+    // Split cookie string and get all individual name=value pairs in an array
+    var cookieArr = document.cookie.split(";");
+
+    // Loop through the array elements
+    for (var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+
+        /* Removing whitespace at the beginning of the cookie name
+         and compare it with the given string */
+        if (name == cookiePair[0].trim()) {
+            // Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+
+    // Return null if not found
+    return null;
+}
+
+function getRelatedCourses(Course_id, type = 'course') {
+    $(".related_course").removeClass('related_course');
+    var url = appURL + "mui/related/courses.jsp";
+    $.ajax({
+        type: 'GET',
+        url: url,
+        data: {
+            "course_type": type,
+            "course_id": Course_id
+        },
+        beforeSend: function () {
+            //$('.wrap_loader').show();
+        },
+        success: function (data) {
+            $('.list-div').html(data);
+        },
+        complete: function (xhr, statusText) {
+            //$('.wrap_loader').hide();
+            setPrice();
+        }
+    });
+}
+function enrollCourse(item) {
+    var post_url = appURL + "enrollCourse.jsp?v=1.3";
+    $.ajax({
+        type: 'POST',
+        url: post_url,
+        dataType: 'JSON',
+        async: false,
+        cache: false,
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        data: {
+            "course_id": item,
+        },
+        beforeSend: function () {
+            $('.wrap_loader').show();
+        },
+        complete: function (xhr, statusText) {
+            $('.wrap_loader').hide();
+            if (xhr.status == 200) {
+                if (+xhr.responseJSON.deleted == 1) {
+                    var count = $('.header_cart_count').html();
+                    $('.header_cart_count').html(+count - +1).show();
+                }
+                response = {
+                    'status': true,
+                    'message': xhr.responseJSON.message
+                };
+            } else {
+                response = {
+                    'status': false,
+                    'message': xhr.responseJSON.message
+                };
+            }
+        },
+        error: function (data) {
+            $('.wrap_loader').hide();
+            if (data.status === 422) {
+                var return_data = $.parseJSON(data.responseText);
+                var message = return_data['message'];
+                var errors = return_data['errors'];
+                $.each(errors, function (key, val) {
+                    toastr.error(val);
+                });
+            }
+        }
+    });
+    return response;
+}
+
+function searchByCourse(value) {
+    if (value != "") {
+        if (!localStorage.search_data) {
+            localStorage.setItem("search_data", value);
+        } else {
+            values = localStorage.getItem("search_data");
+            values = values.split(",");
+            if (values.length == 6) {
+                values.splice(0, 1);
+            }
+            index = $.inArray(value, values);
+            if (index != -1) {
+                values.splice(index, 1);
+            }
+            values = values + "," + value;
+            localStorage.setItem("search_data", values);
+        }
+        window.location.href = baseURL + "search/" + value;
+    }
+}
+function CalculateTableSummary(table) {
+    try {
+        table.api().columns(".sum").every(function () {
+            var column = this;
+            var rowCount = this.rows().count();
+            var sum = 0;
+            if (rowCount > 0) {
+                sum = column
+                    .data()
+                    .reduce(function (a, b) {
+                        a = parseInt(a, 10);
+                        if (isNaN(a)) { a = 0; }
+
+                        b = parseInt(b, 10);
+                        if (isNaN(b)) { b = 0; }
+                        return a + b;
+                    });
+            }
+            $(column.footer()).html((+sum * +1).toFixed(2));
+        });
+    } catch (e) {
+        console.log(e + 'Error in CalculateTableSummary');
+    }
+}
+function setCurrentMonth(fdate, tdate) {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    var today = yyyy + '-' + mm + '-' + dd;
+    var today1 = yyyy + '-' + mm + '-' + '01';
+    fdate.val(today1).focus();
+    tdate.val(today).focus();
+}
+function closeWindow(url) {
+    window.close();
+    window.location.href = appURL + url;
+}
+function setEndTime(){
+	var now = new Date().getTime();
+	var distance = countDownDate - now;
+	var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	var seconds = Math.floor((distance % (1000 * 60)) / 1000);  
+	if (distance <= 1) {
+		//$('#site-message-div').hide();
+	}else{
+        if($('#site-message-div').length){
+            $('#site-message-div').show();
+        }
+        var str = '';
+        if(days > 0){
+         str += days + "d ";
+        }
+        if(hours > 0){
+         str += hours + "h ";
+        }
+        str += minutes + "m " + seconds + "s ";
+		$("#site-timer").html(str);
+	}
+}
+function createDayCookie(name, value, days) {
+   if (days) {
+       var date = new Date();
+       date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+       var expires = "; expires=" + date.toGMTString();
+   }
+   else var expires = "";
+   document.cookie = name + "=" + value + expires + "; path=/";
+}
+// pagination for listing pages
+$(document).on('click',"div.paging_items .pagination li a",function(e){
+    e.preventDefault();
+    var url = $(this).attr('href');
+    url = url.replace("market/latest/courses.jsp", "latest-courses.htm");
+    url = url.replace("market/mostpopular/courses.jsp", "mostpopular-courses.htm");
+    url = url.replace("market/bestseller/courses.jsp", "bestseller-courses.htm");
+    url = url.replace("market/featured/courses.jsp", "featured-courses.htm");
+    window.history.pushState("", "", url);
+    window.location.assign(url);
+});
+/*
+ * Sticky Function
+ */
+elem = $(".course-details-wrapper")[0];
+  
+let resizeObserver = new ResizeObserver(() => {
+    setSticky();
+    console.log("The element was resized");
+});
+ 
+function setSticky(isLoad = 0) {
+    if ($(window).width() > 544) {
+      var x = $(".course-details-wrapper").height();
+      var p = $(".right-card").height();
+     // console.log(p);   
+     // console.log(type); 
+	 if ($('.related-items').length == 0){
+		p = +p + 170; 
+	 }else{
+        p = +p + 310;
+     }
+    // console.log(p);
+      $(".card-sticky").css("height", x + "px");
+      if (isLoad == 1) {
+        $(".main-sticky").css("height", p + "px");
+      }
+    }
+  }
+
+var language = [];
+language["en"] = "English";
+language["aa"] = "Afar";
+language["ab"] = "Abkhazian";
+language["af"] = "Afrikaans";
+language["am"] = "Amharic";
+language["ar"] = "Arabic";
+language["as"] = "Assamese";
+language["ay"] = "Aymara";
+language["az"] = "Azerbaijani";
+language["ba"] = "Bashkir";
+language["be"] = "Byelorussian";
+language["bg"] = "Bulgarian";
+language["bh"] = "Bihari";
+language["bi"] = "Bislama";
+language["bn"] = "Bengali/Bangla";
+language["bo"] = "Tibetan";
+language["br"] = "Breton";
+language["ca"] = "Catalan";
+language["co"] = "Corsican";
+language["cs"] = "Czech";
+language["cy"] = "Welsh";
+language["da"] = "Danish";
+language["de"] = "German";
+language["dz"] = "Bhutani";
+language["el"] = "Greek";
+language["eo"] = "Esperanto";
+language["es"] = "Spanish";
+language["et"] = "Estonian";
+language["eu"] = "Basque";
+language["fa"] = "Persian";
+language["fi"] = "Finnish";
+language["fj"] = "Fiji";
+language["fo"] = "Faeroese";
+language["fr"] = "French";
+language["fy"] = "Frisian";
+language["ga"] = "Irish";
+language["gd"] = "Scots/Gaelic";
+language["gl"] = "Galician";
+language["gn"] = "Guarani";
+language["gu"] = "Gujarati";
+language["ha"] = "Hausa";
+language["hi"] = "Hindi";
+language["hr"] = "Croatian";
+language["hu"] = "Hungarian";
+language["hy"] = "Armenian";
+language["ia"] = "Interlingua";
+language["ie"] = "Interlingue";
+language["ik"] = "Inupiak";
+language["in"] = "Indonesian";
+language["is"] = "Icelandic";
+language["it"] = "Italian";
+language["iw"] = "Hebrew";
+language["ja"] = "Japanese";
+language["ji"] = "Yiddish";
+language["jw"] = "Javanese";
+language["ka"] = "Georgian";
+language["kk"] = "Kazakh";
+language["kl"] = "Greenlandic";
+language["km"] = "Cambodian";
+language["kn"] = "Kannada";
+language["ko"] = "Korean";
+language["ks"] = "Kashmiri";
+language["ku"] = "Kurdish";
+language["ky"] = "Kirghiz";
+language["la"] = "Latin";
+language["ln"] = "Lingala";
+language["lo"] = "Laothian";
+language["lt"] = "Lithuanian";
+language["lv"] = "Latvian/Lettish";
+language["mg"] = "Malagasy";
+language["mi"] = "Maori";
+language["mk"] = "Macedonian";
+language["ml"] = "Malayalam";
+language["mn"] = "Mongolian";
+language["mo"] = "Moldavian";
+language["mr"] = "Marathi";
+language["ms"] = "Malay";
+language["mt"] = "Maltese";
+language["my"] = "Burmese";
+language["na"] = "Nauru";
+language["ne"] = "Nepali";
+language["nl"] = "Dutch";
+language["no"] = "Norwegian";
+language["oc"] = "Occitan";
+language["om"] = "(Afan)/Oromoor/Oriya";
+language["pa"] = "Punjabi";
+language["pl"] = "Polish";
+language["ps"] = "Pashto/Pushto";
+language["pt"] = "Portuguese";
+language["qu"] = "Quechua";
+language["rm"] = "Rhaeto-Romance";
+language["rn"] = "Kirundi";
+language["ro"] = "Romanian";
+language["ru"] = "Russian";
+language["rw"] = "Kinyarwanda";
+language["sa"] = "Sanskrit";
+language["sd"] = "Sindhi";
+language["sg"] = "Sangro";
+language["sh"] = "Serbo-Croatian";
+language["si"] = "Singhalese";
+language["sk"] = "Slovak";
+language["sl"] = "Slovenian";
+language["sm"] = "Samoan";
+language["sn"] = "Shona";
+language["so"] = "Somali";
+language["sq"] = "Albanian";
+language["sr"] = "Serbian";
+language["ss"] = "Siswati";
+language["st"] = "Sesotho";
+language["su"] = "Sundanese";
+language["sv"] = "Swedish";
+language["sw"] = "Swahili";
+language["ta"] = "Tamil";
+language["te"] = "Tegulu";
+language["tg"] = "Tajik";
+language["th"] = "Thai";
+language["ti"] = "Tigrinya";
+language["tk"] = "Turkmen";
+language["tl"] = "Tagalog";
+language["tn"] = "Setswana";
+language["to"] = "Tonga";
+language["tr"] = "Turkish";
+language["ts"] = "Tsonga";
+language["tt"] = "Tatar";
+language["tw"] = "Twi";
+language["uk"] = "Ukrainian";
+language["ur"] = "Urdu";
+language["uz"] = "Uzbek";
+language["vi"] = "Vietnamese";
+language["vo"] = "Volapuk";
+language["wo"] = "Wolof";
+language["xh"] = "Xhosa";
+language["yo"] = "Yoruba";
+language["zh"] = "Chinese";
+language["zu"] = "Zulu";
+/*
+localization = getLocalData('localization');
+if(localization.currency == 'inr'){
+    $(".hero-wrapper img").prop("src", "https://www.tutorialspoint.com/market/public/assets/images/eid-banner-2022.png");
+}else{
+    $(".hero-wrapper img").prop("src", "https://www.tutorialspoint.com/market/public/assets/images/final_sale_possibilities.jpg");
+}
+$(".hero-wrapper").show();*/

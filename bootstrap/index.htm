@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Bootstrap Tutorial</title>
+<meta charset="utf-8">
+<meta name="description" content="Bootstrap Tutorial,  Twitter Bootstrap is the most popular front end framework in the recent time. It is sleek, intuitive, and powerful mobile first front-end framework for faster a"/>
+<link rel="canonical" href="https://www.tutorialspoint.com/bootstrap/index.htm" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+<link id="style-switch" rel="stylesheet" href="/static/css/purge/style-min.css?v=5.11">
+<link rel="stylesheet" href="/static/css/custom.css?v=7.40213">
+<style>.navbar-expand-xl .navbar-brand .navbar-brand-item, .h-100px, ul.toc li.heading, .light-mode-item, .dark-mode-item, .back-top, a.demo, .home-intro-sub{background:#5b4282; color:#fff;}  ul.toc li.heading:hover{background:#5b4282;} .btn-grey-border{background:#5b4282; color:#fff; border:1px solid #5b4282;} .course-box{background:#5b4282;} 
+</style>
+<script id="adp1" data-cfasync="false">(function(w, d) { var s = d.createElement('script'); s.src = '//cdn.adpushup.com/40046/adpushup.js'; s.type = 'text/javascript'; s.async = true; (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s); })(window, document);</script>
+<script id="adp2" data-cfasync="false">(function(w, d) {var s = d.createElement('script'); s.src = '//delivery.adrecover.com/18107/adRecover.js'; s.type = 'text/javascript'; s.async = true; (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s); })(window, document);</script>
+</head>
+<body>
+<div class="navbar-top navbar-dark d-xl-block py-2 mx-2 mx-md-4 rounded-bottom-4">
+	<div class="container-fluid px-3 px-xl-0">
+		<div class="d-lg-flex justify-content-lg-between align-items-center top-nav-links">
+			<ul class="nav align-items-center justify-content-center">
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Home Page">
+					<a class="nav-link" href="https://www.tutorialspoint.com/index.htm"><i class="fal fa-home-alt me-1"></i> Home</a>
+				</li>
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Online Coding System">
+					<a class="nav-link" href="https://www.tutorialspoint.com/codingground.htm"><i class="fal fa-code me-1"></i> Coding Ground</a>
+				</li>
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Job Openings">
+					<span><a class="nav-link" href="https://www.tutorialspoint.com/about/about_careers.htm"><i class="fal fa-suitcase me-1"></i> Jobs</a></span>
+				</li>
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Digital Whiteboard">
+					<span><a class="nav-link" href="https://www.tutorialspoint.com/whiteboard.htm"><i class="fal fa-chalkboard me-1"></i> Whiteboard</a></span>
+				</li>
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Developer's Tools">
+					<span><a class="nav-link" href="https://www.tutorialspoint.com/online_dev_tools.htm"><i class="fal fa-tools me-1"></i> Tools</a></span>
+				</li>
+				<li class="nav-item" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Corporate Trainings">
+					<span><a class="nav-link" href="https://www.tutorialspoint.com/business/index.asp"><i class="fal fa-analytics me-1"></i> Business</a></span>
+				</li>
+			</ul>
+			<!-- Navbar top Right-->
+			<div class="d-flex align-items-center justify-content-center">
+				<div class="navbar-nav ms-2">
+				  <div class="modeswitch-wrap" id="darkModeSwitch">
+					 <div class="modeswitch-item">
+						<div class="modeswitch-icon">
+							<i class="fal fa-sun toggle-sun"></i>
+							<i class="fal fa-moon toggle-moon"></i>
+						</div>
+					 </div>
+				  </div>
+				</div>
+				<div class="me-3c top-nav-social">
+				  <a class="nav-link" href="https://www.tutorialspoint.com/market/teach_with_us.jsp" target="_self"  data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Teach with us"><i class="fal fa-users-class me-2"></i> <span>Teach with us</span></a>
+				</div>
+				<ul class="list-unstyled d-flex mb-0 top-nav-social">
+					<li><a class="px-2 nav-link" rel="nofollow" href="https://www.facebook.com/tutorialspointindia" target="_blank"   data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Tutorialspoint Facebook"><i class="fab fa-facebook"></i></a> </li>
+					<li><a class="px-2 nav-link" rel="nofollow" href="https://www.instagram.com/tutorialspoint_/" target="_blank" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Tutorialspoint Instagram"><i class="fab fa-instagram"></i></a> </li>
+					<li><a class="px-2 nav-link" rel="nofollow" href="https://twitter.com/tutorialspoint" target="_blank" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Tutorialspoint Twitter"><i class="fab fa-twitter"></i></a> </li>
+					<li><a class="px-2 nav-link" rel="nofollow" href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Tutorialspoint Youtube"><i class="fab fa-youtube"></i></a> </li>
+					<li><a class="px-2 nav-link" rel="nofollow" href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQEkqX2eckF__gAAAX-wMwEYvrsjBVbEtWQd4pgEdVSzkL22Nik1KEpY_ECWLKDGc41z8IOZWr2Bb0fvJplT60NPBtSw87J6QCpc7wD4qQ3iU13n6xJtBxME5o05Wmpg5JPm5YY=&originalReferer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Ftutorialspoint" target="_blank"  data-bs-toggle="tooltip" data-bs-animation="false" data-bs-placement="bottom" data-bs-original-title="Tutorialspoint LinkedIn"><i class="fab fa-linkedin-in"></i></a> </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<header class="navbar-light navbar-sticky header-static">
+	<nav class="navbar navbar-expand-xl">
+		<div class="container-fluid px-3 px-xl-4">
+			<a class="navbar-brand" href="https://www.tutorialspoint.com/index.htm"><img class="light-mode-item navbar-brand-item" src="/static/images/logo-color.png" alt="logo" /> <img class="dark-mode-item navbar-brand-item" src="/static/images/logo-color-b.png" alt="logo" /></a>
+			<button class="navbar-toggler-toc collapsed ms-auto-toc" type="button"  id="btn-tutorial-toc">
+                        <span><i class="fal fa-th-list"></i></span>
+			</button>
+			<button class="navbar-toggler ms-auto" type="button" id="btn-menu-collapse">
+				<span class="navbar-toggler-animation">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
+			</button>
+			<div class="navbar-collapse w-100 collapse" id="navbarCollapse">
+				<ul class="navbar-nav navbar-nav-scroll me-auto">
+					<li class="nav-item nav-xs-login">
+						<a class="nav-link" href="#"><i class="fal fa-sign-in-alt me-2"></i>Login</a>
+					</li>
+					<li class="nav-item dropdown dropdown-menu-shadow-stacked">
+						<a class="nav-link" id="categoryMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fal fa-th-list fs-5 me-xl-1 d-xl-none"></i>
+							<i class="fal fa-th me-1 d-none d-xl-inline-block"></i>
+							<span class="d-xl-inline-block">Category <i class="fal fa-angle-down"></i></span>
+						</a>
+												<ul class="dropdown-menu categories-menu shadow" id="categories-menu">
+							<li><a href="/academic_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Academic Tutorials</a></li>
+							<li><a href="/big_data_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Big Data &amp; Analytics </a></li>
+							<li><a href="/computer_programming_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Computer Programming </a></li>
+							<li><a href="/computer_science_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Computer Science </a></li>
+							<li><a href="/database_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Databases </a></li>
+							<li><a href="/devops_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> DevOps </a></li>
+							<li><a href="/digital_marketing_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Digital Marketing </a></li>
+							<li><a href="/engineering_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Engineering Tutorials </a></li>
+							<li><a href="/upsc_ias_exams.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Exams Syllabus </a></li>
+							<li><a href="/famous_monuments.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Famous Monuments </a></li>
+							<li><a href="/gate_exams_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> GATE Exams </a></li>
+							<li><a href="/latest_technologies.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Latest Technologies </a></li>
+							<li><a href="/machine_learning_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Machine Learning </a></li>
+							<li><a href="/mainframe_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Mainframe Development </a></li>
+							<li><a href="/management_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Management Tutorials </a></li>
+							<li><a href="/maths_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Mathematics Tutorials</a></li>
+							<li><a href="/microsoft_technologies_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Microsoft Technologies </a></li>
+							<li><a href="/misc_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Misc tutorials </a></li>
+							<li><a href="/mobile_development_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Mobile Development </a></li>
+							<li><a href="/java_technology_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Java Technologies </a></li>
+							<li><a href="/python_technologies_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Python Technologies </a></li>
+							<li><a href="/sap_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> SAP Tutorials </a></li>
+							<li><a href="/scripting_lnaguage_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Programming Scripts </a></li>
+							<li><a href="/selected_reading.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Selected Reading </a></li>
+							<li><a href="/software_quality_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Software Quality </a></li>
+							<li><a href="/soft_skill_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Soft Skills </a></li>
+							<li><a href="/telecom_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Telecom Tutorials </a></li>
+							<li><a href="/upsc_ias_exams.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> UPSC IAS Exams </a></li>
+							<li><a href="/web_development_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Web Development </a></li>
+							<li><a href="/sports_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Sports Tutorials </a></li>
+							<li><a href="/xml_technologies_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> XML Technologies </a></li>
+							<li><a href="/multi_language_tutorials.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Multi-Language</a></li>
+							<li><a href="/questions_and_answers.htm" class="dropdown-item"><i class="fal fa-angle-right"></i> Interview Questions</a></li>
+						</ul>
+											</li>
+				</ul>
+				<div class="navbar-collapse">
+					<div class="col-xl-9">
+						<div class="nav my-3 my-xl-0 px-4 flex-nowrap align-items-center">
+							<div class="nav-item w-100">
+								<form class="rounded position-relative">
+									<input class="form-control pe-4 bg-secondary bg-opacity-10 border-0 search-strings" type="search" placeholder="Search tutorials ..." id="search-strings" name="key" data-result="search-results" aria-label="Search">
+									<button type="button" id="btnSearch" class="btn bg-transparent px-2 py-0 position-absolute top-50 end-0 translate-middle-y"><i class="fal fa-search fs-6"></i></button>
+									<div class="search-box search-box-inn" id="search-results"></div>
+									<div class="clear"></div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<ul class="navbar-nav navbar-nav-scroll">
+					<li class="nav-item">
+						<a class="nav-link" href="https://www.tutorialspoint.com/latest/prime-packs" target="_self"><i class="fal fa-cubes me-1"></i>Prime Packs</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://www.tutorialspoint.com/market/index.asp" target="_self"><i class="fal fa-play-circle me-1"></i>Courses</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://www.tutorialspoint.com/latest/ebooks" target="_self"><i class="fal fa-book-reader me-1"></i>eBooks</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://www.tutorialspoint.com/tutorialslibrary.htm" target="_self"><i class="fal fa-books me-1"></i>Library</a>
+					</li>
+					<li class="nav-item">
+					        <a class="nav-link" href="https://www.tutorialspoint.com/questions/index.php" target="_self"><i class="fal fa-comments-alt me-1"></i> Q/A</a>
+					</li>
+				</ul>
+			</div>
+			<div class="navbar-nav d-lg-inline-block nav-login">
+			   <a href="https://www.tutorialspoint.com/market/login.asp" class="btn btn-grey-border mb-0"><i class="fal fa-sign-in-alt me-2"></i>Login</a>
+			</div>
+		</div>
+	</nav>
+</header>
+<main class="bg-light pb-4">
+<div class="container-fluid mt-3 px-3 px-xl-3">
+<div class="row g-4">
+<div class="col-sm-12 col-md-4 col-xl-3 ps-0 pe-0 collapse tutorial-toc" id="tocCollapse">
+<div class="card card-body bg-light pt-0">
+<div class="mini-logo">
+<img src="/bootstrap/images/bootstrap-mini-logo.jpg" alt="Bootstrap Tutorial" />
+</div>
+<ul class="toc chapters">
+<li class="heading">Bootstrap Tutorial</li>
+<li><a href="/bootstrap/index.htm">Bootstrap - Home</a></li>
+<li><a href="/bootstrap/bootstrap_overview.htm">Bootstrap - Overview</a></li>
+<li><a href="/bootstrap/bootstrap_environment_setup.htm">Bootstrap - Environment Setup</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Bootstrap with CSS</li>
+<li><a href="/bootstrap/bootstrap_grid_system.htm">Bootstrap - Grid System</a></li>
+<li><a href="/bootstrap/bootstrap_css_overview.htm">Bootstrap - CSS Overview</a></li>
+<li><a href="/bootstrap/bootstrap_typography.htm">Bootstrap - Typography</a></li>
+<li><a href="/bootstrap/bootstrap_code.htm">Bootstrap - Code</a></li>
+<li><a href="/bootstrap/bootstrap_tables.htm">Bootstrap - Tables</a></li>
+<li><a href="/bootstrap/bootstrap_forms.htm">Bootstrap - Forms</a></li>
+<li><a href="/bootstrap/bootstrap_buttons.htm">Bootstrap - Buttons</a></li>
+<li><a href="/bootstrap/bootstrap_images.htm">Bootstrap - Images</a></li>
+<li><a href="/bootstrap/bootstrap_helper_classes.htm">Bootstrap - Helper Classes</a></li>
+<li><a href="/bootstrap/bootstrap_responsive_utilities.htm">Bootstrap - Responsive utilities</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Bootstrap Layout Components</li>
+<li><a href="/bootstrap/bootstrap_glyphicons.htm">Bootstrap - Glyphicons</a></li>
+<li><a href="/bootstrap/bootstrap_dropdowns.htm">Bootstrap - Dropdowns</a></li>
+<li><a href="/bootstrap/bootstrap_button_groups.htm">Bootstrap - Button Groups</a></li>
+<li><a href="/bootstrap/bootstrap_button_dropdowns.htm">Bootstrap - Button Dropdowns</a></li>
+<li><a href="/bootstrap/bootstrap_input_groups.htm">Bootstrap - Input Groups</a></li>
+<li><a href="/bootstrap/bootstrap_navigation_elements.htm">Bootstrap - Navigation Elements</a></li>
+<li><a href="/bootstrap/bootstrap_navbar.htm">Bootstrap - Navbar</a></li>
+<li><a href="/bootstrap/bootstrap_breadcrumb.htm">Bootstrap - Breadcrumb</a></li>
+<li><a href="/bootstrap/bootstrap_pagination.htm">Bootstrap - Pagination</a></li>
+<li><a href="/bootstrap/bootstrap_labels.htm">Bootstrap - Labels</a></li>
+<li><a href="/bootstrap/bootstrap_badges.htm">Bootstrap - Badges</a></li>
+<li><a href="/bootstrap/bootstrap_jumbotron.htm">Bootstrap - Jumbotron</a></li>
+<li><a href="/bootstrap/bootstrap_page_header.htm">Bootstrap - Page Header</a></li>
+<li><a href="/bootstrap/bootstrap_thumbnails.htm">Bootstrap - Thumbnails</a></li>
+<li><a href="/bootstrap/bootstrap_alerts.htm">Bootstrap - Alerts</a></li>
+<li><a href="/bootstrap/bootstrap_progress_bars.htm">Bootstrap - Progress Bars</a></li>
+<li><a href="/bootstrap/bootstrap_media_object.htm">Bootstrap - Media Object</a></li>
+<li><a href="/bootstrap/bootstrap_list_group.htm">Bootstrap - List Group</a></li>
+<li><a href="/bootstrap/bootstrap_panels.htm">Bootstrap - Panels</a></li>
+<li><a href="/bootstrap/bootstrap_wells.htm">Bootstrap - Wells</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Bootstrap Plugins</li>
+<li><a href="/bootstrap/bootstrap_plugins_overview.htm">Bootstrap - Plugins Overview</a></li>
+<li><a href="/bootstrap/bootstrap_transition_plugin.htm">Bootstrap - Transition Plugin</a></li>
+<li><a href="/bootstrap/bootstrap_modal_plugin.htm">Bootstrap - Modal Plugin</a></li>
+<li><a href="/bootstrap/bootstrap_dropdown_plugin.htm">Bootstrap - Dropdown Plugin</a></li>
+<li><a href="/bootstrap/bootstrap_scrollspy_plugin.htm">Bootstrap - Scrollspy Plugin</a></li>
+<li><a href="/bootstrap/bootstrap_tab_plugin.htm">Bootstrap - Tab Plugin</a></li>
+<li><a href="/bootstrap/bootstrap_tooltip_plugin.htm">Bootstrap - Tooltip Plugin</a></li>
+<li><a href="/bootstrap/bootstrap_popover_plugin.htm">Bootstrap - Popover Plugin</a></li>
+<li><a href="/bootstrap/bootstrap_alert_plugin.htm">Bootstrap - Alert Plugin</a></li>
+<li><a href="/bootstrap/bootstrap_button_plugin.htm">Bootstrap - Button Plugin</a></li>
+<li><a href="/bootstrap/bootstrap_collapse_plugin.htm">Bootstrap - Collapse Plugin</a></li>
+<li><a href="/bootstrap/bootstrap_carousel_plugin.htm">Bootstrap - Carousel Plugin</a></li>
+<li><a href="/bootstrap/bootstrap_affix_plugin.htm">Bootstrap - Affix Plugin</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Bootstrap Demos</li>
+<li><a href="/bootstrap/bootstrap_grid_demo.htm">Bootstrap - Grid Demo</a></li>
+<li><a href="/bootstrap/bootstrap_table_demo.htm">Bootstrap - Table Demo</a></li>
+<li><a href="/bootstrap/bootstrap_form_demo.htm">Bootstrap - Form Demo</a></li>
+<li><a href="/bootstrap/bootstrap_buttons_demo.htm">Bootstrap - Buttons Demo</a></li>
+<li><a href="/bootstrap/bootstrap_images_demo.htm">Bootstrap - Images Demo</a></li>
+<li><a href="/bootstrap/bootstrap_responsive_demo.htm">Bootstrap - Responsive Demo</a></li>
+<li><a href="/bootstrap/bootstrap_navigation_demo.htm">Bootstrap - Navigation Demo</a></li>
+<li><a href="/bootstrap/bootstrap_blog_demo.htm">Bootstrap - Blog Demo</a></li>
+<li><a href="/bootstrap/bootstrap_material_design_demo.htm">Bootstrap - Material Design Demo</a></li>
+<li><a href="/bootstrap/bootstrap_slider_demo.htm">Bootstrap - Slider Demo</a></li>
+<li><a href="/bootstrap/bootstrap_timeline_demo.htm">Bootstrap - Time line Demo</a></li>
+<li><a href="/bootstrap/bootstrap_alert_demo.htm">Bootstrap - Alert Demo</a></li>
+<li><a href="/bootstrap/bootstrap_admin_interface_demo.htm">Bootstrap - Admin Interface Demo</a></li>
+<li><a href="/bootstrap/bootstrap_ajax_demo.htm">Bootstrap - Ajax Demo</a></li>
+<li><a href="/bootstrap/bootstrap_tabbed_slider_demo.htm">Bootstrap - Tabbed slider Demo</a></li>
+<li><a href="/bootstrap/bootstrap_caption_demo.htm">Bootstrap - Caption Demo</a></li>
+<li><a href="/bootstrap/bootstrap_map_demo.htm">Bootstrap - Map Demo</a></li>
+<li><a href="/bootstrap/bootstrap_calender_demo.htm">Bootstrap - Calendar Demo</a></li>
+<li><a href="/bootstrap/bootstrap_social_icons_demo.htm">Bootstrap - Social Icons Demo</a></li>
+<li><a href="/bootstrap/bootstrap_icons_demo.htm">Bootstrap - Icons Demo</a></li>
+<li><a href="/bootstrap/bootstrap_featured_demo.htm">Bootstrap - featured Demo</a></li>
+</ul>
+<ul class="toc chapters">
+<li class="heading">Bootstrap Useful Resources</li>
+<li><a href="/bootstrap/bootstrap_questions_answers.htm">Bootstrap - Questions and Answers</a></li>
+<li><a href="/bootstrap/bootstrap_quick_guide.htm">Bootstrap - Quick Guide</a></li>
+<li><a href="/bootstrap/bootstrap_useful_resources.htm">Bootstrap - Useful Resources</a></li>
+<li><a href="/bootstrap/bootstrap_discussion.htm">Bootstrap - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+<div id="stickyparent" class="d-none d-sm-block">
+<div style="height:250px;width:300px;" id="sticky-ad">
+<div id="430c9911-782f-495d-88f9-69f58ca8c9a4" class="_ap_apex_ad" >
+<script>
+var adpushup = adpushup || {};
+adpushup.que = adpushup.que || [];
+adpushup.que.push(function() {
+adpushup.triggerAd("430c9911-782f-495d-88f9-69f58ca8c9a4");
+});
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Tutorial ToC Ends Here -->
+
+<!-- Tutorial Content Starts Here -->
+<div class="col-sm-12 col-md-8 col-xl-6 rounded-3 tutorial-content" id="mainContent">
+<div class="cover">
+<img class="img-responsive" src="/bootstrap/images/bootstrap.jpg" alt="Bootstrap Tutorial" />
+</div>
+<h1>Bootstrap Tutorial</h1>
+<div class="center-aligned tutorial-menu">
+<form action="/job_search.php" method="POST">
+<input type="hidden" name="search_string" value="Bootstrap" />
+<button class="tp-btn"><i class="fal fa-file-pdf"></i> <a href="/bootstrap/bootstrap_pdf_version.htm">PDF Version</a></button>
+<button class="tp-btn"><i class="fal fa-book-reader"></i> <a href="/bootstrap/bootstrap_quick_guide.htm">Quick Guide</a></button>
+<button class="tp-btn"><i class="fal fa-external-link"></i> <a href="/bootstrap/bootstrap_useful_resources.htm">Resources</a></button>
+<button type="submit" class="tp-btn"><i class="fal fa-search-dollar"></i> Job Search</button>
+<button class="tp-btn"><i class="fal fa-comments"></i> <a href="/bootstrap/bootstrap_discussion.htm">Discussion</a></button>
+</form>
+</div>
+<p>Twitter Bootstrap is the most popular front end framework in the recent time. It is sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development. It uses HTML, CSS and Javascript. This tutorial will teach you the basics of Bootstrap Framework using which you can create web projects with ease. The tutorial is divided into sections such as Bootstrap Basic Structure, Bootstrap CSS, Bootstrap Layout Components and Bootstrap Plugins. Each of these sections contain related topics with simple and useful examples.</p>
+<h2>Why to Learn Bootstrap?</h2>
+<ul class="list">
+<li><p><b>Mobile first approach</b> &minus; Bootstrap 3, framework consists of Mobile first styles throughout the entire library instead them of in separate files.</p></li>
+<li><p><b>Browser Support</b> &minus; It is supported by all popular browsers.</p></li>
+</ul>
+<img src="/bootstrap/images/browsers.jpg" alt="Popular Browser" />
+<ul class="list">
+<li><p><b>Easy to get started</b> &minus; With just the knowledge of HTML and CSS anyone can get started with Bootstrap. Also the Bootstrap official site has a good documentation.</p></li>
+<li><p><b>Responsive design</b> &minus; Bootstrap's responsive CSS adjusts to Desktops, Tablets and Mobiles. More about the responsive design is in the chapter <a href="/bootstrap/bootstrap_responsive_utilities.htm">Bootstrap Responsive Design.</a></p></li>
+</ul>
+<img src="/bootstrap/images/responsive.jpg" alt="Responsive Design" />
+<ul class="list">
+<li><p>Provides a clean and uniform solution for building an interface for developers.</p></li>
+<li><p>It contains beautiful and functional built-in components which are easy to customize.</p></li>
+<li><p>It also provides web based customization.</p></li>
+<li><p>And best of all it is an open source.</p></li>
+</ul>
+<h2>Hello World using Bootstrap.</h2>
+<p>Just to give you a little excitement about Bootstrap, I'm going to give you a small conventional Bootstrap Hello World program, You can try it using Demo link.</p>
+<div class="demo-view">
+<a href="http://tpcg.io/aMKLYm" target="_blank" rel="nofollow" class="demo"><i class="fa-external-link"></i> Live Demo</a>
+</div>
+<pre class="prettyprint notranslate">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+   
+   &lt;head&gt;
+      &lt;title&gt;Bootstrap 101 Template&lt;/title&gt;
+      &lt;meta name = "viewport" content = "width = device-width, initial-scale = 1.0"&gt;
+      
+      &lt;!-- Bootstrap --&gt;
+      &lt;link href = "css/bootstrap.min.css" rel = "stylesheet"&gt;
+      
+      &lt;!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --&gt;
+      &lt;!-- WARNING: Respond.js doesn't work if you view the page via file:// --&gt;
+      
+      &lt;!--[if lt IE 9]&gt;
+      &lt;script src = "https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"&gt;&lt;/script&gt;
+      &lt;script src = "https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"&gt;&lt;/script&gt;
+      &lt;![endif]--&gt;
+      
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+      &lt;h1&gt;Hello, world!&lt;/h1&gt;
+
+      &lt;!-- jQuery (necessary for Bootstrap's JavaScript plugins) --&gt;
+      &lt;script src = "https://code.jquery.com/jquery.js"&gt;&lt;/script&gt;
+      
+      &lt;!-- Include all compiled plugins (below), or include individual files as needed --&gt;
+      &lt;script src = "js/bootstrap.min.js"&gt;&lt;/script&gt;
+      
+   &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h2>Applications of Bootstrap</h2>
+<ul class="list">
+<li><p><b>Scaffolding</b> &minus; Bootstrap provides a basic structure with Grid System, link styles, and background. This is is covered in detail in the section <b>Bootstrap Basic Structure</b></p></li>
+<li><p><b>CSS</b> &minus; Bootstrap comes with the feature of global CSS settings, fundamental HTML elements styled and enhanced with extensible classes, and an advanced grid system. This is covered in detail in the section <b>Bootstrap with CSS</b>.</p></li>
+<li><p><b>Components</b> &minus; Bootstrap contains over a dozen reusable components built to provide iconography, dropdowns, navigation, alerts, pop-overs, and much more. This is covered in detail in the section <b>Layout Components</b>.</p></li>
+<li><p><b>JavaScript Plugins</b> &minus; Bootstrap contains over a dozen custom jQuery plugins. You can easily include them all, or one by one. This is covered in details in the section <b>Bootstrap Plugins</b>.</p></li>
+<li><p><b>Customize</b> &minus; You can customize Bootstrap's components, LESS variables, and jQuery plugins to get your very own version.</p></li>
+</ul>
+<h2>Audience</h2>
+<p>This tutorial has been prepared for anyone who has a basic knowledge of HTML and CSS and has an urge to develop websites. After completing this tutorial you will find yourself at a moderate level of expertise in developing web projects using Twitter Bootstrap.</p>
+<h2>Prerequisites</h2>
+<p>Before you start proceeding with this tutorial, we are assuming that you are already aware about the basics of HTML and CSS. If you are not well aware of these concepts then we will suggest you to go through our short tutorial on HTML Tutorial and CSS Tutorial.</p>
+<div class="d-flex justify-content-between border-bottom border-top py-2" id="bottom_navigation">
+<a href="/bootstrap/index.htm" class="pre-btn"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+<a id="print-page" href="#" class="pre-btn d-none d-sm-block"><i class="fal fa-print"></i> Print Page</a>
+<a href="/bootstrap/bootstrap_overview.htm" class="nxt-btn">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+			<div class="google-bottom-ads" id="google-bottom-ads">
+				<div>Advertisements</div>
+				<div>
+					<div id="adp_bottom_ads"></div>
+					<script>
+						var adPos = document.getElementById('adp_bottom_ads');
+						var mobile_ad_id = "6d621d7e-9531-4f26-810f-68af67dc6366";
+						var desktop_ad_id = "4951d1d6-24d4-4a31-afb7-2c22c489eae1";
+						var adpushup = adpushup || {};
+						adpushup.que = adpushup.que || [];
+						adpushup.que.push(function() {
+							var ad_id = window.innerWidth <= 768 ? mobile_ad_id : desktop_ad_id;
+							adPos.innerHTML = '<div id="' + ad_id + '" class="_ap_apex_ad"></div>';
+							adpushup.triggerAd(ad_id);
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+	<!-- Tutorial Content Ends Here -->
+
+	<!-- Right Column Starts Here -->
+	<div class="col-sm-6 col-md-3 col-xl-3" id="google-right-ads">
+		<div class="data-sticky">
+			<div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;min-height:250px!important">
+				<div id="f0f6cff6-393d-4170-b63a-d9ff06ca9f25" class="_ap_apex_ad">
+					<script>
+						if( window.innerWidth > 768 ){
+						   var adpushup = adpushup || {};
+						   adpushup.que = adpushup.que || [];
+						   adpushup.que.push(function() {
+						   adpushup.triggerAd("f0f6cff6-393d-4170-b63a-d9ff06ca9f25");
+						   });
+						}
+					</script>
+				</div>
+			</div>
+			<div class="google-right-ad" style="margin-top:16px;min-height:250px!important">
+				<div id="5c0affd5-724a-475c-bfcd-cecbc7660c36" class="_ap_apex_ad">
+					<script>
+						if( window.innerWidth > 768 ){
+						   var adpushup = adpushup || {};
+						   adpushup.que = adpushup.que || [];
+						   adpushup.que.push(function() {
+						   adpushup.triggerAd("5c0affd5-724a-475c-bfcd-cecbc7660c36");
+						   });
+						}
+					</script>
+				</div>
+			</div>
+			<div class="google-right-ad" style="margin-top:16px;margin-bottom:15px;min-height:600px!important">
+				<div id="8f8814c2-d64c-4d26-9cb9-543653c0b48f" class="_ap_apex_ad">
+					<script>
+						if( window.innerWidth > 768 ){
+						   var adpushup = adpushup || {};
+						   adpushup.que = adpushup.que || [];
+						   adpushup.que.push(function() {
+						   adpushup.triggerAd("8f8814c2-d64c-4d26-9cb9-543653c0b48f");
+						   });
+						}
+					</script>
+				</div>
+			</div>
+			<!-- Right Column Ends Here -->
+		</div>
+	</div>
+</div>
+</div>
+</main>
+
+<footer class="py-3 card navbar-dark border-top" id="footer">
+	<div class="container">
+		<div class="row g-4">
+			<div class="col-lg-12 text-center">
+				<a class="me-0 pb-4" href="https://www.tutorialspoint.com">
+					<img class="light-mode-item h-100px" src="/static/images/logo-color-footer.png" alt="Tutorials Point" />
+					<img class="dark-mode-item h-100px" src="/static/images/logo-footer-b.png" alt="Tutorials Point" />
+				</a>
+				<ul class="nav justify-content-center py-3 mt-md-0 ">
+					<li class="nav-item"><a class="nav-link fw-bold" href="/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+					<li class="nav-item"><a class="nav-link fw-bold" href="/about/return_refund_policy.htm"> <i class="fal fa-check"></i> Refund Policy</a></li>
+					<li class="nav-item"><a class="nav-link fw-bold" href="/about/about_terms_of_use.htm"><i class="fal fa-check"></i> Terms of use</a></li>
+					<li class="nav-item"><a class="nav-link fw-bold" href="/about/about_privacy.htm"> <i class="fal fa-shield-check"></i> Privacy Policy</a></li>
+					<li class="nav-item"><a class="nav-link fw-bold" href="/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+					<li class="nav-item"><a class="nav-link fw-bold" href="/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+				</ul>
+				<p class="small">© Copyright 2022. All Rights Reserved.</p>
+			</div>
+			<div id="privacy-banner">
+				<div>
+					<p>We make use of cookies to improve our user experience. By using this website, you agree with our Cookies Policy.
+						<a id="banner-accept" href="#">Agree</a>
+						<a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<div class="back-top">
+<i class="fal fa-angle-up position-absolute top-50 start-50 translate-middle"></i>
+</div>
+<script src="/static/js/script-min.js?v=119"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-6"></script>
+<script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'UA-232293-6');
+</script>
+</body>
+</html>

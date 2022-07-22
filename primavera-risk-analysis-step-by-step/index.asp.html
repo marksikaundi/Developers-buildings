@@ -1,0 +1,828 @@
+
+
+<!DOCTYPE html>
+<html lang="EN">
+
+<head>
+	<title>
+					Primavera Risk Analysis - Step by Step - Tutorialspoint
+			</title>
+	<meta name="description" content="Video Course description">
+	<meta name="keywords" content="Video Courses,eBooks,Prime Pack Online">
+
+	<!-- Facebook Pixel Code -->
+	<script>
+         !function(f,b,e,v,n,t,s)
+         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+         n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+         if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+         n.queue=[];t=b.createElement(e);t.async=!0;
+         t.src=v;s=b.getElementsByTagName(e)[0];
+         s.parentNode.insertBefore(t,s)}(window, document,'script',
+         'https://connect.facebook.net/en_US/fbevents.js');
+         fbq('init', '632795514166891');
+         fbq('track', 'PageView');
+	 </script>
+	 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=632795514166891&ev=PageView&noscript=1" /></noscript>
+	 <!-- End Facebook Pixel Code -->
+    <!-- Meta Pixel Code -->
+   <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '755332482277618');
+      fbq('track', 'PageView');
+   </script>
+   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=755332482277618&ev=PageView&noscript=1"/></noscript>
+   <!-- End Meta Pixel Code -->
+	 <!-- Google Analytics Code -->
+	 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-232293-1"></script>
+	 <script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-232293-1');
+	 </script>         
+	 <meta name="google-site-verification" content="a3lTjqnrYy0FULTFuVXuYcpoVYUK9PpZO9TlkgCqiO8" />
+	<!-- Google Analytics Code End  -->
+	<!-- Global site tag (gtag.js) - Google Ads: 664793816 -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=AW-664793816"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'AW-664793816');
+	</script>
+	<!-- Global site tag End -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="csrf-token" content="Cw7kfl412UTjMWh3ix8ECQ4URuwK07RQCsy6YiLe">
+<!--Farmework CSS-->
+<link rel="stylesheet" href="/market/public/assets/css/toastr.css" integrity="" />
+<link rel="stylesheet" type="text/css" href="/market/public/assets/css/mui/mui.min.css" />
+<link rel="stylesheet" type="text/css" href="/market/public/assets/css/mui/custom.css?v=1656594142" />
+	
+<!--Farmework JS-->
+<script src="/market/public/assets/js/jquery-3.3.1.min.js?v=1.0"></script>
+<script src="/market/public/assets/js/mui/fontawesome.js?v=1656485099"></script>
+	
+</head>
+
+<body>
+	<div class="wrap_loader" style="height:5304px;">
+    <div class="imgLoader"><img src="/market/public/assets/images/loader.gif" alt="Tutorialspoint" width="70" height="70"></div>
+</div>
+
+<style>
+@media (min-width: 444px){ .site-message-bg{height:45px!important;} .site-message-bg img{width:100%!important; min-height:45px!important;} }
+@media (max-width: 544px){ .site-message-bg{height:45px!important;} .site-message-bg img{width:100%!important; height:45px!important;} }
+@media (min-width: 768px){ .site-message-bg{height:70px!important;} .site-message-bg img{width:100%!important; height:70px!important;} }
+@media (min-width: 992px){ .site-message-bg{height:75px!important;} .site-message-bg img{width:100%!important; height:75px!important;} }
+</style>
+    <!--<div class="site-message" id="site-message-div" style="display:none;">
+      Upskills with the Hottest Skills | Use Code <b>"LIFE"</b> to get Extra <b>10% OFF</b>
+        <a href="javascript:void(0);" class="site-message-close" id="ancCloseTopMsg"><i class="fa fa-times" title="close"></i> </a>  
+        <div >Sales Ends on 9th December</div>
+        <div class="site-timer" >Sale Ends In  <span id="site-timer"></span></div>
+	</div>-->
+    
+	<!--<div class="site-message-bg" id="site-message-div" >
+		<img src="/market/public/assets/images/top-banner.jpg?v=1.07" />
+	</div>-->
+	 
+<header class="mui-appbar mui--z1">
+	<div class="mui-container">
+		<table>
+			<tbody>
+				<tr class="mui--appbar-height">
+					<td class="mui--text-title">
+						<a href="javascript:void(0);" class="m-menubar show-sidewrap"><i class="fa fa-bars"></i></a>
+						<div class="appbar-brand"><a href="https://www.tutorialspoint.com/index.htm" class="logo">
+							<img src="/market/public/assets/images/logo-diamond.png" class="diadmond-logo" alt="Tutorialspoint - Simply Easy Learning" title="Tutorialspoint - Simply Easy Learning" />
+							<span><img src="/market/public/assets/images/logo.png" alt="Tutorialspoint - Simply Easy Learning" title="Tutorialspoint - Simply Easy Learning" class="text-logo"/></span></a>
+						</div>						
+						<nav>
+							<ul class="">
+								<!--<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm" title="Text Tutorials" class=""><i class="fa fa-books"></i>&nbsp;Library</a></li>-->
+<li><a href="https://www.tutorialspoint.com/market/index.asp" title="Video Courses" class=""><i class="fa fa-video"></i>&nbsp;Courses</a></li>
+<li><a href="https://www.tutorialspoint.com/latest/ebooks" title="eBooks" class=""><i class="fa fa-book-reader"></i>&nbsp;eBooks</a></li>
+<li><a href="https://www.tutorialspoint.com/latest/prime-packs" title="Prime Packs" class=""><i class="fa fa-cubes"></i>&nbsp;Prime Packs</a></li>
+<li><a href="https://www.tutorialspoint.com/business/index.asp" title="Tutorialspoint for Business" class=""><i class="fa fa-handshake"></i>&nbsp;Business</a></li>							</ul>
+						</nav>
+					</td>				
+					<td class="mui--text-right">
+						<a href="javascript:void(0);" class="m-search m-searchbar"><i class="fa fa-search"></i></a>
+						<div class="search-box-wrap">
+							<div class="search-box" style="">
+								<div>
+									<input class="input search-strings" type="text"  data-result='search-results' name="key" placeholder="Search courses, ebooks and prime packs..." autocomplete="off">
+									<button id="btnSearch"><i class="fa fa-search" title="Search"></i> </button>
+								</div>
+							</div>		
+							<div class="search-box" id="search-results" style="display:none;"></div>
+							<div class="clear"></div>							
+						</div>												
+						<div class="menu-right-head">
+    
+</div>					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- mobile search bar -->
+	<div class="search-bar-wrap">
+		<input type="text" class="search-strings" data-result='mobile-result' placeholder="Search course, ebooks and prime packs" autofocus />
+		<a href="javascript:void(0);" class="closed"><i class="fa fa-times"></i></a>
+		<div class="search-box" id="mobile-result" style="display:none;"></div>
+	</div>
+	<!-- end of mobile search bar -->
+	
+	<!-- mobile view top navigation -->
+	<div class="without-login-sidewrap">
+		<ul>
+			<a href="javascript:void(0);" class="close-login-wrap"><i class="fa fa-times"></i></a>
+			<li><a href="https://www.tutorialspoint.com/market/login.asp" class="m-login"><i class="fa fa-sign-in-alt"></i> &nbsp;Login</a></li>
+			<li><a href="https://www.tutorialspoint.com/market/signup.asp" class="m-login"> <i class="fa fa-sign-out"></i> &nbsp;Sign up</a></li>
+			<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm" title="Text Tutorials" class=""><i class="fa fa-books"></i>&nbsp;Library</a></li>
+			<li><a href="https://www.tutorialspoint.com/courses" title="Video Courses" class=""><i class="fa fa-video"></i>&nbsp;Courses</a></li>
+			<li><a href="https://www.tutorialspoint.com/ebooks" title="eBooks" class=""><i class="fa fa-book-reader"></i>&nbsp;eBooks</a></li>
+			<li><a href="https://www.tutorialspoint.com/prime-packs" title="Prime Packs" class=""><i class="fa fa-cubes"></i>&nbsp;Prime Packs</a></li>
+		</ul>
+	</div>
+	<!-- end of mobile view top navigation -->
+	
+</header>	<div class="content-top">
+		<style>.imgLoader{text-align:center!important; margin:0 auto!important;}</style>
+
+<div class="">
+	<div class="videos-bg">
+		<div class="mui-container">
+			<div class="row">
+			
+				<div class="mui-col-lg-8 mui-col-md-8 mui-col-sm-12 mui-col-xs-12">
+					<div class="course-details-wrapper">
+						<div class="course-details-wrapper">
+							<div class="p-sm-0">
+								<div class="course-details">
+									<h1>Primavera Risk Analysis - Step by Step</h1>
+									<div class="sub-title-h1">Learn Primavera Risk Analysis from scratch</div>
+									<div class="course-details-info">
+										<p class="h24"><i class="fa fa-user"></i> <a href="https://www.tutorialspoint.com/profile/stone-river-elearning-16509579258" >&nbsp;&nbsp;Stone River ELearning</a></p>
+										<p>
+        		<i class="fa fa-cubes"></i>&nbsp;&nbsp;
+                
+        <span class="uk-categories-list rounded"> <a href="https://www.tutorialspoint.com/search/courses/business" >Business</a>, <a href="https://www.tutorialspoint.com/search/courses/management" >Management</a>, <a href="https://www.tutorialspoint.com/search/courses/project_management" >Project Management</a> </span>
+    </p>
+										<!--  -->
+																					<p><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;&nbsp;Language - English</p>
+																														<p><i class="fa fa-calendar-alt" aria-hidden="true"></i>&nbsp;&nbsp; Published on 07/2022</p>
+																				<div class="rating rating-divs">
+											<div class="rating-display">
+												<span class="rating-count">0</span>
+																								<span class="">&#9733;</span>
+																								<span class="">&#9733;</span>
+																								<span class="">&#9733;</span>
+																								<span class="">&#9733;</span>
+																								<span class="">&#9733;</span>
+																					
+											</div>
+										</div>
+									</div>
+								</div>		
+							</div>
+							<ul class="mui-tabs__bar">
+								<li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-default-1">Curriculum</a></li>
+								<li class=""><a class="overview" data-mui-toggle="tab" data-mui-controls="pane-default-2">Overview</a></li>
+								<li class="author_details"><a data-mui-toggle="tab" data-mui-controls="pane-default-3">Author Details</a></li>
+								<li class="" style="display:none" id="liFeedback"><a data-mui-toggle="tab" data-mui-controls="pane-default-4">Feedback</a></li>
+							</ul>
+						</div>	
+						<div class="mui-tabs__pane mui--is-active" id="pane-default-1" style="min-height:520px;">
+																						
+							<div class=" uk-open  section-division">
+								<div class="collapsible-header">
+									<a class="uk-accordion-title section_content" href="javascript:void(0)" data-section='41157' data-load='1' data-preview_flag='N'>Introduction
+										<i class="fa fa-chevron-down uk-caret rotate"></i><br />
+										<div class="lec-total-count">
+											<span><b>22</b></span> Lectures
+											<span class="total_duration_41157"></span>
+											<span class="preview_count_41157"></span>
+										</div>
+									</a>
+								</div>
+																<div class="collapsible-body">
+									<ul class="course-curriculum-list">
+																														<li>
+																																	<i class="fa fa-play-circle"></i>
+											Introduction
+											<span class="rounded">
+												<div class="lec-time-count">
+																										03:02 </div>
+											</span>
+																																												<a href="javascript:void(0);" class="preview_videos rounded" data-link="https://cdn.tutorialspoint.com/video_tutorials/9542/112484_9391657178885/playlist.m3u8?v=1657355399" data-content="215765" data-title="Introduction"> Preview</a>
+											<div class="uk-resources" style="display:none">
+												<a href="#" aria-expanded="false" class="btn btn-secondary btn-pad-max rounded"><i class="fa fa-folder-open"></i> Resources <i class="fa fa-caret-down"></i></a>
+												<div uk-dropdown="pos: bottom-right ; mode: click ;animation: uk-animation-scale-up" class="uk-dropdown">
+													<ul class="uk-nav uk-dropdown-nav">
+														<li><a href="#"><i class="fa fa-file"></i> &nbsp;Main-content.pdf</a></li>
+													</ul>
+												</div>
+											</div>
+																					</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Importing a P6 XER File into Primavera Risk
+											<span class="rounded">
+												<div class="lec-time-count">
+																										05:15 </div>
+											</span>
+																																												<a href="javascript:void(0);" class="preview_videos rounded" data-link="https://cdn.tutorialspoint.com/video_tutorials/9542/99991_1761657178824/playlist.m3u8?v=1657355399" data-content="215766" data-title="Importing a P6 XER File into Primavera Risk"> Preview</a>
+											<div class="uk-resources" style="display:none">
+												<a href="#" aria-expanded="false" class="btn btn-secondary btn-pad-max rounded"><i class="fa fa-folder-open"></i> Resources <i class="fa fa-caret-down"></i></a>
+												<div uk-dropdown="pos: bottom-right ; mode: click ;animation: uk-animation-scale-up" class="uk-dropdown">
+													<ul class="uk-nav uk-dropdown-nav">
+														<li><a href="#"><i class="fa fa-file"></i> &nbsp;Main-content.pdf</a></li>
+													</ul>
+												</div>
+											</div>
+																					</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Navigate the Primavera Risk Workspace
+											<span class="rounded">
+												<div class="lec-time-count">
+																										06:41 </div>
+											</span>
+																																												<a href="javascript:void(0);" class="preview_videos rounded" data-link="https://cdn.tutorialspoint.com/video_tutorials/9542/152047_501657178885/playlist.m3u8?v=1657355399" data-content="215767" data-title="Navigate the Primavera Risk Workspace"> Preview</a>
+											<div class="uk-resources" style="display:none">
+												<a href="#" aria-expanded="false" class="btn btn-secondary btn-pad-max rounded"><i class="fa fa-folder-open"></i> Resources <i class="fa fa-caret-down"></i></a>
+												<div uk-dropdown="pos: bottom-right ; mode: click ;animation: uk-animation-scale-up" class="uk-dropdown">
+													<ul class="uk-nav uk-dropdown-nav">
+														<li><a href="#"><i class="fa fa-file"></i> &nbsp;Main-content.pdf</a></li>
+													</ul>
+												</div>
+											</div>
+																					</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Check the Schedule Health
+											<span class="rounded">
+												<div class="lec-time-count">
+																										06:58 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Test the Primavera Risk Model
+											<span class="rounded">
+												<div class="lec-time-count">
+																										06:59 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Add Duration Uncertainty
+											<span class="rounded">
+												<div class="lec-time-count">
+																										09:40 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Templated Quick Risk
+											<span class="rounded">
+												<div class="lec-time-count">
+																										14:42 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Introduce and Understand Correlation
+											<span class="rounded">
+												<div class="lec-time-count">
+																										06:07 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Introduction to the Risk Register and Risk Scoring
+											<span class="rounded">
+												<div class="lec-time-count">
+																										07:24 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											The Qualitative Risk Register
+											<span class="rounded">
+												<div class="lec-time-count">
+																										07:12 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											The Quantitative Risk Register
+											<span class="rounded">
+												<div class="lec-time-count">
+																										08:17 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Risk Register Reports
+											<span class="rounded">
+												<div class="lec-time-count">
+																										05:24 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Building the Impacted Risk Model
+											<span class="rounded">
+												<div class="lec-time-count">
+																										08:32 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Running the Risk Analysis
+											<span class="rounded">
+												<div class="lec-time-count">
+																										09:51 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											The Distribution Histogram
+											<span class="rounded">
+												<div class="lec-time-count">
+																										12:01 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											The Tornado Chart
+											<span class="rounded">
+												<div class="lec-time-count">
+																										07:50 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											The Distribution Analyser
+											<span class="rounded">
+												<div class="lec-time-count">
+																										12:32 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Weather Modelling
+											<span class="rounded">
+												<div class="lec-time-count">
+																										13:05 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Percentage Lags and Leads
+											<span class="rounded">
+												<div class="lec-time-count">
+																										06:23 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Probabilistic Links and Branching
+											<span class="rounded">
+												<div class="lec-time-count">
+																										06:45 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Options and Formatting the Gantt chart
+											<span class="rounded">
+												<div class="lec-time-count">
+																										08:07 </div>
+											</span>
+																																</li>
+																				<li>
+																																	<i class="fa fa-play-circle"></i>
+											Risk Analysis Exercise (Approx. 3 to 4 hours)
+											<span class="rounded">
+												<div class="lec-time-count">
+																										10:37 </div>
+											</span>
+																																</li>
+																			</ul>
+								</div>
+																						</div>
+															
+						</div>
+						<div class="mui-tabs__pane" id="pane-default-2">
+							<div class="mui-panel rounded mrgn-t25 course-description-content">
+								<h4>Description</h4>
+								<p><p><strong>Welcome!</strong></p><p>This course covers a comprehensive Step by Step approach for developing a Risk Model and Running a Risk Analysis in Primavera Risk Analysis. The course objectives cover all of the modelling concepts to successfully develop a project risk plan and subsequent risk analysis, ranging from small to mega projects.</p><p>The course content applies all versions of Primavera Risk Analysis up to Version 8.7.</p><p>If you are a Project Manager, Project Scheduler, Project Controller, Engineer, Cost Controller, Risk Analyst or anyone else who wishes to learn how to apply Primavera Risk Analysis, then this course is for you.</p><p>You could also be refreshing and enhancing your skills Software Packages and want to get up and running quickly.</p><p>By the end of the course, you will be able to model risks and duration uncertainty around a deterministic schedule.</p><p>We will be covering the typical steps required for performing a schedule risk analysis, using Primavera Risk Analysis or PRA.</p><p><strong>You will learn how to provide:</strong></p><ul><li><p>The probability of achieving the deterministic schedule</p></li><li><p>The most likely completion date</p></li><li><p>A range of probabilistic outcomes (such as P10 / P50 / P90) for an overall project, specific activity, package or project scope</p></li></ul><p>Is preferable, but not essential that all participants have a basic understanding of the principles of scheduling risk.</p><p>It is assumed that imported files will be from Primavera P6 but files can also be imported from Microsoft Project or Deltek.</p><p>All relevant reference material will be available for download, as well as the required Risk Exercise XER project file.</p><p>As with all of my courses, I provide a comprehensive real-life exercise (that I have personally worked on) for students to complete in their own time. Answers to exercise questions will be provided in a final session. I encourage all students to complete the exercise.</p><p>For those students who are interested, there is a fully illustrated Step-by-Step eBook available for this course (235 pages). &nbsp;You&#39;ll find full details in the Bonus Learning Section.</p><h3>Who this course is for:</h3><ul><li>Project Managers, Engineers, Schedulers, Risk Analysts and Project Controls Personnel</li></ul></p>
+																<h4> What Will I Get ? </h4>
+								<ul><li><p>Comprehensive Steps to Understand and Develop Primavera Risk Analysis Models</p></li><li><p>Importing a P6 XER File into Primavera Risk</p></li><li><p>Navigate the Primavera Risk Workspace</p></li><li><p>Check the Schedule Health</p></li><li><p>Test the Primavera Risk Model</p></li><li><p>Add Duration Uncertainty</p></li><li><p>Understand Templated Quick Risk</p></li><li><p>Introduce and Understand Correlation</p></li><li><p>Introduction to the Risk Register and Risk Scoring</p></li><li><p>Understand the Qualitative Risk Register</p></li><li><p>Understand the Quantitative Risk Register</p></li><li><p>Understand Risk Register Reports</p></li><li><p>Build an Impacted Risk Model</p></li><li><p>Run a Risk Analysis</p></li><li><p>&nbsp;Analyse the Distribution Histogram</p></li><li><p>Analyse the Tornado Chart</p></li><li><p>Analyse the Distribution Analyser</p></li><li><p>Learn how to add Weather Risk Events</p></li><li><p>Understand how to apply Percentage Leads or Lags</p></li><li><p>Learn how to apply Probabilistic Links and Branching</p></li><li><p>Learn how to Format the Gantt Chart</p></li><li><p>Risk Analysis Exercise (Approx. 3 - 4 hours)</p></li><li><p>Risk Analysis Exercise Outcome and Answers</p></li></ul>
+																								<h4> Requirements </h4>
+								<ul><li><p>Basic Knowledge of Project Scheduling and Risk</p></li><li><p>Primavera Risk Analysis Software (Trial version can be obtained from the Oracle E-delivery website)</p></li></ul>
+															</div>
+						</div>
+						<div class="mui-tabs__pane" id="pane-default-3">
+							<div class="course-details-wrapper">
+								<div class="mui-panel mrgn-t25 rounded author-details-div" style="min-height:520px;">
+
+								</div>
+							</div>
+						</div>
+						<div class="mui-tabs__pane" id="pane-default-4">
+							<div class="mrgn-t25 ">
+									<div class="review-summary-container rating-divs">
+										<div class="review-summary-avg">
+											<div class="avg-number">
+												0
+											</div>
+											<div class="rating">
+												<div class="rating-display">
+																										<span class="">&#9733;</span>
+																										<span class="">&#9733;</span>
+																										<span class="">&#9733;</span>
+																										<span class="">&#9733;</span>
+																										<span class="">&#9733;</span>
+																									</div>
+											</div>
+											<span>Course Rating</span>
+										</div>
+										<div class="review-summary-rating">									
+																						<div class="review-summary-rating-wrap">
+												<div class="review-bars">
+													<div class="full_bar">
+														<div class="bar_filler" style="width:0%"></div>
+													</div>
+												</div>
+												<div class="review-stars">
+													<div class="star-rating"><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span>
+													</div>
+												</div>
+												<div class="rating">
+													<div class="rating-display">
+																													<span class="r-active">★</span>
+																														<span class="r-active">★</span>
+																														<span class="r-active">★</span>
+																														<span class="r-active">★</span>
+																														<span class="r-active">★</span>
+																
+													</div>
+												</div>
+												<div class="review-avgs">
+													0%
+												</div>
+											</div>
+																						<div class="review-summary-rating-wrap">
+												<div class="review-bars">
+													<div class="full_bar">
+														<div class="bar_filler" style="width:0%"></div>
+													</div>
+												</div>
+												<div class="review-stars">
+													<div class="star-rating"><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span>
+													</div>
+												</div>
+												<div class="rating">
+													<div class="rating-display">
+																													<span class="r-active">★</span>
+																														<span class="r-active">★</span>
+																														<span class="r-active">★</span>
+																														<span class="r-active">★</span>
+																														<span class="">★</span>
+																
+													</div>
+												</div>
+												<div class="review-avgs">
+													0%
+												</div>
+											</div>
+																						<div class="review-summary-rating-wrap">
+												<div class="review-bars">
+													<div class="full_bar">
+														<div class="bar_filler" style="width:0%"></div>
+													</div>
+												</div>
+												<div class="review-stars">
+													<div class="star-rating"><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span>
+													</div>
+												</div>
+												<div class="rating">
+													<div class="rating-display">
+																													<span class="r-active">★</span>
+																														<span class="r-active">★</span>
+																														<span class="r-active">★</span>
+																														<span class="">★</span>
+																														<span class="">★</span>
+																
+													</div>
+												</div>
+												<div class="review-avgs">
+													0%
+												</div>
+											</div>
+																						<div class="review-summary-rating-wrap">
+												<div class="review-bars">
+													<div class="full_bar">
+														<div class="bar_filler" style="width:0%"></div>
+													</div>
+												</div>
+												<div class="review-stars">
+													<div class="star-rating"><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span>
+													</div>
+												</div>
+												<div class="rating">
+													<div class="rating-display">
+																													<span class="r-active">★</span>
+																														<span class="r-active">★</span>
+																														<span class="">★</span>
+																														<span class="">★</span>
+																														<span class="">★</span>
+																
+													</div>
+												</div>
+												<div class="review-avgs">
+													0%
+												</div>
+											</div>
+																						<div class="review-summary-rating-wrap">
+												<div class="review-bars">
+													<div class="full_bar">
+														<div class="bar_filler" style="width:0%"></div>
+													</div>
+												</div>
+												<div class="review-stars">
+													<div class="star-rating"><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span>
+													</div>
+												</div>
+												<div class="rating">
+													<div class="rating-display">
+																													<span class="r-active">★</span>
+																														<span class="">★</span>
+																														<span class="">★</span>
+																														<span class="">★</span>
+																														<span class="">★</span>
+																
+													</div>
+												</div>
+												<div class="review-avgs">
+													0%
+												</div>
+											</div>
+																					</div>
+									</div>							
+									<div class="comments" >
+										<ul id="ulFeedbacks" class="rating-divs">
+											<h4 class="review-summary-title"> Feedbacks <span class="comments-amount"> (0) </span> </h4>
+																						<li>
+												<div class="mui-panel rounded">
+													No Feedbacks Yet..!
+												</div>
+											</li>
+												
+											<div class="clear"></div>
+																					</ul>							
+										<ul>
+											<div class="mui-panel rounded" id="divSubmitReview" style="display:none;">
+												<div>
+													<li>
+														<h4 class="review-summary-title"> Submit your feedback</h4>
+														<div class="clear"></div>
+														<div class="comments-avatar" style="left:20px!important;">
+															<div class="" id="divRatingUserImage"></div>
+														</div>
+														<div class="comment-content">
+															<div class="comment-by">
+																<p id="divRatingUserName" style="line-height:26px;padding:0px;margin:0px;"></p>
+																<div class="rating-input">
+																<label style="float:left; margin:0px 5px 20px 0px;">Rating</label>
+																																   <span class="star-input" name="5">&#9733;</span>
+																																   <span class="star-input" name="4">&#9733;</span>
+																																   <span class="star-input" name="3">&#9733;</span>
+																																   <span class="star-input" name="2">&#9733;</span>
+																																   <span class="star-input" name="1">&#9733;</span>
+																							
+															</div> 
+															<div class="clear"></div>		
+															<input type="hidden" value="0" id="hdnFeedbackRating" />
+															<div class="uk-grid-small uk-grid" uk-grid="">
+																<div class="uk-width-1-1@s uk-grid-margin uk-first-column">
+																	<label class="uk-form-label"><b>Feedback (Optional)</b></label>
+																	<textarea id="txtFeedbackMsg" class="uk-textarea" placeholder="Enter Your Feedback here..." style=" height:160px"></textarea>
+																</div>
+																<div class="error" id="divFeedbackAlert"></div>
+																<div class="clear"></div>
+															</div>
+															<div class="">
+																<input type="submit" value="Submit" class="btn btn-success btn-pad-min rounded" id="btnFeedbackSubmit">
+															</div>
+														</div>									
+													</li>
+												</div>
+											</div>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>											
+				</div>
+				
+				<div class="mui-col-lg-4 mui-col-md-4 mui-col-sm-12 mui-col-xs-12 card-sticky right-card" style="padding-right:0px;" id="rateCard">
+					<div class="main-sticky">
+						<div id="video-card">
+							<div class="video-card rounded shadow">
+								<div class="video-card-thumbnail details-img">
+									<img src="https://d3mxt5v3yxgcsr.cloudfront.net/courses/9542/course_9542_image.jpg" class="rounded-img" title="Primavera Risk Analysis - Step by Step" alt="Primavera Risk Analysis - Step by Step" />
+									<span class="play-button-trigger-video show"></span>
+								</div>
+								<div class="p-3">
+									<div class="uk-text-bold">This Course Includes :
+										<div class="uk-wishlist-anchor"><a href="javascript:void(0)" data-course_id="9542" class="wishlist rounded transition-3d-hover" title="Add to Wishlist"><i class="fa fa-heart-solid"></i> </a></div>
+									</div>
+																		<div class="icons-svg">
+										<p><i class="fa fa-clock"></i></p>3 hours 
+									</div>
+																		<div class="clear"></div>
+																		<div class="icons-svg">
+										<p class=""><a href="javascript:void(0);" id='sample-link' title="View Sample Certificate"><i class="fa fa-file-certificate"></i></p>Completion Certificate <span class="rounded">Sample Certificate</span></a>
+									</div>
+																		<div class="clear"></div>
+									<div class="icons-svg">
+										<p><i class="fa fa-play-circle"></i></p>22 Lectures
+									</div>
+																		<div class="clear"></div>
+									<div class="icons-svg">
+										<p><i class="fa fa-clipboard-list-check"></i></p>10 Resources
+									</div>
+																											<div class="clear"></div>
+									<div class="icons-svg">
+										<p><i class="fa fa-shield-alt"></i></p>Lifetime Access
+									</div>
+									<div class="clear"></div>
+																		<div class="icons-svg">
+										<p><i class="fa fa-hand-holding-usd"></i></p>30-Days Money Back Guarantee
+									</div>
+									 
+									<div id ='price-div-clear' class="clear"></div>
+									<div class="mobile-view" id="mobile-view">
+										<div class="ebook-price-card">
+											<div class="ebook-price" style="display:none">
+	<div class=''>
+		<b><span class="price"  data-usd=9.99 data-inr=399.99 data-cad=11.99 data-aud=11.99 data-gbp=7.49 data-eur=8.49></span></b>
+		<span class="actual-price"  data-usd=100 data-inr=7337 data-cad=122 data-aud=128 data-gbp=72 data-eur=83></span>
+	</div>						
+	<div class='ebook-discount'>				
+		<span>You Save</span> 
+		<b><span class="discount-amount"  data-usd=90.01 data-inr=6937.01 data-cad=110.01 data-aud=116.01 data-gbp=64.51 data-eur=74.51></span></b>
+		<span class="ebook-off rounded" data-usd=90 data-inr=95 data-cad=90 data-aud=91 data-gbp=90 data-eur=90 style="display:none"></span> 		
+	</div>
+</div>
+											</div>
+																				<div class="button_content">
+																							<div class="mui-col-md-12 mui-col-sm-12 add_to_cart_div np">
+    <div class="row">
+        <div class="mui-lg-6 mui-col-md-6 mui-col-sm-6 mui-col-xs-6 text-left npr">
+            <button class="btn btn-cart btn-100 add_to_cart rounded" data-course_id="9542" data-redirect="0"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+        </div>
+        <div class="mui-lg-6 mui-col-md-6 mui-col-sm-6 mui-col-xs-6 text-left npl">
+            <button class="btn btn-success btn-100 add_to_cart rounded" data-course_id="9542" data-redirect="1"><i class="fa fa-check"></i> Buy Now</button>
+        </div>
+    </div>
+</div>
+																					</div>
+																				<div class="clear"></div>
+									</div>
+																		<div class="clear"></div>
+									<div class="icons-svg gift-course">
+										<a href="https://www.tutorialspoint.com/market/giftcourse.php?ct=primavera-risk-analysis-step-by-step"><i class="fa fa-gift"></i> &nbsp;Gift Course </a>
+									</div>
+									
+								</div>
+								<div class="clear"></div>
+							</div>
+						</div>
+						<div class="card p-201 rounded business-link">
+							<a href="https://www.tutorialspoint.com/business/index.asp" title="Try our Business Solution">
+								<h2>Training 5 or more people ?</h2>
+								<p>Get access to our complete library of <b>5000+</b> courses or customize you bundle yourself.</p>
+								<h3>Try our Business solution <i class="fa fa-location-arrow"></i></h3>
+							</a>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="mui-container">
+		<div class="row">
+			<div class="mui-col-lg-12 mui-col-md-12 mui-col-sm-12 mui-col-xs-12 related-items">
+				<div class="sub-title" style="margin:45px 0px 25px 0px;"><i class="fa fa-play-circle"></i> Related Videos </div>
+				<div class="row list-div">
+					<div class="wrap-view">
+						<div class="imgLoader">
+							<img src="/market/public/assets/images/loader.gif" alt="Tutorialspoint" width="70" height="70" />
+						</div>
+					</div>
+				</div>
+				
+								<div class="clear"></div>
+				<div class="col-md-12 text-right np">
+					<a href="https://www.tutorialspoint.com/search/courses/business" title="card view" class="btn btn-viewmore btn-100 rounded" style="margin-right:10px;"><i class="fa fa-external-link"></i> view more </a>
+				</div>
+							</div>
+		</div>
+	</div>
+</div>
+<!-- Trigger/Open The Modal --> 
+
+<div id="right-card"></div>
+
+<div id="my-certificate" class="modal-certificate">
+	<div class="modal-content-cert">
+		<span class="close-certificate btn-custom-modal-close">&times;</span>
+		<h2 style="color:#b3b3b3; margin:0px; padding:0px; font-size:16px; text-align:left;">Sample Certificate</h2>
+		<img src="/market/public/assets/images/sample-certificate.jpg" class="rounded"/>
+	</div>
+</div>
+
+<script>
+    course = 9542;
+</script>
+
+	</div>
+	</div>
+<div class="clear"></div>
+<div class="footer">
+    <div class="mui-container"> 
+        <div class="text-center">
+			<a href="https://www.tutorialspoint.com/index.htm" class="uk-logo">
+				<img src="/market/public/assets/images/tp-diamond.png" alt="tutorialspoint" class="foot-logo"/>
+			</a>
+			<div class="clear"></div>
+			<div class="footer-links text-center">
+				<ul class="">
+					<li><a href="/about/index.htm" target="_blank"><i class="fa fa-globe"></i> About us</a>
+					</li>
+					<li><a href="/about/about_terms_of_use.htm" target="_blank"><i class="fa fa-asterisk"></i> Terms of use</a>
+					</li>
+					<li><a href="/about/about_privacy.htm#cookies" target="_blank"><i class="fa fa-shield-check"></i> Cookies Policy</a>
+					</li>
+					<li><a href="/about/faq.htm" target="_blank"><i class="fa fa-question-circle"></i> FAQ's</a></li>
+					<li><a href="https://www.tutorialspoint.com/market/teach_with_us.jsp" target="_blank"><i class="fa fa-book-reader"></i> Teach with Us</a>
+					</li>
+					<li><a href="/about/contact_us.htm" target="_blank"><i class="fa fa-map-marker-alt"></i> Contact</a></li>
+				</ul>
+			</div>		
+        </div>
+        <div class="mui-container text-center">
+            <div class="mui-col-md-12 mui-col-sm-12">
+                <p style="padding-top:15px;"><i class="fa fa-copyright"></i> Copyright 2022. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+
+
+<!-- Start of Cookies Banner -->
+<div id="privacy-banner">
+    <div>
+        <p>
+            We make use of cookies to improve our user experience. By using this website, you agree with our Cookies Policy.
+            <a id="banner-accept" href="javascript:void(0)">Agree</a>
+            <a id="banner-learn" href="/about/about_cookies.htm" target="_blank">Learn more</a>
+        </p>
+    </div>
+</div>
+
+
+<!-- End of Cookies Banner -->
+<script src="/market/public/assets/js/mui/mui-combined.min.js?v=1631356813"></script>
+<script>
+    var appURL = "https://www.tutorialspoint.com/market/";
+    var baseURL = "https://www.tutorialspoint.com/";
+	
+</script>
+<script src="/market/public/assets/js/tp-new.js?v=1654589543"></script>
+<script src="/market/public/assets/js/toastr.js"></script>
+</body>
+
+</html>
